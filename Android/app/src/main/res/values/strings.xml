@@ -2,4 +2,16 @@
     <string name="app_name">It\'s Time!</string>
     <string name="start_now">Start Now!</string>
     <string name="onboardicons">OnBoardIcons</string>
+    <string name="head_1">Goals</string>
+    <string name="head_2">Productivity</string>
+    <string name="head_3">Life</string>
+    <string name="on_board_1">
+        Write down all your tasks and goals.
+    </string>
+    <string name="on_board_2">
+        Perform tasks more efficiently thanks to the alert system and calendar
+    </string>
+    <string name="on_board_3">
+        Free time for new experiences, pleasures and your life.
+    </string>
 </resources>
