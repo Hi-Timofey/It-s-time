@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">It\'s Time!</string>
     <string name="start_now">Start Now!</string>
+    <string name="onboardicons">OnBoardIcons</string>
 </resources>
