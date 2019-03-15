@@ -1,0 +1,49 @@
+<resources>
+    <style name="BlueApplicationStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/b_primary</item>
+        <item name="colorAccent">@color/b_accent</item>
+        <item name="colorPrimaryDark">@color/b_primary_dark</item>
+    </style>
+
+    <style name="LogInStyle" parent="BlueApplicationStyle">
+        <item name="colorPrimary">@color/b_primary</item>
+        <item name="colorPrimaryDark">@color/b_primary_dark</item>
+        <item name="colorAccent">@color/b_accent</item>
+        <item name="android:windowBackground">@color/whiteColor</item>
+        <item name="colorControlHighlight">@color/b_accent_light</item>
+        <item name="colorControlNormal">@color/b_accent_dark</item>
+        <item name="android:statusBarColor">@color/b_primary_dark</item>
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
+    
+    <style name="LoginButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@drawable/btn_background</item>
+        <item name="android:textColor">@color/whiteColor</item>
+        <item name="rippleColor">@color/b_accent_dark</item>
+    </style>
+    <!--
+Небольшой список свойств, которые используются для настройки собственных тем.
+
+    android:windowNoTitle: используйте значение true, чтобы скрыть заголовок
+
+    android:windowFullscreen: используйте значение true, чтобы скрыть строку состояния и освободить место для приложения
+
+    android:windowBackground: ресурс цвета или drawable для фона
+
+    android:windowContentOverlay: Drawable, который рисуется поверх содержимого окна.
+        По умолчанию, это тень от строки состояния. Можно использовать null (@null в XML-файле) для удаления ресурса.
+
+    android:colorPrimary: основной цвет для интерфейса программы - панель, кнопки и т.д.
+
+    android:colorPrimaryDark: цвет для системных элементов - строка состояния
+
+    android:colorAccent: Цвет по умолчанию для компонентов, которые находятся в фокусе или активны
+
+    android:colorControlNormal: Цвет для неактивных компонентов
+
+    android:colorControlActivated: Цвет для активных компонентов
+
+    android:colorControlHighlight: Цвет для нажатых элементов интерфейса
+    -->
+</resources>
