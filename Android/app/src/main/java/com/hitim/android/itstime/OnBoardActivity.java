@@ -18,17 +18,24 @@ public class OnBoardActivity extends AppCompatActivity {
     private TextView[] mDots;
     private LinearLayout mDotsLayout;
 
+    private boolean first_open = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_on_board);
-        mDotsLayout = findViewById(R.id.dots_manager);
-        vPager = findViewById(R.id.slider_page);
-        sliderAdapter = new SliderAdapter(this);
-        vPager.setAdapter(sliderAdapter);
-        addDots(0);
-        vPager.addOnPageChangeListener(pageChangeListener);
-
+        if (!first_open) {
+            Intent i = new Intent(this, LogInActivity.class);
+            startActivity(i);
+        } else {
+            //first_open = false; TODO: Сделать что бы этот "флаг" был либо в SharePref либо в Файлике приложения
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_on_board);
+            mDotsLayout = findViewById(R.id.dots_manager);
+            vPager = findViewById(R.id.slider_page);
+            sliderAdapter = new SliderAdapter(this);
+            vPager.setAdapter(sliderAdapter);
+            addDots(0);
+            vPager.addOnPageChangeListener(pageChangeListener);
+        }
     }
 
     public void onStartBtn(View view) {
@@ -37,10 +44,10 @@ public class OnBoardActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void addDots(int position){
+    public void addDots(int position) {
         mDots = new TextView[3];
         mDotsLayout.removeAllViews();
-        for(int i = 0;i < mDots.length;i++){
+        for (int i = 0; i < mDots.length; i++) {
             mDots[i] = new TextView(this);
             mDots[i].setText(Html.fromHtml("&#8226;"));
             mDots[i].setTextSize(35);
