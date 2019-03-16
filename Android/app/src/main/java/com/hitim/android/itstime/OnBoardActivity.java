@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,6 +35,13 @@ public class OnBoardActivity extends AppCompatActivity {
             vPager = findViewById(R.id.slider_page);
             sliderAdapter = new SliderAdapter(this);
             vPager.setAdapter(sliderAdapter);
+
+            Animation fadeInWelcome = AnimationUtils.loadAnimation(this , R.anim.fade_in_welcome);
+            Animation fadeInShort = AnimationUtils.loadAnimation(this , R.anim.fade_in_5);
+
+            mDotsLayout.startAnimation(fadeInShort);
+            vPager.startAnimation(fadeInWelcome);
+
             addDots(0);
             vPager.addOnPageChangeListener(pageChangeListener);
         }
