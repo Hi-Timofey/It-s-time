@@ -44,7 +44,7 @@ public class OnBoardActivity extends AppCompatActivity {
             mDots[i] = new TextView(this);
             mDots[i].setText(Html.fromHtml("&#8226;"));
             mDots[i].setTextSize(35);
-            mDots[i].setGravity(Gravity.CENTER );
+            //mDots[i].setGravity(Gravity.CENTER_HORIZONTAL);
             mDots[i].setTextColor(getResources().getColor(R.color.b_primary));
             mDotsLayout.addView(mDots[i]);
         }
