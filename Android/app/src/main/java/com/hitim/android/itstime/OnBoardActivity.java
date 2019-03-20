@@ -49,7 +49,7 @@ public class OnBoardActivity extends AppCompatActivity {
 
     public void onStartBtn(View view) {
         Intent i = new Intent(this, LogInActivity.class);
-        
+
         //TODO: Нормальную анимацию и переключение
         startActivity(i);
     }
