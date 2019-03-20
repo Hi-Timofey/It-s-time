@@ -21,5 +21,6 @@
     <string name="log_in">Log In!</string>
     <string name="password">Password</string>
     <string name="e_mail">E-Mail</string>
+    <string name="divider">Divider</string>
 
 </resources>
