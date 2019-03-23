@@ -3,6 +3,7 @@
         <item name="colorPrimary">@color/b_primary</item>
         <item name="colorAccent">@color/b_accent</item>
         <item name="colorPrimaryDark">@color/b_primary_dark</item>
+        <item name="android:windowBackground">@color/whiteColor</item>
     </style>
 
     <style name="LogInStyle" parent="BlueApplicationStyle">
@@ -16,11 +17,15 @@
         <!--<item name="android:windowTranslucentNavigation">true</item>-->
     </style>
     
-    <style name="LoginButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textSize">20sp</item>
+    <style name="LoginButton">
         <item name="android:background">@drawable/btn_background</item>
         <item name="android:textColor">@color/whiteColor</item>
+        <item name="android:textSize">16sp</item>
         <item name="rippleColor">@color/b_accent_dark</item>
+    </style>
+
+    <style name="HintText_til" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/b_primary</item>
     </style>
     <!--
 Небольшой список свойств, которые используются для настройки собственных тем.
