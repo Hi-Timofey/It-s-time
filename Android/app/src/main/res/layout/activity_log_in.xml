@@ -32,7 +32,7 @@
 
             <ImageView
                 android:id="@+id/welcome_icon"
-                android:layout_width="0dp"
+                android:layout_width="256dp"
                 android:layout_height="256dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="8dp"
@@ -97,7 +97,6 @@
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/edit_log"
-                    style="@style/Base.V7.Widget.AppCompat.EditText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -121,7 +120,6 @@
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/edit_reg"
-                    style="@style/Base.V7.Widget.AppCompat.EditText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -150,7 +148,7 @@
 
             <Button
                 android:id="@+id/button_login"
-                style="@style/LoginButton"
+                android:background="@drawable/btn_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -199,7 +197,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="5dp"
                 android:contentDescription="@string/divider"
-                android:src="@drawable/line" />
+                android:src="@drawable/line_1" />
 
 
             <TextView
@@ -221,7 +219,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="20dp"
                 android:contentDescription="@string/divider"
-                android:src="@drawable/line" />
+                android:src="@drawable/line_1" />
         </LinearLayout>
 
         <ImageButton
@@ -231,7 +229,7 @@
             android:layout_marginBottom="1dp"
             android:background="@color/b_primary"
             android:backgroundTint="@color/whiteColor"
-            android:src="@drawable/ic_keyboard_arrow_up_black_24dp"
+            android:src="@drawable/arrow_up"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
