@@ -15,7 +15,7 @@ public class LogInActivity extends AppCompatActivity {
 
 
     public void onLogIn(View view) {
-        Intent i = new Intent(LogInActivity.this,);
+        Intent i = new Intent(LogInActivity.this,SphereActivity.class);
         startActivity(i);
     }
 }
