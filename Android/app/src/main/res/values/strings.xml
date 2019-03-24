@@ -22,5 +22,6 @@
     <string name="password">Password</string>
     <string name="e_mail">E-Mail</string>
     <string name="divider">Divider</string>
+    <string name="search_task">Search Task</string>
 
 </resources>
