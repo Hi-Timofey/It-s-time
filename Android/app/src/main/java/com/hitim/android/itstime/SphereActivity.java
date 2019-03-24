@@ -31,7 +31,7 @@ public class SphereActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_search) {
-            
+
         }
         /*if(item.getItemId() == R.id.item){
             TODO:Сделать функции других элементов
