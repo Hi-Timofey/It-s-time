@@ -32,6 +32,8 @@
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="android:background">@color/b_primary</item>
+        <item name="android:menuCategory">secondary</item>
+        <item name="android:actionMenuTextColor">@color/b_accent_dark</item>
     </style>
     <!--
 Небольшой список свойств, которые используются для настройки собственных тем.

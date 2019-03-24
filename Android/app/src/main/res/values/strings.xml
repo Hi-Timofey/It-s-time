@@ -15,13 +15,16 @@
     <string name="on_board_3">
         Free time for new experiences, pleasures and your life.
     </string>
-
     <!--Log In Activity Strings-->
     <string name="reg_text">Or Register Now</string>
     <string name="log_in">Log In!</string>
     <string name="password">Password</string>
     <string name="e_mail">E-Mail</string>
     <string name="divider">Divider</string>
+    <!-- Sphere activity strings -->
     <string name="search_task">Search Task</string>
-
+    <string name="sphere">Spheres of life</string>
+    <string name="profile">Profile</string>
+    <string name="search_text">Search tasks, tags and etc...</string>
+    <string name="settings">Settings</string>
 </resources>

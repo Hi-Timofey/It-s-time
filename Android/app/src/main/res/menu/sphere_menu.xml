@@ -4,7 +4,21 @@
 
     <item
         android:id="@+id/action_search"
-        app:showAsAction="always"
+        android:enabled="true"
         android:icon="@drawable/ic_search"
-        android:title="@string/search_task" />
+        android:title="@string/search_task"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/action_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_account"
+        android:title="@string/profile"
+        app:showAsAction="collapseActionView|ifRoom" />
+    <item
+        android:id="@+id/action_settings"
+        android:enabled="true"
+        android:title="@string/settings"
+        app:showAsAction="never" />
+
 </menu>
