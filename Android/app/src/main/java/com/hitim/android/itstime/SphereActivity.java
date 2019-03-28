@@ -42,21 +42,25 @@ public class SphereActivity extends AppCompatActivity {
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(true);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            //TODO: делать нормальную анимацию для Floating Button когад идет поиск текста
             @Override
             public boolean onQueryTextSubmit(String query) {
 
+                floatingActionButton.show();
                 //do the search here
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                floatingActionButton.hide();
                 return false;
             }
         });
         return true;
     }
 
+    //Обработка нажатий кнопок на Toolbar'е
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
