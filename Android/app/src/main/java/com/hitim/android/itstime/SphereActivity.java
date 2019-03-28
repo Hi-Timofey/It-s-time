@@ -3,6 +3,7 @@ package com.hitim.android.itstime;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -14,6 +15,7 @@ public class SphereActivity extends AppCompatActivity {
 
     public MenuItem searchMenuItem;
     public Toolbar toolbar;
+    public FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class SphereActivity extends AppCompatActivity {
     private void getAllItems() {
         toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.floating_button);
     }
 
     @Override
