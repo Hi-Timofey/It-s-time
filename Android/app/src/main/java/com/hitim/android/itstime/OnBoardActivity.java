@@ -19,7 +19,6 @@ public class OnBoardActivity extends AppCompatActivity {
     private SliderAdapter sliderAdapter;
     private TextView[] mDots;
     private LinearLayout mDotsLayout;
-
     private boolean first_open = true;
 
     @Override
@@ -35,16 +34,18 @@ public class OnBoardActivity extends AppCompatActivity {
             vPager = findViewById(R.id.slider_page);
             sliderAdapter = new SliderAdapter(this);
             vPager.setAdapter(sliderAdapter);
-
-            Animation fadeInWelcome = AnimationUtils.loadAnimation(this , R.anim.fade_in_welcome);
-            Animation fadeInShort = AnimationUtils.loadAnimation(this , R.anim.fade_in_5);
-
-            mDotsLayout.startAnimation(fadeInShort);
-            vPager.startAnimation(fadeInWelcome);
+            startAnimation();
 
             addDots(0);
             vPager.addOnPageChangeListener(pageChangeListener);
         }
+    }
+
+    private void startAnimation() {
+        Animation fadeInWelcome = AnimationUtils.loadAnimation(this, R.anim.fade_in_welcome);
+        Animation fadeInShort = AnimationUtils.loadAnimation(this, R.anim.fade_in_5);
+        mDotsLayout.startAnimation(fadeInShort);
+        vPager.startAnimation(fadeInWelcome);
     }
 
     public void onStartBtn(View view) {
@@ -54,6 +55,10 @@ public class OnBoardActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    /*Slider and dots zone
+    * Точки около кнопки меняются благодаря этому коду
+    * Обработка OnPageListener'а
+    *  */
     public void addDots(int position) {
         mDots = new TextView[3];
         mDotsLayout.removeAllViews();
@@ -69,11 +74,9 @@ public class OnBoardActivity extends AppCompatActivity {
             mDots[position].setTextColor(getResources().getColor(R.color.b_primary_dark));
         }
     }
-
     ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int i, float v, int i1) {
-
         }
 
         @Override

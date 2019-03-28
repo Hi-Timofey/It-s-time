@@ -15,7 +15,12 @@ public class SliderAdapter extends PagerAdapter {
     Context context;
     LayoutInflater lInflater;
 
-    //Arrays------------------------------
+    /* Slider
+    * Класс для обработки переключений слайдера и вывода необходимых картинок и информации
+    * Картинки берутся из папки drawable
+    * Текст напрямую из string русерсов
+    * При переключении пользователем экрана идет простая замена View элементов
+    * */
     public int[] slide_images = {
             R.drawable.ic_alarms,
             R.drawable.ic_check_box,
