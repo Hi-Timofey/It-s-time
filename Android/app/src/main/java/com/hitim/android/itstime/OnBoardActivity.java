@@ -1,6 +1,8 @@
 package com.hitim.android.itstime;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class OnBoardActivity extends AppCompatActivity {
 
@@ -19,15 +22,20 @@ public class OnBoardActivity extends AppCompatActivity {
     private SliderAdapter sliderAdapter;
     private TextView[] mDots;
     private LinearLayout mDotsLayout;
-    private boolean first_open = true;
+    private SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (!first_open) {
+        SettingsActivity.itsSettings = getSharedPreferences(SettingsActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
+        if (!SettingsActivity.itsSettings.getBoolean(SettingsActivity.APP_FIRST_OPEN,false)) {
+            Toast.makeText(getApplicationContext(),"Complete",Toast.LENGTH_SHORT).show();
             Intent i = new Intent(this, LogInActivity.class);
             startActivity(i);
         } else {
-            //first_open = false; TODO: Сделать что бы этот "флаг" был либо в SharePref либо в Файлике приложения
+            createSharedPref();
+            editor.putBoolean(SettingsActivity.APP_FIRST_OPEN, false);
+            editor.apply();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_on_board);
             mDotsLayout = findViewById(R.id.dots_manager);
@@ -40,6 +48,14 @@ public class OnBoardActivity extends AppCompatActivity {
             vPager.addOnPageChangeListener(pageChangeListener);
         }
     }
+
+    //Инициализирует создание настроек приложения
+    private void createSharedPref() {
+        editor = SettingsActivity.itsSettings.edit();
+        editor.putBoolean(SettingsActivity.APP_FIRST_OPEN, true);
+        editor.apply();
+    }
+
 
     private void startAnimation() {
         Animation fadeInWelcome = AnimationUtils.loadAnimation(this, R.anim.fade_in_welcome);
@@ -56,9 +72,9 @@ public class OnBoardActivity extends AppCompatActivity {
     }
 
     /*Slider and dots zone
-    * Точки около кнопки меняются благодаря этому коду
-    * Обработка OnPageListener'а
-    *  */
+     * Точки около кнопки меняются благодаря этому коду
+     * Обработка OnPageListener'а
+     *  */
     public void addDots(int position) {
         mDots = new TextView[3];
         mDotsLayout.removeAllViews();
@@ -74,6 +90,7 @@ public class OnBoardActivity extends AppCompatActivity {
             mDots[position].setTextColor(getResources().getColor(R.color.b_primary_dark));
         }
     }
+
     ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int i, float v, int i1) {
