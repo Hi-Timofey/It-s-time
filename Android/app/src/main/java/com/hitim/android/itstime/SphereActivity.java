@@ -63,11 +63,15 @@ public class SphereActivity extends AppCompatActivity {
     //Обработка нажатий кнопок на Toolbar'е
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i;
         switch (item.getItemId()) {
             case R.id.action_profile:
-                Intent i = new Intent(SphereActivity.this, ProfileActivity.class);
+                i = new Intent(SphereActivity.this, ProfileActivity.class);
                 startActivity(i);
                 break;
+            case R.id.action_settings:
+                i = new Intent(SphereActivity.this,SettingsActivity.class);
+                startActivity(i);
         }
         return true;
     }
