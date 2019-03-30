@@ -22,12 +22,12 @@ public class SphereActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sphere);
         getAllItems();
-        toolbar.setTitle(R.string.sphere);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
     }
 
     private void getAllItems() {
         toolbar = findViewById(R.id.tool_bar);
+        toolbar.setTitle(R.string.sphere);
         setSupportActionBar(toolbar);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.floating_button);
     }
