@@ -13,7 +13,7 @@ import android.view.MenuItem;
 
 public class SphereActivity extends AppCompatActivity {
 
-    public MenuItem searchMenuItem;
+    //public MenuItem searchMenuItem;
     public Toolbar toolbar;
     public FloatingActionButton floatingActionButton;
 
