@@ -27,16 +27,16 @@ public class OnBoardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         SettingsActivity.itsSettings = getSharedPreferences(SettingsActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
-        if (!SettingsActivity.itsSettings.getBoolean(SettingsActivity.APP_FIRST_OPEN,false)) {
-            Toast.makeText(getApplicationContext(),"Complete",Toast.LENGTH_SHORT).show();
+        createSharedPref();
+        if (!SettingsActivity.itsSettings.getBoolean(SettingsActivity.APP_FIRST_OPEN,true)) {
+            Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(this, LogInActivity.class);
             startActivity(i);
         } else {
-            createSharedPref();
             editor.putBoolean(SettingsActivity.APP_FIRST_OPEN, false);
             editor.apply();
-            super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_on_board);
             mDotsLayout = findViewById(R.id.dots_manager);
             vPager = findViewById(R.id.slider_page);
@@ -52,7 +52,6 @@ public class OnBoardActivity extends AppCompatActivity {
     //Инициализирует создание настроек приложения
     private void createSharedPref() {
         editor = SettingsActivity.itsSettings.edit();
-        editor.putBoolean(SettingsActivity.APP_FIRST_OPEN, true);
         editor.apply();
     }
 
