@@ -36,7 +36,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            
+
         }
         return false;
     }
