@@ -10,6 +10,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class SphereActivity extends AppCompatActivity {
 
@@ -45,7 +46,6 @@ public class SphereActivity extends AppCompatActivity {
             //TODO: делать нормальную анимацию для Floating Button когад идет поиск текста
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 floatingActionButton.show();
                 //do the search here
                 return false;
@@ -53,8 +53,13 @@ public class SphereActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                floatingActionButton.hide();
                 return false;
+            }
+        });
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                floatingActionButton.hide();
             }
         });
         return true;

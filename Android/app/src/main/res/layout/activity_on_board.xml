@@ -33,7 +33,7 @@
     </LinearLayout>
 
 
-    <!--TODO: Выглядит тупООООО!Переделай!-->
+
     <Button
         android:id="@+id/startButton"
         android:layout_width="0dp"
