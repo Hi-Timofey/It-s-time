@@ -13,6 +13,8 @@ import android.view.View;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SphereActivity extends AppCompatActivity {
 
@@ -77,7 +79,7 @@ public class SphereActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.action_settings:
-                i = new Intent(SphereActivity.this,SettingsActivity.class);
+                i = new Intent(SphereActivity.this, SettingsActivity.class);
                 startActivity(i);
         }
         return true;
