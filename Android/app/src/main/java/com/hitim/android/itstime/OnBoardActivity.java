@@ -3,18 +3,15 @@ package com.hitim.android.itstime;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Html;
-import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class OnBoardActivity extends AppCompatActivity {
 
@@ -31,7 +28,6 @@ public class OnBoardActivity extends AppCompatActivity {
         SettingsActivity.itsSettings = getSharedPreferences(SettingsActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
         createSharedPref();
         if (!SettingsActivity.itsSettings.getBoolean(SettingsActivity.APP_FIRST_OPEN,true)) {
-            Toast.makeText(getApplicationContext(), "Complete", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(this, LogInActivity.class);
             startActivity(i);
         } else {
