@@ -3,7 +3,6 @@ package com.hitim.android.itstime;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -12,11 +11,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
+
 public class SphereActivity extends AppCompatActivity {
 
     //public MenuItem searchMenuItem;
     public Toolbar toolbar;
-    public FloatingActionButton floatingActionButton;
+    public com.github.clans.fab.FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class SphereActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar);
         toolbar.setTitle(R.string.sphere);
         setSupportActionBar(toolbar);
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.floating_button);
+        floatingActionButton = findViewById(R.id.floating_button);
     }
 
     @Override
@@ -46,7 +48,7 @@ public class SphereActivity extends AppCompatActivity {
             //TODO: делать нормальную анимацию для Floating Button когад идет поиск текста
             @Override
             public boolean onQueryTextSubmit(String query) {
-                floatingActionButton.show();
+                floatingActionButton.show(false);
                 //do the search here
                 return false;
             }
@@ -59,7 +61,7 @@ public class SphereActivity extends AppCompatActivity {
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                floatingActionButton.hide();
+                floatingActionButton.hide(false);
             }
         });
         return true;

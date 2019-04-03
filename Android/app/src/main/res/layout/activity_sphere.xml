@@ -31,16 +31,19 @@
         app:layout_constraintTop_toBottomOf="@+id/tool_bar">
     </ScrollView>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.github.clans.fab.FloatingActionButton
         android:id="@+id/floating_button"
         android:layout_width="wrap_content"
         style="@style/Widget.Design.FloatingActionButton"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
         app:fabSize="auto"
-        app:srcCompat="@drawable/ic_plus"
+        android:src="@drawable/ic_plus"
+        android:layout_gravity="bottom|right"
         app:rippleColor="@color/b_accent_light"
         android:layout_margin="16dp"
+        app:fab_colorNormal="@color/b_accent"
+        app:fab_colorPressed="@color/b_accent_light"
+        app:fab_colorRipple="@color/b_accent_light"
         />
 
 </android.support.design.widget.CoordinatorLayout>
