@@ -11,15 +11,15 @@
         android:theme="@style/BlueApplicationStyle">
         <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".SphereActivity" />
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".OnBoardActivity">
+        <activity android:name=".SphereActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LogInActivity" />
+        <activity android:name=".OnBoardActivity"/>
     </application>
 
 </manifest>
