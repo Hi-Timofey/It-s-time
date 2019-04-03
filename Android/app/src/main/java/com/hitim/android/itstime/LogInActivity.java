@@ -8,16 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
 public class LogInActivity extends AppCompatActivity implements View.OnTouchListener {
 
     private EditText edLogin, edPass;
     private ImageButton regButton;
-    //Firebase
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
