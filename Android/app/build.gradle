@@ -32,6 +32,7 @@ dependencies {
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
     //FIREBASE
-    implementation 'com.google.firebase:firebase-auth:16.0.3'
-    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-auth:16.2.0'
+    implementation 'com.google.firebase:firebase-core:16.0.8'
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
 }

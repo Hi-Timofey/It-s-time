@@ -17,9 +17,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     private EditText edLogin, edPass;
     private ImageButton regButton;
     //Firebase
-    private FirebaseApp mFireBaseApp;
     private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
 
 
     @Override
@@ -30,11 +28,18 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         getAlltems();
         regButton.setOnTouchListener(this);
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+    }
+
     //Обрабтка Firebase
     private void startFireBase() {
-        mFireBaseApp = FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(LogInActivity.this);
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
     }
 
     private void getAlltems() {
@@ -55,6 +60,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
 
         }
         return false;
+
     }
 
 }
