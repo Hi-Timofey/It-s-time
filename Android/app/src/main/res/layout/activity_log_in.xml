@@ -9,7 +9,6 @@
     android:theme="@style/BlueApplicationStyle"
     tools:context=".LogInActivity">
 
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
@@ -232,7 +231,7 @@
 
         <ImageButton
             android:id="@+id/register_btn"
-            android:layout_width="30dp"
+            android:layout_width="60dp"
             android:layout_height="25dp"
             android:background="@color/b_primary"
             android:backgroundTint="@color/whiteColor"

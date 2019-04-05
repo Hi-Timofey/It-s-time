@@ -23,7 +23,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startFireBase();
         setContentView(R.layout.activity_log_in);
         getAlltems();
         regButton.setOnTouchListener(this);
@@ -32,7 +31,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+        startFireBase();
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
     }
 
@@ -49,10 +48,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     }
 
 
-    public void onLogIn(View view) {
+    /*public void onLogIn(View view) {
         Intent i = new Intent(LogInActivity.this,SphereActivity.class);
         startActivity(i);
-    }
+    }*/
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
