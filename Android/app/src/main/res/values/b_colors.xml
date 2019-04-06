@@ -15,4 +15,5 @@
     <color name="whiteColor">#FFFFFF</color>
     <!--Using for icons in B-set-->
     <color name="blackColor">#000000</color>
+    <color name="eror">#ff0000</color>
 </resources>
