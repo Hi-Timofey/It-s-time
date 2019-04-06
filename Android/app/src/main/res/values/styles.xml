@@ -1,4 +1,5 @@
 <resources>
+
     <style name="BlueApplicationStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/b_primary</item>
         <item name="colorAccent">@color/b_accent</item>
@@ -16,7 +17,7 @@
         <item name="android:statusBarColor">@color/b_primary_dark</item>
         <!--<item name="android:windowTranslucentNavigation">true</item>-->
     </style>
-    
+
     <style name="LoginButton">
         <item name="android:background">@drawable/btn_background</item>
         <item name="android:textColor">@color/whiteColor</item>
@@ -27,6 +28,7 @@
     <style name="HintText_til" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/b_primary</item>
     </style>
+
     <style name="ToolBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
@@ -35,6 +37,20 @@
         <item name="android:menuCategory">secondary</item>
         <item name="android:actionMenuTextColor">@color/b_accent_dark</item>
     </style>
+
+    <style name="ErrorText" parent="TextAppearance.Design.Error">
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">@color/eror</item>
+    </style>
+
+    <style name="BlueApplicationStyle.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="BlueApplicationStyle.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="BlueApplicationStyle.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     <!--
 Небольшой список свойств, которые используются для настройки собственных тем.
 
