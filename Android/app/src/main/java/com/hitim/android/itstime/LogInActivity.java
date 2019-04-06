@@ -61,11 +61,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     }
 
     private void getAlltems() {
-        regButton = findViewById(R.id.register_btn);
-        mailLayout = findViewById(R.id.til_1);
-        passLayout = findViewById(R.id.til_2);
-        edLogin = findViewById(R.id.edit_log);
-        edPass = findViewById(R.id.edit_pass);
+        regButton = findViewById(R.id.log_register_btn);
+        mailLayout = findViewById(R.id.log_til_1);
+        passLayout = findViewById(R.id.log_til_2);
+        edLogin = findViewById(R.id.log_edit_log);
+        edPass = findViewById(R.id.log_edit_pass);
     }
 
     public void onLogIn(View view) {
