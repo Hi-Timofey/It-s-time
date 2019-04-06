@@ -16,13 +16,12 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        /*mailLayout = findViewById();
-        passLayout = findViewById();
-        edMail = findViewById();
-        edPass = findViewById();*/
-
+        mailLayout = findViewById(R.id.reg_til_1);
+        passLayout = findViewById(R.id.reg_til_2);
+        edMail = findViewById(R.id.reg_edit_log);
+        edPass = findViewById(R.id.reg_edit_pass);
     }
-    /*
+
     public void onRegIn(View view) {
-    }*/
+    }
 }
