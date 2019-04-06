@@ -9,6 +9,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static SharedPreferences itsSettings;
     public static final String APP_PREFERENCES = "its_settings";
     public static final String APP_FIRST_OPEN = "first_open";
+    //TODO Сделать отдельный класс SharedPrefManager!!!!
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
