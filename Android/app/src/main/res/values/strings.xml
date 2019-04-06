@@ -25,6 +25,11 @@
     <string name="incorect_adress">Wrong email address</string>
     <string name="login_complete">Log in Succesful!</string>
     <string name="login_failed">Log in Failed!</string>
+    <string name="dialog_title">Signing In</string>
+    <string name="dialog_text">Please, wait...</string>
+    <!--Register Activity strings -->
+    <string name="register">Register now!</string>
+    <string name="sign_up">Sign Up!</string>
     <!-- Sphere activity strings -->
     <string name="search_task">Search Task</string>
     <string name="sphere">Spheres of life</string>
