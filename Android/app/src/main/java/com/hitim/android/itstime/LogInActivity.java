@@ -1,5 +1,6 @@
 package com.hitim.android.itstime;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -25,6 +26,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     private TextInputLayout mailLayout, passLayout;
     private TextInputEditText edLogin, edPass;
     private ImageButton regButton;
+    private ProgressDialog dialog;
     //Firebase
     private FirebaseAuth mFirebaseAuth;
 
@@ -34,6 +36,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         getAlltems();
+        dialog= new ProgressDialog(LogInActivity.this);
+        dialog.setTitle(R.string.dialog_title);
+        dialog.setMessage(getString(R.string.dialog_text));
         regButton.setOnTouchListener(this);
     }
 
@@ -64,7 +69,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     }
 
     public void onLogIn(View view) {
-        //TODO Сделать чтобы было видно прогресс логина!
         signIn(edLogin.getText().toString(), edPass.getText().toString());
     }
 
@@ -81,15 +85,19 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         if (!validate()) {
             return;
         }
+        //TODO 3 раза ввел неправильно пароль - вывд диалога с попыткой помочь(восстановление)
+        dialog.show();
         mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    dialog.hide();
                     Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LogInActivity.this, SphereActivity.class));
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
+                    dialog.hide();
                 }
             }
         });
