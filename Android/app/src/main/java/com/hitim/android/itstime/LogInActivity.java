@@ -1,21 +1,29 @@
 package com.hitim.android.itstime;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LogInActivity extends AppCompatActivity implements View.OnTouchListener {
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-    private EditText edLogin, edPass;
+public class LogInActivity extends AppCompatActivity implements View.OnTouchListener {
+    private TextInputLayout mailLayout, passLayout;
+    private TextInputEditText edLogin, edPass;
     private ImageButton regButton;
     //Firebase
     private FirebaseAuth mFirebaseAuth;
@@ -34,6 +42,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         super.onStart();
         startFireBase();
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LogInActivity.this, SphereActivity.class));
+            finish();
+        }
     }
 
     //Обрабтка Firebase
@@ -43,14 +56,16 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     }
 
     private void getAlltems() {
+        regButton = findViewById(R.id.register_btn);
+        mailLayout = findViewById(R.id.til_1);
+        passLayout = findViewById(R.id.til_2);
         edLogin = findViewById(R.id.edit_log);
         edPass = findViewById(R.id.edit_pass);
-        regButton = findViewById(R.id.register_btn);
     }
 
-
     public void onLogIn(View view) {
-        signIn(edLogin.getText().toString(),edPass.getText().toString());
+        //TODO Сделать чтобы было видно прогресс логина!
+        signIn(edLogin.getText().toString(), edPass.getText().toString());
     }
 
     @Override
@@ -61,8 +76,51 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         return false;
     }
 
-    private void signIn(String email, String password){
+    private void signIn(String email, String password) {
+        if (!validate()) {
+            return;
+        }
+        mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LogInActivity.this, SphereActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
+    private boolean validate() {
+        boolean valid = true;
+        String email = edLogin.getText().toString().trim();
+        String pass = edPass.getText().toString().trim();
+        Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+        Matcher mat = pattern.matcher(email);
+
+        if (email.isEmpty()) {
+            mailLayout.setError(getString(R.string.emptyString));
+            valid = false;
+        } else {
+            if (mat.matches()) {
+                mailLayout.setError("");
+            } else {
+                mailLayout.setError(getString(R.string.incorect_adress));
+                valid = false;
+            }
+        }
+
+        if (pass.isEmpty()) {
+            passLayout.setError(getString(R.string.emptyString));
+            valid = false;
+        } else {
+            passLayout.setError("");
+        }
+
+        return valid;
     }
 
 }
