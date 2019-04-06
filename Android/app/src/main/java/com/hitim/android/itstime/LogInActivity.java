@@ -49,10 +49,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     }
 
 
-    /*public void onLogIn(View view) {
-        Intent i = new Intent(LogInActivity.this,SphereActivity.class);
-        startActivity(i);
-    }*/
+    public void onLogIn(View view) {
+        signIn(edLogin.getText().toString(),edPass.getText().toString());
+    }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -60,6 +59,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
 
         }
         return false;
+    }
+
+    private void signIn(String email, String password){
 
     }
 
