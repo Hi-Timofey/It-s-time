@@ -43,7 +43,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         edPass = findViewById(R.id.log_edit_pass);
 
         dialog= new ProgressDialog(LogInActivity.this);
-        dialog.setTitle(R.string.dialog_title);
+        dialog.setTitle(R.string.dialog_signing_in);
         dialog.setMessage(getString(R.string.dialog_text));
         regButton.setOnTouchListener(this);
     }
