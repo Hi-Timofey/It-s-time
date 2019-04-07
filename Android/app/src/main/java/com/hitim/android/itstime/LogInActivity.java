@@ -35,37 +35,31 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-        getAlltems();
+
+        regButton = findViewById(R.id.log_register_btn);
+        mailLayout = findViewById(R.id.log_til_1);
+        passLayout = findViewById(R.id.log_til_2);
+        edLogin = findViewById(R.id.log_edit_log);
+        edPass = findViewById(R.id.log_edit_pass);
+
         dialog= new ProgressDialog(LogInActivity.this);
         dialog.setTitle(R.string.dialog_title);
         dialog.setMessage(getString(R.string.dialog_text));
         regButton.setOnTouchListener(this);
     }
 
+    //Обрабтка Firebase
     @Override
     public void onStart() {
         super.onStart();
-        startFireBase();
+        FirebaseApp.initializeApp(LogInActivity.this);
+        mFirebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
         if (currentUser != null) {
             Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(LogInActivity.this, SphereActivity.class));
             finish();
         }
-    }
-
-    //Обрабтка Firebase
-    private void startFireBase() {
-        FirebaseApp.initializeApp(LogInActivity.this);
-        mFirebaseAuth = FirebaseAuth.getInstance();
-    }
-
-    private void getAlltems() {
-        regButton = findViewById(R.id.log_register_btn);
-        mailLayout = findViewById(R.id.log_til_1);
-        passLayout = findViewById(R.id.log_til_2);
-        edLogin = findViewById(R.id.log_edit_log);
-        edPass = findViewById(R.id.log_edit_pass);
     }
 
     public void onLogIn(View view) {
