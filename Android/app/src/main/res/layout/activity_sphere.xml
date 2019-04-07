@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         app:fabSize="auto"
         android:src="@drawable/ic_plus"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="bottom|end"
         app:rippleColor="@color/b_accent_light"
         android:layout_margin="16dp"
         app:fab_colorNormal="@color/b_accent"

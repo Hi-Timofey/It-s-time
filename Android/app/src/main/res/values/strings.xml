@@ -23,7 +23,7 @@
     <string name="divider">Divider</string>
     <string name="emptyString">Field can\'t be empty</string>
     <string name="incorect_adress">Wrong email address</string>
-    <string name="login_complete">Log in Succesful!</string>
+    <string name="login_complete">Log in Successful!</string>
     <string name="login_failed">Log in Failed!</string>
     <string name="dialog_title">Signing In</string>
     <string name="dialog_text">Please, wait...</string>

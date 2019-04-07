@@ -16,8 +16,6 @@ import android.widget.TextView;
 public class OnBoardActivity extends AppCompatActivity {
 
     private ViewPager vPager;
-    private SliderAdapter sliderAdapter;
-    private TextView[] mDots;
     private LinearLayout mDotsLayout;
     private SharedPreferences.Editor editor;
 
@@ -36,7 +34,7 @@ public class OnBoardActivity extends AppCompatActivity {
             setContentView(R.layout.activity_on_board);
             mDotsLayout = findViewById(R.id.dots_manager);
             vPager = findViewById(R.id.slider_page);
-            sliderAdapter = new SliderAdapter(this);
+            SliderAdapter sliderAdapter = new SliderAdapter(this);
             vPager.setAdapter(sliderAdapter);
             startAnimation();
 
@@ -69,7 +67,7 @@ public class OnBoardActivity extends AppCompatActivity {
      * Обработка OnPageListener'а
      *  */
     public void addDots(int position) {
-        mDots = new TextView[3];
+        TextView[] mDots = new TextView[3];
         mDotsLayout.removeAllViews();
         for (int i = 0; i < mDots.length; i++) {
             mDots[i] = new TextView(this);
