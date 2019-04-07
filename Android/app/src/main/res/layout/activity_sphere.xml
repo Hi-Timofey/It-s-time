@@ -63,7 +63,6 @@
             android:layout_height="wrap_content"
             fab:fab_size="mini"
             fab:fab_label="@string/create_sphere"
-            android:src="@drawable/ic_sphere_add"
             app:fab_colorNormal="@color/b_accent"
             app:fab_colorPressed="@color/b_accent_light"
             app:fab_colorRipple="@color/b_accent_light"/>
