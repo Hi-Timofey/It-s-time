@@ -53,13 +53,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_size="mini"
-            fab:fab_label="Menu item 1"/>
+            fab:fab_label="@string/create_task"
+            app:fab_colorNormal="@color/b_accent"
+            app:fab_colorPressed="@color/b_accent_light"
+            app:fab_colorRipple="@color/b_accent_light"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_size="mini"
-            fab:fab_label="Menu item 2"/>
+            fab:fab_label="@string/create_sphere"
+            app:fab_colorNormal="@color/b_accent"
+            app:fab_colorPressed="@color/b_accent_light"
+            app:fab_colorRipple="@color/b_accent_light"/>
 
     </com.github.clans.fab.FloatingActionMenu>
 
