@@ -156,7 +156,6 @@
             app:layout_constraintTop_toBottomOf="@+id/log_edit_layout"
             tools:layout_conversion_absoluteHeight="48dp"
             tools:layout_conversion_absoluteWidth="411dp">
-            <!--TODO Сделать чтобы при завершении набора пароля, сразу начиналась аунтефикация-->
             <Button
                 android:id="@+id/log_button_login"
                 style="@style/LoginButton"

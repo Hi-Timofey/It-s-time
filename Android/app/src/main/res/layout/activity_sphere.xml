@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,8 +14,8 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/tool_bar"
             style="@style/ToolBar"
-            android:elevation="4dp"
             android:layout_alignParentStart="true"
+            android:elevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,21 +30,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tool_bar">
+
     </ScrollView>
+
     <!--TODO Создать меню-->
-    <com.github.clans.fab.FloatingActionButton
-        android:id="@+id/floating_button"
-        android:layout_width="wrap_content"
+
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/floating_button_menu"
         style="@style/Widget.Design.FloatingActionButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:fabSize="auto"
-        android:src="@drawable/ic_plus"
         android:layout_gravity="bottom|end"
-        app:rippleColor="@color/b_accent_light"
         android:layout_margin="16dp"
-        app:fab_colorNormal="@color/b_accent"
-        app:fab_colorPressed="@color/b_accent_light"
-        app:fab_colorRipple="@color/b_accent_light"
-        />
+        fab:menu_icon="@drawable/ic_plus"
+        fab:menu_colorNormal="@color/b_accent"
+        fab:menu_colorPressed="@color/b_accent_light"
+        fab:menu_colorRipple="@color/b_accent_light"
+
+        >
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Menu item 1"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
+            fab:fab_label="Menu item 2"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -26,15 +26,13 @@ public class SphereActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sphere);
-        getAllItems();
-        toolbar.setNavigationIcon(R.drawable.ic_menu);
-    }
 
-    private void getAllItems() {
         toolbar = findViewById(R.id.tool_bar);
         toolbar.setTitle(R.string.sphere);
         setSupportActionBar(toolbar);
-        floatingActionButton = findViewById(R.id.floating_button);
+        toolbar.setNavigationIcon(R.drawable.ic_menu);
+
+        //floatingActionButton = findViewById(R.id.floating_button);
     }
 
     @Override
@@ -50,7 +48,7 @@ public class SphereActivity extends AppCompatActivity {
             //TODO: делать нормальную анимацию для Floating Button когад идет поиск текста
             @Override
             public boolean onQueryTextSubmit(String query) {
-                floatingActionButton.show(false);
+                //floatingActionButton.show(false);
                 //do the search here
                 return false;
             }
@@ -63,7 +61,7 @@ public class SphereActivity extends AppCompatActivity {
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                floatingActionButton.hide(false);
+                //floatingActionButton.hide(false);
             }
         });
         return true;
