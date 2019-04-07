@@ -69,6 +69,8 @@ public class RegisterActivity extends AppCompatActivity {
                 dialog.hide();
             }
         });
+
+        //TODO Сделать что бы можно было так же запомнить имя пользователя
     }
 
     private boolean validate() {
