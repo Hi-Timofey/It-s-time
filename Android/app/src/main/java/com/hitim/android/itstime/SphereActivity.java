@@ -20,7 +20,8 @@ public class SphereActivity extends AppCompatActivity {
 
     //public MenuItem searchMenuItem;
     public Toolbar toolbar;
-    public com.github.clans.fab.FloatingActionButton floatingActionButton;
+    public com.github.clans.fab.FloatingActionButton createTask, createSphere;
+    public com.github.clans.fab.FloatingActionMenu fabMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,9 @@ public class SphereActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
 
-        //floatingActionButton = findViewById(R.id.floating_button);
+        fabMenu = findViewById(R.id.floating_button_menu);
+        createTask = findViewById(R.id.create_task_fab);
+        createSphere = findViewById(R.id.create_sphere_fab);
     }
 
     @Override
@@ -81,5 +84,12 @@ public class SphereActivity extends AppCompatActivity {
                 startActivity(i);
         }
         return true;
+    }
+
+    public void gotoTaskCreator(View view) {
+        startActivity(new Intent(SphereActivity.this,TaskCreator.class));
+    }
+
+    public void gotoSphereCreator(View view) {
     }
 }

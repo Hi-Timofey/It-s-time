@@ -50,17 +50,21 @@
 
         >
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/create_task_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_size="mini"
             android:src="@drawable/ic_tick_box"
+            android:onClick="gotoTaskCreator"
             fab:fab_label="@string/create_task"
             app:fab_colorNormal="@color/b_accent"
             app:fab_colorPressed="@color/b_accent_light"
             app:fab_colorRipple="@color/b_accent_light"/>
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/create_sphere_fab"
             android:layout_width="wrap_content"
+            android:onClick="gotoSphereCreator"
             android:layout_height="wrap_content"
             fab:fab_size="mini"
             android:src="@drawable/ic_bookmark"
