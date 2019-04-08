@@ -88,9 +88,11 @@ public class SphereActivity extends AppCompatActivity {
 
     public void gotoTaskCreator(View view) {
         startActivity(new Intent(SphereActivity.this,TaskCreator.class));
+        fabMenu.close(true);
     }
 
     public void gotoSphereCreator(View view) {
-
+        startActivity(new Intent(SphereActivity.this, SphereCreator.class));
+        fabMenu.close(true);
     }
 }
