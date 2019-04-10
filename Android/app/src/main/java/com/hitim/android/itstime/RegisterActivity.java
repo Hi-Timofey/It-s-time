@@ -1,14 +1,15 @@
 package com.hitim.android.itstime;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,7 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private TextInputLayout mailLayout, passLayout;
     private TextInputEditText edMail, edPass;
-    private ProgressDialog dialog;
+    private ProgressDialog dialogProgress;
     //Firebase
     private FirebaseAuth mFirebaseAuth;
 
@@ -40,36 +40,35 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         FirebaseApp.initializeApp(RegisterActivity.this);
         mFirebaseAuth = FirebaseAuth.getInstance();
-        dialog = new ProgressDialog(RegisterActivity.this);
-        dialog.setTitle(R.string.dialog_registration);
-        dialog.setMessage(getString(R.string.dialog_text));
+
+        dialogProgress = new ProgressDialog(RegisterActivity.this);
+        dialogProgress.setTitle(R.string.dialog_registration);
+        dialogProgress.setMessage(getString(R.string.dialog_text));
     }
 
     private void createAccount(String email, String pass) {
         if (!validate()) {
             return;
         }
-        dialog.show();
-
+        dialogProgress.show();
         mFirebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(),getString(R.string.register_complete),Toast.LENGTH_SHORT).show();
+                if (task.isSuccessful()) {
                     mFirebaseAuth.getCurrentUser().sendEmailVerification();
-                    startActivity(new Intent(RegisterActivity.this,LogInActivity.class));
-                    finish();
+                    dialogProgress.hide();
                 } else {
-                    Toast.makeText(getApplicationContext(),getString(R.string.register_failed),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.register_failed), Toast.LENGTH_SHORT).show();
+                    dialogProgress.hide();
                 }
-                dialog.hide();
+                mFirebaseAuth.signOut();
+                startActivity(new Intent(RegisterActivity.this,LogInActivity.class));
             }
         });
-
         //TODO Сделать что бы можно было так же запомнить имя пользователя
     }
 
@@ -81,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
         Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
         Matcher matMail = pattern.matcher(email);
 
-        if (email.isEmpty()){
+        if (email.isEmpty()) {
             mailLayout.setError(getString(R.string.emptyString));
             valid = false;
         } else {
@@ -96,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
             passLayout.setError(getString(R.string.emptyString));
             valid = false;
         } else {
-            if (pass.length() >= 8 ){
+            if (pass.length() >= 8) {
                 passLayout.setError("");
             } else {
                 passLayout.setError(getString(R.string.error_password));
@@ -107,6 +106,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void onRegIn(View view) {
-        createAccount(edMail.getText().toString(),edPass.getText().toString());
+        createAccount(edMail.getText().toString(), edPass.getText().toString());
     }
 }

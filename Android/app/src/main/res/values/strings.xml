@@ -28,6 +28,7 @@
     <string name="dialog_signing_in">Signing In</string>
     <string name="dialog_text">Please, wait...</string>
     <!--Register Activity strings -->
+    <string name="verify_plz">Plese, verify your e-mail adress to get started</string>
     <string name="register">Register now!</string>
     <string name="sign_up">Sign Up!</string>
     <string name="dialog_registration">Registartion</string>
@@ -44,4 +45,6 @@
     <!--Strings for FAB-->
     <string name="create_task">Create Task</string>
     <string name="create_sphere">Create Sphere</string>
+    <!--Google SignIn strings-->
+    <string name="default_web_client_id">632032827202-fq523nbva529s8a314ua7bjirisls3la.apps.googleusercontent.com</string>
 </resources>

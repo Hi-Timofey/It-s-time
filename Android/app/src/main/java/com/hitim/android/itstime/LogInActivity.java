@@ -1,17 +1,23 @@
 package com.hitim.android.itstime;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -27,8 +33,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     private TextInputEditText edLogin, edPass;
     private ImageButton regButton;
     private ProgressDialog dialog;
+    private AlertDialog.Builder dialogVerify;
     //Firebase
     private FirebaseAuth mFirebaseAuth;
+    private GoogleSignInClient mGoogleSignInClient;
 
 
     @Override
@@ -46,6 +54,16 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         dialog.setTitle(R.string.dialog_signing_in);
         dialog.setMessage(getString(R.string.dialog_text));
         regButton.setOnTouchListener(this);
+
+        dialogVerify =  new AlertDialog.Builder(this);
+        dialogVerify.setTitle(getString(R.string.register_complete));
+        dialogVerify.setMessage(getString(R.string.verify_plz));
+        dialogVerify.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                edPass.setText("");
+            }
+        });
     }
 
     //Обрабтка Firebase
@@ -53,12 +71,27 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     public void onStart() {
         super.onStart();
         FirebaseApp.initializeApp(LogInActivity.this);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         mFirebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
         if (currentUser != null) {
-            Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(LogInActivity.this, SphereActivity.class));
-            finish();
+            Log.i("INFORMATION","Пользователь получен");
+            if(currentUser.isEmailVerified()){
+                Log.i("INFORMATION","Пользователь верифицирован");
+                Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LogInActivity.this, SphereActivity.class));
+                finish();
+            } else {
+                Log.i("INFORMATION","Пользователь Не верифицирован");
+                AlertDialog verify = dialogVerify.show();
+                verify.hide();
+            }
         }
     }
 
@@ -79,16 +112,21 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         if (!validate()) {
             return;
         }
-        //TODO 3 раза ввел неправильно пароль - вывд диалога с попыткой помочь(восстановление)
         dialog.show();
         mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     dialog.hide();
-                    Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LogInActivity.this, SphereActivity.class));
-                    finish();
+                    if(mFirebaseAuth.getCurrentUser().isEmailVerified()){
+                        Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LogInActivity.this, SphereActivity.class));
+                        finish();
+                    }else {
+                        Log.i("INFORMATION","Пользователь Не верифицирован");
+                        AlertDialog verify = dialogVerify.show();
+                        verify.hide();
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
                     dialog.hide();
