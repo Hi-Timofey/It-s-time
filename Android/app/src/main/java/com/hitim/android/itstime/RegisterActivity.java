@@ -44,7 +44,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onStart();
         FirebaseApp.initializeApp(RegisterActivity.this);
         mFirebaseAuth = FirebaseAuth.getInstance();
-
         dialogProgress = new ProgressDialog(RegisterActivity.this);
         dialogProgress.setTitle(R.string.dialog_registration);
         dialogProgress.setMessage(getString(R.string.dialog_text));
@@ -60,13 +59,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     mFirebaseAuth.getCurrentUser().sendEmailVerification();
+                    Toast.makeText(getApplicationContext(), getString(R.string.register_complete), Toast.LENGTH_SHORT).show();
                     dialogProgress.hide();
+                    startActivity(new Intent(RegisterActivity.this, SphereActivity.class));
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.register_failed), Toast.LENGTH_SHORT).show();
                     dialogProgress.hide();
                 }
-                mFirebaseAuth.signOut();
-                startActivity(new Intent(RegisterActivity.this,LogInActivity.class));
             }
         });
         //TODO Сделать что бы можно было так же запомнить имя пользователя
@@ -105,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
         return valid;
     }
 
-    public void onRegIn(View view) {
+    public void onRegInWithMail(View view) {
         createAccount(edMail.getText().toString(), edPass.getText().toString());
     }
 }
