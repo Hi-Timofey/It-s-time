@@ -3,7 +3,6 @@ package com.hitim.android.itstime;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,17 +10,10 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-
-<<<<<<< HEAD
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-=======
->>>>>>> parent of edf38cb... Ввод функции проверки верификации
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -182,6 +174,4 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
                 });
     }
 }
-=======
 }
->>>>>>> parent of edf38cb... Ввод функции проверки верификации
