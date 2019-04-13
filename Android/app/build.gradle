@@ -4,6 +4,8 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 28
     defaultConfig {
+        project.ext.set("archivesBaseName", "ItsTime-" + defaultConfig.versionName);
+        resConfigs "en", "ru"
         applicationId "com.hitim.android.itstime"
         minSdkVersion 21
         targetSdkVersion 28
