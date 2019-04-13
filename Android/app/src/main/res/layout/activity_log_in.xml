@@ -156,6 +156,7 @@
             app:layout_constraintTop_toBottomOf="@+id/log_edit_layout"
             tools:layout_conversion_absoluteHeight="48dp"
             tools:layout_conversion_absoluteWidth="411dp">
+
             <Button
                 android:id="@+id/log_button_login"
                 style="@style/LoginButton"
@@ -165,14 +166,28 @@
                 android:minWidth="180dp"
                 android:minHeight="50dp"
                 android:onClick="onLogIn"
+                android:drawableLeft="@drawable/ic_mail"
                 android:text="@string/log_in"
                 android:textColor="@color/whiteColor"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/signInButton2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_conversion_absoluteHeight="48dp"
                 tools:layout_conversion_absoluteWidth="88dp" />
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/signInButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/log_button_login"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </com.google.android.gms.common.SignInButton>
 
 
         </android.support.constraint.ConstraintLayout>
