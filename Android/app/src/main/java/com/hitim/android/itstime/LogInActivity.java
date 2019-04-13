@@ -29,6 +29,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LogInActivity extends AppCompatActivity implements View.OnTouchListener {
+
+    private final int GOOGLE_INTENT = 4003;
     private TextInputLayout mailLayout, passLayout;
     private TextInputEditText edLogin, edPass;
     private ImageButton regButton;
@@ -164,4 +166,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         return valid;
     }
 
+    public void onGoogleSignIn(View view) {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, GOOGLE_INTENT);
+    }
 }

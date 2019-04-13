@@ -169,15 +169,16 @@
                 android:onClick="onLogIn"
                 android:text="@string/log_in"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/signInButton2"
+                app:layout_constraintEnd_toStartOf="@+id/sign_in_with_google"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_conversion_absoluteHeight="48dp"
                 tools:layout_conversion_absoluteWidth="88dp" />
 
             <com.google.android.gms.common.SignInButton
-                android:id="@+id/signInButton2"
+                android:id="@+id/sign_in_with_google"
                 android:layout_width="120dp"
+                android:onClick="onGoogleSignIn"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
