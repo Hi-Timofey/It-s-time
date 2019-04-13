@@ -18,11 +18,13 @@
         <!--<item name="android:windowTranslucentNavigation">true</item>-->
     </style>
 
-    <style name="LoginButton" parent="Widget.MaterialComponents.Button.Icon">
+    <style name="LoginButton" parent="FirebaseUI.Button.AccountChooser.EmailButton">
+        <item name="android:translationZ">2dp</item>
+        <item name="android:elevation">6dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:background">@drawable/btn_background</item>
         <item name="android:textColor">@color/whiteColor</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:drawablePadding">10dp</item>
     </style>
 
     <style name="HintText_til" parent="TextAppearance.AppCompat.Small">
