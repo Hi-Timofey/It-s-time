@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:theme="@style/BlueApplicationStyle"
+    android:theme="@style/LogInStyle"
     tools:context=".LogInActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/main_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/register_constraint_layout"
@@ -47,7 +46,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_conversion_absoluteHeight="60dp"
-                tools:layout_conversion_absoluteWidth="60dp" />
+                tools:layout_conversion_absoluteWidth="60dp"
+                android:contentDescription="@string/icon_of_the_project" />
 
             <TextView
                 android:id="@+id/log_welcome_text"
@@ -162,24 +162,23 @@
                 style="@style/LoginButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:drawableLeft="@drawable/ic_mail"
+                android:drawableStart="@drawable/ic_mail"
                 android:gravity="center"
                 android:minWidth="120dp"
                 android:minHeight="50dp"
                 android:onClick="onLogIn"
                 android:text="@string/log_in"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/sign_in_with_google"
+                app:layout_constraintEnd_toStartOf="@+id/signInButtonGoogle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_conversion_absoluteHeight="48dp"
                 tools:layout_conversion_absoluteWidth="88dp" />
 
             <com.google.android.gms.common.SignInButton
-                android:id="@+id/sign_in_with_google"
+                android:id="@+id/signInButtonGoogle"
                 android:layout_width="120dp"
-                android:onClick="onGoogleSignIn"
                 android:layout_height="wrap_content"
+                android:onClick="onLogIn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/log_button_login"
@@ -201,7 +200,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:id="@+id/log_or_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -214,7 +212,6 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/log_img_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -225,7 +222,6 @@
 
 
             <TextView
-                android:id="@+id/log_register_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -236,7 +232,6 @@
                 android:textSize="13sp" />
 
             <ImageView
-                android:id="@+id/log_img_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -257,7 +252,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_conversion_absoluteHeight="48dp"
-            tools:layout_conversion_absoluteWidth="48dp" />
+            tools:layout_conversion_absoluteWidth="48dp"
+            android:contentDescription="@string/registration_button_image" />
 
     </android.support.constraint.ConstraintLayout>
 

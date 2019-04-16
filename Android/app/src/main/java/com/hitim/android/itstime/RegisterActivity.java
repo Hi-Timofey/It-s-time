@@ -8,7 +8,6 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,7 +15,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,14 +57,15 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(),getString(R.string.register_complete),Toast.LENGTH_SHORT).show();
                     mFirebaseAuth.getCurrentUser().sendEmailVerification();
-                    startActivity(new Intent(RegisterActivity.this,LogInActivity.class));
+                    Toast.makeText(getApplicationContext(), getString(R.string.register_complete), Toast.LENGTH_SHORT).show();
+                    dialog.hide();
+                    startActivity(new Intent(RegisterActivity.this, SphereActivity.class));
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(),getString(R.string.register_failed),Toast.LENGTH_SHORT).show();
+                    dialog.hide();
                 }
-                dialog.hide();
             }
         });
 
@@ -88,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (matMail.matches()) {
                 mailLayout.setError("");
             } else {
-                mailLayout.setError(getString(R.string.incorect_adress));
+                mailLayout.setError(getString(R.string.incorrect_address));
                 valid = false;
             }
         }
@@ -106,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
         return valid;
     }
 
-    public void onRegIn(View view) {
-        createAccount(edMail.getText().toString(),edPass.getText().toString());
+    public void onRegInWithMail(View view) {
+        createAccount(edMail.getText().toString(), edPass.getText().toString());
     }
 }

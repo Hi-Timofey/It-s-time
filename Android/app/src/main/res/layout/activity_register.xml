@@ -163,7 +163,7 @@
                 android:gravity="center"
                 android:minWidth="180dp"
                 android:minHeight="50dp"
-                android:onClick="onRegIn"
+                android:onClick="onRegInWithMail"
                 android:text="@string/sign_up"
                 android:textColor="@color/whiteColor"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -2,17 +2,18 @@ package com.hitim.android.itstime;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,10 +32,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     private final int GOOGLE_INTENT = 4003;
     private TextInputLayout mailLayout, passLayout;
     private TextInputEditText edLogin, edPass;
-    private ImageButton regButton;
     private ProgressDialog dialog;
     //Firebase
     private FirebaseAuth mFirebaseAuth;
+    private GoogleSignInClient mGoogleSignInClient;
 
 
     @Override
@@ -42,13 +43,13 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        regButton = findViewById(R.id.log_register_btn);
+        ImageButton regButton = findViewById(R.id.log_register_btn);
         mailLayout = findViewById(R.id.log_til_1);
         passLayout = findViewById(R.id.log_til_2);
         edLogin = findViewById(R.id.log_edit_log);
         edPass = findViewById(R.id.log_edit_pass);
 
-        dialog= new ProgressDialog(LogInActivity.this);
+        dialog = new ProgressDialog(LogInActivity.this);
         dialog.setTitle(R.string.dialog_signing_in);
         dialog.setMessage(getString(R.string.dialog_text));
         regButton.setOnTouchListener(this);
@@ -69,7 +70,15 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     }
 
     public void onLogIn(View view) {
-        signIn(edLogin.getText().toString(), edPass.getText().toString());
+        switch (view.getId()) {
+            case R.id.signInButtonGoogle:
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, GOOGLE_INTENT);
+                break;
+            case R.id.log_button_login:
+                signIn(edLogin.getText().toString(), edPass.getText().toString());
+                break;
+        }
     }
 
     @Override
@@ -117,7 +126,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
             if (mat.matches()) {
                 mailLayout.setError("");
             } else {
-                mailLayout.setError(getString(R.string.incorect_adress));
+                mailLayout.setError(getString(R.string.incorrect_address));
                 valid = false;
             }
         }
@@ -131,13 +140,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
 
         return valid;
     }
-    //Обработка логина с Google
-    public void onGoogleSignIn(View view) {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, GOOGLE_INTENT);
-    }
 
-<<<<<<< HEAD
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -173,5 +176,4 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
                     }
                 });
     }
-}
 }
