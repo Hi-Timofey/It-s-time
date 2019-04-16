@@ -66,7 +66,7 @@ public class OnBoardActivity extends AppCompatActivity {
      * Точки около кнопки меняются благодаря этому коду
      * Обработка OnPageListener'а
      *  */
-    public void addDots(int position) {
+    private void addDots(int position) {
         TextView[] mDots = new TextView[3];
         mDotsLayout.removeAllViews();
         for (int i = 0; i < mDots.length; i++) {
@@ -77,12 +77,10 @@ public class OnBoardActivity extends AppCompatActivity {
             mDots[i].setTextColor(getResources().getColor(R.color.b_primary));
             mDotsLayout.addView(mDots[i]);
         }
-        if (mDots.length > 0) {
-            mDots[position].setTextColor(getResources().getColor(R.color.b_primary_dark));
-        }
+        mDots[position].setTextColor(getResources().getColor(R.color.b_primary_dark));
     }
 
-    ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
+    private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int i, float v, int i1) {
         }

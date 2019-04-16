@@ -10,10 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SliderAdapter extends PagerAdapter {
+class SliderAdapter extends PagerAdapter {
 
-    Context context;
-    LayoutInflater lInflater;
+    private Context context;
 
     /* Slider
     * Класс для обработки переключений слайдера и вывода необходимых картинок и информации
@@ -21,19 +20,19 @@ public class SliderAdapter extends PagerAdapter {
     * Текст напрямую из string русерсов
     * При переключении пользователем экрана идет простая замена View элементов
     * */
-    public int[] slide_images = {
+    private int[] slide_images = {
             R.drawable.ic_alarms,
             R.drawable.ic_check_box,
             R.drawable.ic_trending_up
     };
 
-    public int[] slide_head = {
+    private int[] slide_head = {
             R.string.head_1,
             R.string.head_2,
             R.string.head_3
     };
 
-    public int[] slide_text = {
+    private int[] slide_text = {
             R.string.on_board_1,
             R.string.on_board_2,
             R.string.on_board_3
@@ -56,7 +55,7 @@ public class SliderAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = lInflater.inflate(R.layout.slide_layout, container, false);
         ImageView imIcon = view.findViewById(R.id.imageIcon);
         TextView head = view.findViewById(R.id.textHead);

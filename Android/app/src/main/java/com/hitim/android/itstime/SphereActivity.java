@@ -13,24 +13,22 @@ import android.view.View;
 
 public class SphereActivity extends AppCompatActivity {
 
-    //public MenuItem searchMenuItem;
-    public Toolbar toolbar;
-    public com.github.clans.fab.FloatingActionButton createTask, createSphere;
-    public com.github.clans.fab.FloatingActionMenu fabMenu;
+    private com.github.clans.fab.FloatingActionMenu fabMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sphere);
 
-        toolbar = findViewById(R.id.tool_bar);
+        //public MenuItem searchMenuItem;
+        Toolbar toolbar = findViewById(R.id.tool_bar);
         toolbar.setTitle(R.string.sphere);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
 
         fabMenu = findViewById(R.id.floating_button_menu);
-        createTask = findViewById(R.id.create_task_fab);
-        createSphere = findViewById(R.id.create_sphere_fab);
+        com.github.clans.fab.FloatingActionButton createTask = findViewById(R.id.create_task_fab);
+        com.github.clans.fab.FloatingActionButton createSphere = findViewById(R.id.create_sphere_fab);
     }
 
     @Override

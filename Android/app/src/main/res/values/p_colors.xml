@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="p_primary">#9c27b0</color>
-    <color name="p_primary_light">#d05ce3</color>
-    <color name="p_primary_dark">#6a0080</color>
-    <color name="p_accent">#ff9800</color><!--Same one is Secondary-->
-    <color name="p_accent_light">#ffc947</color>
-    <color name="p_accent_dark">#c66900</color>
-    <color name="p_primary_text">#212121</color>
-    <color name="p_secondary_text">#757575</color>
-    <color name="p_divider">#BDBDBD</color>
+    <!--Same one is Secondary-->
     <!--
     Main Colors ending
     -->

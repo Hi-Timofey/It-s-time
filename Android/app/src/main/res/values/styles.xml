@@ -42,17 +42,9 @@
 
     <style name="ErrorText" parent="TextAppearance.Design.Error">
         <item name="android:textStyle">bold|italic</item>
-        <item name="android:textColor">@color/eror</item>
+        <item name="android:textColor">@color/error</item>
     </style>
 
-    <style name="BlueApplicationStyle.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="BlueApplicationStyle.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="BlueApplicationStyle.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     <!--
 Небольшой список свойств, которые используются для настройки собственных тем.
 

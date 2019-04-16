@@ -2,18 +2,14 @@
 <resources>
     <color name="b_primary">#00B0FF</color>
     <color name="b_primary_dark">#0091ea</color>
-    <color name="b_primary_light">#40c4ff</color>
     <color name="b_accent">#FF9800</color>
     <color name="b_accent_light">#ffc947</color>
     <color name="b_accent_dark">#c66900</color>
-    <color name="b_primary_text">#212121</color>
-    <color name="b_secondary_text">#757575</color>
     <color name="b_divider">#80d8ff</color>
     <!--
     Main Colors ending
     -->
     <color name="whiteColor">#FFFFFF</color>
     <!--Using for icons in B-set-->
-    <color name="blackColor">#000000</color>
-    <color name="eror">#ff0000</color>
+    <color name="error">#ff0000</color>
 </resources>
