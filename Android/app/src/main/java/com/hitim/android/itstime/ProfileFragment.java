@@ -18,12 +18,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.profile_layout,container,false);
-        return view;
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+        return view;
 
     }
 }

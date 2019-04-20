@@ -23,6 +23,11 @@ public class SphereActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sphere);
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.container,new ProfileFragment());
+        transaction.commit();
+
         //public MenuItem searchMenuItem;
         Toolbar toolbar = findViewById(R.id.tool_bar);
         toolbar.setTitle(R.string.sphere);
@@ -32,12 +37,6 @@ public class SphereActivity extends AppCompatActivity {
         fabMenu = findViewById(R.id.floating_button_menu);
         com.github.clans.fab.FloatingActionButton createTask = findViewById(R.id.create_task_fab);
         com.github.clans.fab.FloatingActionButton createSphere = findViewById(R.id.create_sphere_fab);
-
-
-        manager = getSupportFragmentManager();
-        transaction = manager.beginTransaction();
-        transaction.replace(R.id.container,new ProfileFragment());
-        transaction.commit();
     }
 
     @Override

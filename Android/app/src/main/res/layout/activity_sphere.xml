@@ -23,16 +23,15 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
-        android:id="@+id/container"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tool_bar_layout">
+        app:layout_constraintTop_toBottomOf="@+id/tool_bar">
 
-    </FrameLayout>
+    </ScrollView>
 
     <!--TODO Создать меню-->
 
@@ -40,40 +39,39 @@
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/floating_button_menu"
         style="@style/Widget.Design.FloatingActionButton"
-        android:layout_width="46dp"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        fab:menu_icon="@drawable/ic_plus"
         fab:menu_colorNormal="@color/b_accent"
         fab:menu_colorPressed="@color/b_accent_light"
         fab:menu_colorRipple="@color/b_accent_light"
-        fab:menu_icon="@drawable/ic_plus"
 
         >
-
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/create_task_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="gotoTaskCreator"
+            fab:fab_size="mini"
             android:src="@drawable/ic_tick_box"
+            android:onClick="gotoTaskCreator"
+            fab:fab_label="@string/create_task"
             app:fab_colorNormal="@color/b_accent"
             app:fab_colorPressed="@color/b_accent_light"
-            app:fab_colorRipple="@color/b_accent_light"
-            fab:fab_label="@string/create_task"
-            fab:fab_size="mini" />
+            app:fab_colorRipple="@color/b_accent_light"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/create_sphere_fab"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:onClick="gotoSphereCreator"
+            android:layout_height="wrap_content"
+            fab:fab_size="mini"
             android:src="@drawable/ic_bookmark"
+            fab:fab_label="@string/create_sphere"
             app:fab_colorNormal="@color/b_accent"
             app:fab_colorPressed="@color/b_accent_light"
-            app:fab_colorRipple="@color/b_accent_light"
-            fab:fab_label="@string/create_sphere"
-            fab:fab_size="mini" />
+            app:fab_colorRipple="@color/b_accent_light"/>
 
     </com.github.clans.fab.FloatingActionMenu>
 
