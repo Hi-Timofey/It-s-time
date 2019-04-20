@@ -11,10 +11,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApi;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -27,7 +35,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LogInActivity extends AppCompatActivity implements View.OnTouchListener {
+public class LogInActivity extends AppCompatActivity implements View.OnTouchListener, GoogleApiClient.OnConnectionFailedListener {
 
     private final int GOOGLE_INTENT = 4003;
     private TextInputLayout mailLayout, passLayout;
@@ -35,7 +43,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     private ProgressDialog dialog;
     //Firebase
     private FirebaseAuth mFirebaseAuth;
+    private SignInButton signInButton;
     private GoogleSignInClient mGoogleSignInClient;
+    private GoogleApiClient googleApiClient;
 
 
     @Override
@@ -48,6 +58,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         passLayout = findViewById(R.id.log_til_2);
         edLogin = findViewById(R.id.log_edit_log);
         edPass = findViewById(R.id.log_edit_pass);
+        signInButton = findViewById(R.id.signInButtonGoogle);
 
         dialog = new ProgressDialog(LogInActivity.this);
         dialog.setTitle(R.string.dialog_signing_in);
@@ -61,6 +72,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         super.onStart();
         FirebaseApp.initializeApp(LogInActivity.this);
         mFirebaseAuth = FirebaseAuth.getInstance();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .build();
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this,this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API)
+                .build();
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
         if (currentUser != null) {
             Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
@@ -175,5 +194,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
