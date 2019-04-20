@@ -3,8 +3,6 @@ package com.hitim.android.itstime;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -16,17 +14,11 @@ import android.view.View;
 public class SphereActivity extends AppCompatActivity {
 
     private com.github.clans.fab.FloatingActionMenu fabMenu;
-    private FragmentManager manager;
-    private FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sphere);
-        manager = getSupportFragmentManager();
-        transaction = manager.beginTransaction();
-        transaction.replace(R.id.container,new ProfileFragment());
-        transaction.commit();
 
         //public MenuItem searchMenuItem;
         Toolbar toolbar = findViewById(R.id.tool_bar);
