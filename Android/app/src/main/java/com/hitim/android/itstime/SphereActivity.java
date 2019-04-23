@@ -14,6 +14,7 @@ import android.view.View;
 public class SphereActivity extends AppCompatActivity {
 
     private com.github.clans.fab.FloatingActionMenu fabMenu;
+    public Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,7 @@ public class SphereActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sphere);
 
         //public MenuItem searchMenuItem;
-        Toolbar toolbar = findViewById(R.id.tool_bar);
+        toolbar = findViewById(R.id.tool_bar);
         toolbar.setTitle(R.string.sphere);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
@@ -34,6 +35,12 @@ public class SphereActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.sphere_menu, menu);
+        searchManager(menu);
+        return true;
+    }
+
+    //Обработка поиска через Toolbar
+    public void searchManager(Menu menu){
         MenuItem mSearch = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = (SearchView) mSearch.getActionView();
@@ -60,7 +67,6 @@ public class SphereActivity extends AppCompatActivity {
                 //floatingActionButton.hide(false);
             }
         });
-        return true;
     }
 
     //Обработка нажатий кнопок на Toolbar'е
@@ -79,10 +85,7 @@ public class SphereActivity extends AppCompatActivity {
         return true;
     }
 
-    public void gotoTaskCreator(View view) {
-        startActivity(new Intent(SphereActivity.this,TaskCreator.class));
-        fabMenu.close(true);
-    }
+
 
     public void gotoSphereCreator(View view) {
         startActivity(new Intent(SphereActivity.this, SphereCreator.class));

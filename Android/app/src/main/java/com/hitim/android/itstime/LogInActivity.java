@@ -64,14 +64,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         dialog.setTitle(R.string.dialog_signing_in);
         dialog.setMessage(getString(R.string.dialog_text));
         regButton.setOnTouchListener(this);
-    }
 
-    //Обрабтка Firebase
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseApp.initializeApp(LogInActivity.this);
-        mFirebaseAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -80,6 +73,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
                 .enableAutoManage(this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
+    }
+
+    //Обрабтка Firebase
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseApp.initializeApp(LogInActivity.this);
+        mFirebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
         if (currentUser != null) {
             Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();

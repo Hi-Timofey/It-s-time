@@ -19,5 +19,6 @@
         android:id="@+id/action_settings"
         android:enabled="true"
         android:title="@string/settings"
+        android:menuCategory="secondary"
         app:showAsAction="never" />
 </menu>
