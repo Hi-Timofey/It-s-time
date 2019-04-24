@@ -36,37 +36,13 @@
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="android:background">@color/b_primary</item>
+        <item name="android:itemBackground">@color/whiteColor</item>
         <item name="android:menuCategory">secondary</item>
-        <item name="android:actionMenuTextColor">@color/b_accent_dark</item>
+        <item name="android:actionMenuTextColor">@color/blackColor</item>
     </style>
 
     <style name="ErrorText" parent="TextAppearance.Design.Error">
         <item name="android:textStyle">bold|italic</item>
         <item name="android:textColor">@color/error</item>
     </style>
-
-    <!--
-Небольшой список свойств, которые используются для настройки собственных тем.
-
-    android:windowNoTitle: используйте значение true, чтобы скрыть заголовок
-
-    android:windowFullscreen: используйте значение true, чтобы скрыть строку состояния и освободить место для приложения
-
-    android:windowBackground: ресурс цвета или drawable для фона
-
-    android:windowContentOverlay: Drawable, который рисуется поверх содержимого окна.
-        По умолчанию, это тень от строки состояния. Можно использовать null (@null в XML-файле) для удаления ресурса.
-
-    android:colorPrimary: основной цвет для интерфейса программы - панель, кнопки и т.д.
-
-    android:colorPrimaryDark: цвет для системных элементов - строка состояния
-
-    android:colorAccent: Цвет по умолчанию для компонентов, которые находятся в фокусе или активны
-
-    android:colorControlNormal: Цвет для неактивных компонентов
-
-    android:colorControlActivated: Цвет для активных компонентов
-
-    android:colorControlHighlight: Цвет для нажатых элементов интерфейса
-    -->
 </resources>
