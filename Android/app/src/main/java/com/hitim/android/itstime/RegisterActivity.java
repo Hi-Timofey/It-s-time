@@ -16,6 +16,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    mFirebaseAuth.getCurrentUser().sendEmailVerification();
+                    Objects.requireNonNull(mFirebaseAuth.getCurrentUser()).sendEmailVerification();
                     Toast.makeText(getApplicationContext(), getString(R.string.register_complete), Toast.LENGTH_SHORT).show();
                     dialog.hide();
                     startActivity(new Intent(RegisterActivity.this, SphereActivity.class));
@@ -74,8 +75,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean validate() {
         boolean valid = true;
-        String email = edMail.getText().toString();
-        String pass = edPass.getText().toString();
+        String email = Objects.requireNonNull(edMail.getText()).toString();
+        String pass = Objects.requireNonNull(edPass.getText()).toString();
 
         Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
         Matcher matMail = pattern.matcher(email);
@@ -106,6 +107,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void onRegInWithMail(View view) {
-        createAccount(edMail.getText().toString(), edPass.getText().toString());
+        createAccount(Objects.requireNonNull(edMail.getText()).toString(), Objects.requireNonNull(edPass.getText()).toString());
     }
 }

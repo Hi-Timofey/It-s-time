@@ -3,7 +3,6 @@ package com.hitim.android.itstime;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -14,7 +13,7 @@ import android.view.View;
 
 public class SphereActivity extends AppCompatActivity{
 
-    private com.github.clans.fab.FloatingActionMenu fabMenu;
+    public com.github.clans.fab.FloatingActionMenu fabMenu;
     public Toolbar toolbar;
 
     @Override
