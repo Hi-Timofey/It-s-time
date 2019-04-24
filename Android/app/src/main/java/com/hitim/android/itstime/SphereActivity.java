@@ -3,6 +3,7 @@ package com.hitim.android.itstime;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -11,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class SphereActivity extends AppCompatActivity {
+public class SphereActivity extends AppCompatActivity{
 
     private com.github.clans.fab.FloatingActionMenu fabMenu;
     public Toolbar toolbar;
@@ -86,9 +87,14 @@ public class SphereActivity extends AppCompatActivity {
     }
 
 
+    public void OnFabClick(View view) {
+        switch (view.getId()){
+            case R.id.create_sphere_fab:
 
-    public void gotoSphereCreator(View view) {
-        startActivity(new Intent(SphereActivity.this, SphereCreator.class));
-        fabMenu.close(true);
+                break;
+            case R.id.create_task_fab:
+
+                break;
+        }
     }
 }

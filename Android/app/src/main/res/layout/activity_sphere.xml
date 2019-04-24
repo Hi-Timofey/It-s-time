@@ -23,12 +23,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.design.widget.AppBarLayout>
-
-    <FrameLayout
+    <!--
+    <fragment
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:layout_height="wrap_content"/>-->
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/floating_button_menu"
@@ -48,6 +47,7 @@
             android:id="@+id/create_task_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="OnFabClick"
             fab:fab_size="mini"
             android:src="@drawable/ic_tick_box"
             fab:fab_label="@string/create_task"
@@ -58,9 +58,9 @@
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/create_sphere_fab"
             android:layout_width="wrap_content"
-            android:onClick="gotoSphereCreator"
             android:layout_height="wrap_content"
             fab:fab_size="mini"
+            android:onClick="OnFabClick"
             android:src="@drawable/ic_bookmark"
             fab:fab_label="@string/create_sphere"
             app:fab_colorNormal="@color/b_accent"
