@@ -7,34 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".SphereActivity">
 
-
-    <!--TODO: Можно поместить в каждый фрагмент, или сделать фрагмент Toolbar'a -->
-    <!--
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:id="@+id/tool_bar_layout"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tool_bar"
-            style="@style/ToolBar"
-            android:layout_alignParentStart="true"
-            android:elevation="4dp"
-            app:layout_scrollFlags="enterAlways|scroll"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    -->
-    <include layout="@layout/tool_bar" />
-
-    <!--
     <fragment
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>-->
+        android:layout_height="wrap_content"
+        class="com.hitim.android.itstime.SphereFragment"
+        tools:layout="@layout/fragment_sphere"/>
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/floating_button_menu"
