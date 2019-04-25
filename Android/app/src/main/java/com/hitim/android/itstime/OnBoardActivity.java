@@ -18,18 +18,20 @@ public class OnBoardActivity extends AppCompatActivity {
     private ViewPager vPager;
     private LinearLayout mDotsLayout;
     private SharedPreferences.Editor editor;
-
+    private String APP_PREFERENCES = "its_settings";
+    private String APP_FIRST_OPEN = "first_open";
+    private   SharedPreferences itsSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SettingsActivity.itsSettings = getSharedPreferences(SettingsActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
+        itsSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         createSharedPref();
-        if (!SettingsActivity.itsSettings.getBoolean(SettingsActivity.APP_FIRST_OPEN,true)) {
+        if (!itsSettings.getBoolean(APP_FIRST_OPEN,true)) {
             Intent i = new Intent(this, LogInActivity.class);
             startActivity(i);
         } else {
-            editor.putBoolean(SettingsActivity.APP_FIRST_OPEN, false);
+            editor.putBoolean(APP_FIRST_OPEN, false);
             editor.apply();
             setContentView(R.layout.activity_on_board);
             mDotsLayout = findViewById(R.id.dots_manager);
@@ -45,7 +47,7 @@ public class OnBoardActivity extends AppCompatActivity {
 
     //Инициализирует создание настроек приложения
     private void createSharedPref() {
-        editor = SettingsActivity.itsSettings.edit();
+        editor = itsSettings.edit();
         editor.apply();
     }
 

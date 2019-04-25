@@ -12,8 +12,6 @@
         android:theme="@style/BlueApplicationStyle"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".ProfileActivity" />
         <activity android:name=".SphereActivity" />
         <activity android:name=".LogInActivity" />
         <activity android:name=".OnBoardActivity">
