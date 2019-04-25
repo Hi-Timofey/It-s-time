@@ -6,7 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SphereActivity">
+
+
     <!--TODO: Можно поместить в каждый фрагмент, или сделать фрагмент Toolbar'a -->
+    <!--
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:id="@+id/tool_bar_layout"
@@ -23,6 +26,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.design.widget.AppBarLayout>
+
+    -->
+    <include layout="@layout/tool_bar" />
+
     <!--
     <fragment
         android:id="@+id/fragment_container"
