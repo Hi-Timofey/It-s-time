@@ -7,12 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".SphereActivity">
 
-    <fragment
-        android:id="@+id/fragment_container"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        class="com.hitim.android.itstime.SphereFragment"
-        tools:layout="@layout/fragment_sphere"/>
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/tool_bar" />
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_sphere"/>
+
+        <!--class="com.hitim.android.itstime.SphereFragment"-->
+    </LinearLayout>
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/floating_button_menu"

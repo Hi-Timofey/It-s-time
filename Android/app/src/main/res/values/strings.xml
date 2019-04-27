@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">It\'s Time!</string>
+    <!--List fragments name-->
+    <string name="user_profile_fragment">HI-0001</string>
+    <string name="sphere_fragment">HI-0002</string>
+    <string name="create_task_fragment">HI-0003</string>
+    <string name="create_sphere_fragment">HI-0004</string>
     <!--On Board Activity strings-->
     <string name="start_now">Start Now!</string>
     <string name="on_board_icons">OnBoardIcons</string>

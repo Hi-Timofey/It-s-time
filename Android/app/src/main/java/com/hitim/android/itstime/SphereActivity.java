@@ -2,7 +2,8 @@ package com.hitim.android.itstime;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -15,21 +16,34 @@ public class SphereActivity extends AppCompatActivity{
 
     public com.github.clans.fab.FloatingActionMenu fabMenu;
     public Toolbar toolbar;
+    private SphereFragment sphereFragment;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sphere);
 
-        //public MenuItem searchMenuItem;
         toolbar = findViewById(R.id.tool_bar);
         toolbar.setTitle(R.string.sphere);
-        setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
+        setSupportActionBar(toolbar);
 
         fabMenu = findViewById(R.id.floating_button_menu);
         com.github.clans.fab.FloatingActionButton createTask = findViewById(R.id.create_task_fab);
         com.github.clans.fab.FloatingActionButton createSphere = findViewById(R.id.create_sphere_fab);
+
+        fragmentManager = getSupportFragmentManager();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        sphereFragment = new SphereFragment();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container,sphereFragment,getString(R.string.sphere_fragment))
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
@@ -72,14 +86,18 @@ public class SphereActivity extends AppCompatActivity{
     //Обработка нажатий кнопок на Toolbar'е
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Fragment fragment = null;
         switch (item.getItemId()) {
             case R.id.action_profile:
-
-
+                fragment = new UserProfileFragment();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container,fragment,getString(R.string.user_profile_fragment))
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case R.id.action_settings:
-
-
+                    fragment = null;
+                break;
         }
         return true;
     }
