@@ -11,6 +11,5 @@
     -->
     <color name="whiteColor">#FFFFFF</color>
     <color name="blackColor">#000000</color>
-    <!--Using for icons in B-set-->
     <color name="error">#ff0000</color>
 </resources>
