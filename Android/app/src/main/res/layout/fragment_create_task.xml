@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/BlueApplicationStyle.LightTheme"
+    tools:context=".CreateTaskFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/editTaskName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".55"
+            android:background="?attr/colorPrimary"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColorHint="@color/whiteColor"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/ErrorText">
+
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:gravity="start|bottom"
+                    android:hint="@string/task_name"
+                    android:inputType="textAutoCorrect|textCapSentences"
+                    android:lines="2"
+                    android:maxLength="30"
+                    android:maxLines="3" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="20dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/ErrorText">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_weight="0"
+                    android:gravity="start|bottom"
+                    android:hint="@string/description"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/blackColor" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:orientation="vertical">
+
+
+            <!--O LA LA LA LA-->
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/makeToDoFloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_plus"
+        app:fabSize="normal"
+        app:fab_colorNormal="@color/b_accent"
+        app:fab_colorPressed="@color/b_accent_light"
+        app:layout_anchor="@id/editTaskName"
+        app:layout_anchorGravity="bottom|right" />
+
+</android.support.design.widget.CoordinatorLayout>
