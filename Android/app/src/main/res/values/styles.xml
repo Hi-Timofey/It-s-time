@@ -7,8 +7,9 @@
         <item name="android:windowBackground">@color/whiteColor</item>
     </style>
 
-    <style name="BlueApplicationStyle.LightTheme">
+    <style name="BlueApplicationStyle.LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/b_primary</item>
+        <item name="toolbarStyle">@style/ToolBar.Light</item>
         <item name="colorPrimaryDark">@color/b_primary_dark</item>
         <item name="colorAccent">@color/b_accent</item>
         <item name="android:windowBackground">@color/whiteColor</item>
@@ -36,11 +37,18 @@
     <style name="ToolBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+
+    <style name="ToolBar.Light">
         <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="android:background">@color/b_primary</item>
         <item name="android:itemBackground">@color/whiteColor</item>
         <item name="android:menuCategory">secondary</item>
         <item name="android:actionMenuTextColor">@color/blackColor</item>
+    </style>
+
+    <style name="ToolBar.Dark">
+
     </style>
 
     <style name="ErrorText" parent="TextAppearance.Design.Error">

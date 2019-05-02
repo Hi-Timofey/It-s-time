@@ -1,11 +1,13 @@
 package com.hitim.android.itstime;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,6 +42,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     private TextInputLayout mailLayout, passLayout;
     private TextInputEditText edLogin, edPass;
     private ProgressDialog dialog;
+    private AlertDialog alert;
     //Firebase
     private FirebaseAuth mFirebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
@@ -49,7 +52,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
+        setTheme(R.style.BlueApplicationStyle);
         ImageButton regButton = findViewById(R.id.log_register_btn);
         mailLayout = findViewById(R.id.log_til_1);
         passLayout = findViewById(R.id.log_til_2);
@@ -70,6 +73,23 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(LogInActivity.this);
+        builder.setTitle(getString(R.string.did_you_want_to_quit));
+        builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finishAffinity();
+            }
+        });
+        builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert = builder.create();
     }
 
     //Обрабтка Firebase
@@ -169,12 +189,12 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
                     firebaseAuthWithGoogle(account);
                 }
             } catch (ApiException e) {
-                Toast.makeText(this,getString(R.string.login_failed),Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount account){
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
         dialog.show();
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
 
@@ -182,13 +202,13 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             dialog.hide();
-                            Toast.makeText(getApplicationContext(),getString(R.string.login_complete),Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LogInActivity.this,SphereActivity.class));
+                            Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LogInActivity.this, SphereActivity.class));
                         } else {
                             dialog.hide();
-                            Toast.makeText(getApplicationContext(),getString(R.string.login_failed),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -197,5 +217,23 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        alert.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog = null;
+        }
+        if (alert != null) {
+            alert.dismiss();
+            alert = null;
+        }
     }
 }

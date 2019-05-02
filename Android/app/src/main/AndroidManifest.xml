@@ -13,7 +13,7 @@
         android:fullBackupContent="@xml/backup_descriptor">
         <activity android:name=".RegisterActivity" />
         <activity android:name=".SphereActivity" />
-        <activity android:name=".LogInActivity" />
+        <activity android:name=".LogInActivity"/>
         <activity android:name=".OnBoardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
