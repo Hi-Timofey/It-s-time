@@ -2,9 +2,11 @@
 <resources>
     <color name="b_primary">#00B0FF</color>
     <color name="b_primary_dark">#0091ea</color>
-    <color name="b_accent">#FF9800</color>
-    <color name="b_accent_light">#ffc947</color>
-    <color name="b_accent_dark">#c66900</color>
+    <color name="b_primary_200">#40c4ff</color>
+    <color name="b_primary_100">#80d8ff</color>
+    <color name="b_accent">#ff9100</color>
+    <color name="b_accent_light">#ffab40</color>
+    <color name="b_accent_dark">#ff6d00</color>
     <color name="b_divider">#80d8ff</color>
     <!--
     Main Colors ending
