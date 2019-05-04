@@ -16,8 +16,8 @@ public class SphereFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sphere, container, false);
-        return view;
+        View v = inflater.inflate(R.layout.fragment_sphere, container, false);
+        return v;
     }
 
     @Override

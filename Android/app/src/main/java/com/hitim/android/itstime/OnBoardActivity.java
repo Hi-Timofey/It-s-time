@@ -25,6 +25,7 @@ public class OnBoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.BlueApplicationStyle_LightTheme);
         itsSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         createSharedPref();
         if (!itsSettings.getBoolean(APP_FIRST_OPEN,true)) {

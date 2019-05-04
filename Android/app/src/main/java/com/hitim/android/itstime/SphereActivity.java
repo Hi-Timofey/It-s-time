@@ -26,6 +26,7 @@ public class SphereActivity extends AppCompatActivity{
 
         toolbar = findViewById(R.id.tool_bar);
         toolbar.setTitle(R.string.sphere);
+        toolbar.setFocusable(false);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
         setSupportActionBar(toolbar);
 
@@ -96,7 +97,11 @@ public class SphereActivity extends AppCompatActivity{
                         .commit();
                 break;
             case R.id.action_settings:
-                    fragment = null;
+                    fragment = new SettingsFragment();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container,fragment,getString(R.string.settings_fragment))
+                        .addToBackStack(null)
+                        .commit();
                 break;
         }
         return true;
@@ -104,12 +109,17 @@ public class SphereActivity extends AppCompatActivity{
 
 
     public void OnFabClick(View view) {
+        Fragment fragment;
         switch (view.getId()){
             case R.id.create_sphere_fab:
 
                 break;
             case R.id.create_task_fab:
-
+                fragment = new CreateTaskFragment();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container,fragment,getString(R.string.create_task_fragment))
+                            .addToBackStack(null)
+                            .commit();
                 break;
         }
     }

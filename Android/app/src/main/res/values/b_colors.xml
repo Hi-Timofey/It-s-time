@@ -4,7 +4,7 @@
     <color name="b_primary_dark">#0091ea</color>
     <color name="b_primary_200">#40c4ff</color>
     <color name="b_primary_100">#80d8ff</color>
-    <color name="b_accent">#ff9100</color>
+    <color name="b_accent">#ff9800</color>
     <color name="b_accent_light">#ffab40</color>
     <color name="b_accent_dark">#ff6d00</color>
     <color name="b_divider">#80d8ff</color>
@@ -14,4 +14,7 @@
     <color name="whiteColor">#FFFFFF</color>
     <color name="blackColor">#000000</color>
     <color name="error">#ff0000</color>
+    <color name="green_light">#69f0ae</color>
+    <color name="green">#00e676</color>
+    <color name="green_dark">#00c853</color>
 </resources>

@@ -31,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.BlueApplicationStyle_LightTheme);
         setContentView(R.layout.activity_register);
         mailLayout = findViewById(R.id.reg_til_1);
         passLayout = findViewById(R.id.reg_til_2);

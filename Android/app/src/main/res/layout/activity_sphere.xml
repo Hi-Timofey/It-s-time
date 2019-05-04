@@ -30,36 +30,35 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        app:layout_behavior="@string/fab_transformation_scrim_behavior"
-        fab:menu_icon="@drawable/ic_plus"
+        android:background="@color/whiteColor"
         fab:menu_colorNormal="@color/b_accent"
         fab:menu_colorPressed="@color/b_accent_light"
         fab:menu_colorRipple="@color/b_accent_light"
+        fab:menu_icon="@drawable/ic_plus">
 
-        >
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/create_task_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="OnFabClick"
-            fab:fab_size="mini"
             android:src="@drawable/ic_tick_box"
-            fab:fab_label="@string/create_task"
             app:fab_colorNormal="@color/b_accent"
             app:fab_colorPressed="@color/b_accent_light"
-            app:fab_colorRipple="@color/b_accent_light"/>
+            app:fab_colorRipple="@color/b_accent_light"
+            fab:fab_label="@string/create_task"
+            fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/create_sphere_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_size="mini"
             android:onClick="OnFabClick"
             android:src="@drawable/ic_bookmark"
-            fab:fab_label="@string/create_sphere"
             app:fab_colorNormal="@color/b_accent"
             app:fab_colorPressed="@color/b_accent_light"
-            app:fab_colorRipple="@color/b_accent_light"/>
+            app:fab_colorRipple="@color/b_accent_light"
+            fab:fab_label="@string/create_sphere"
+            fab:fab_size="mini" />
 
     </com.github.clans.fab.FloatingActionMenu>
 
