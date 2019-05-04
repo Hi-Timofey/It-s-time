@@ -8,6 +8,8 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"
         style="@style/ToolBar"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/PopupMenuStyle"
         android:layout_alignParentStart="true"
         android:elevation="4dp"

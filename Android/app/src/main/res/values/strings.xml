@@ -5,6 +5,7 @@
     <string name="sphere_fragment">HI-0002</string>
     <string name="create_task_fragment">HI-0003</string>
     <string name="create_sphere_fragment">HI-0004</string>
+    <string name="settings_fragment">HI-0005</string>
     <!--On Board Activity strings-->
     <string name="start_now">Start Now!</string>
     <string name="on_board_icons">OnBoardIcons</string>
