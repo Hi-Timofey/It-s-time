@@ -2,17 +2,17 @@ package com.hitim.android.itstime;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class SphereActivity extends AppCompatActivity{
+public class SphereActivity extends AppCompatActivity {
 
     public com.github.clans.fab.FloatingActionMenu fabMenu;
     public Toolbar toolbar;
@@ -42,7 +42,7 @@ public class SphereActivity extends AppCompatActivity{
         super.onStart();
         sphereFragment = new SphereFragment();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container,sphereFragment,getString(R.string.sphere_fragment))
+                .replace(R.id.fragment_container, sphereFragment, getString(R.string.sphere_fragment))
                 .addToBackStack(null)
                 .commit();
     }
@@ -55,7 +55,7 @@ public class SphereActivity extends AppCompatActivity{
     }
 
     //Обработка поиска через Toolbar
-    public void searchManager(Menu menu){
+    public void searchManager(Menu menu) {
         MenuItem mSearch = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = (SearchView) mSearch.getActionView();
@@ -92,17 +92,19 @@ public class SphereActivity extends AppCompatActivity{
             case R.id.action_profile:
                 fragment = new UserProfileFragment();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container,fragment,getString(R.string.user_profile_fragment))
+                        .replace(R.id.fragment_container, fragment, getString(R.string.user_profile_fragment))
                         .addToBackStack(null)
                         .commit();
                 break;
             case R.id.action_settings:
-                    fragment = new SettingsFragment();
+                fragment = new SettingsFragment();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container,fragment,getString(R.string.settings_fragment))
+                        .replace(R.id.fragment_container, fragment, getString(R.string.settings_fragment))
                         .addToBackStack(null)
                         .commit();
                 break;
+            default:
+                return super.onOptionsItemSelected(item);
         }
         return true;
     }
@@ -110,16 +112,16 @@ public class SphereActivity extends AppCompatActivity{
 
     public void OnFabClick(View view) {
         Fragment fragment;
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.create_sphere_fab:
 
                 break;
             case R.id.create_task_fab:
                 fragment = new CreateTaskFragment();
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container,fragment,getString(R.string.create_task_fragment))
-                            .addToBackStack(null)
-                            .commit();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment, getString(R.string.create_task_fragment))
+                        .addToBackStack(null)
+                        .commit();
                 break;
         }
     }
