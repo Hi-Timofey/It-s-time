@@ -6,54 +6,50 @@ import android.support.v4.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-<<<<<<< HEAD
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
-=======
->>>>>>> parent of 332edc5... Фиксы фиксов
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v7.widget.Toolbar;
 
 public class SphereFragment extends Fragment{
 
-<<<<<<< HEAD
     private Toolbar toolbar;
     private FragmentManager fragmentManager;
     private final Activity activity = getActivity();
 
-=======
->>>>>>> parent of 332edc5... Фиксы фиксов
 
     public SphereFragment() {
     }
 
-<<<<<<< HEAD
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         fragmentManager = getActivity().getSupportFragmentManager();
     }
-=======
->>>>>>> parent of 332edc5... Фиксы фиксов
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_sphere, container, false);
+        toolbar = getActivity().findViewById(R.id.tool_bar);
         return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        
+        toolbar.setTitle(R.string.sphere);
+        toolbar.setFocusable(false);
+        toolbar.setNavigationIcon(R.drawable.ic_menu);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
     }
-<<<<<<< HEAD
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.sphere_menu, menu);
@@ -109,6 +105,4 @@ public class SphereFragment extends Fragment{
         }
         return true;
     }
-=======
->>>>>>> parent of 332edc5... Фиксы фиксов
 }
