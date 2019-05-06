@@ -84,7 +84,7 @@
                 android:layout_height="0dp"
                 android:layout_marginLeft="36dp"
                 android:layout_marginTop="30dp"
-                android:layout_weight=".5"
+                android:layout_weight=".2"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:layout_marginRight="36dp">
@@ -109,7 +109,7 @@
                     android:paddingRight="8dp"
                     android:paddingBottom="8dp"
                     android:text="@string/remind_me"
-                    android:textColor="@color/green_light"
+                    android:textColor="@color/b_primary_text"
                     android:textSize="16sp" />
 
                 <android.support.v7.widget.SwitchCompat
@@ -123,9 +123,19 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="30dp"
+                android:layout_weight=".2"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginRight="36dp">
 
 
-            //Lalala
+
+            </LinearLayout>
 
         </LinearLayout>
 
