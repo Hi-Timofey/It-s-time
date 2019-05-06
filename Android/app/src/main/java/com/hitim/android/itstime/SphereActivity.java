@@ -23,6 +23,8 @@ public class SphereActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sphere);
+        toolbar = findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
 
         fabMenu = findViewById(R.id.floating_button_menu);
         com.github.clans.fab.FloatingActionButton createTask = findViewById(R.id.create_task_fab);

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
@@ -91,6 +92,7 @@ public class SphereFragment extends Fragment{
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, fragment, getString(R.string.user_profile_fragment))
                         .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
                 break;
             case R.id.action_settings:
@@ -98,6 +100,7 @@ public class SphereFragment extends Fragment{
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, fragment, getString(R.string.settings_fragment))
                         .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
                 break;
             default:

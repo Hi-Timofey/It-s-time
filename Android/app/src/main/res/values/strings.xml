@@ -60,4 +60,5 @@
     <string name="did_you_want_to_quit">Did you want to quit?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="remind_me">Remind me</string>
 </resources>
