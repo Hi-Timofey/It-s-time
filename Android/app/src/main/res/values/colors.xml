@@ -21,4 +21,10 @@
     <color name="green_light">#69f0ae</color>
     <color name="green">#00e676</color>
     <color name="green_dark">#00c853</color>
+
+
+
+    <color name="p_primary_dark">#7B1FA2</color>
+    <color name="p_primary">#9C27B0</color>
+    <color name="p_primary_light">#E1BEE7</color>
 </resources>
