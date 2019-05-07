@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -47,13 +48,13 @@ public class SphereActivity extends AppCompatActivity {
         Fragment fragment;
         switch (view.getId()) {
             case R.id.create_sphere_fab:
-
                 break;
             case R.id.create_task_fab:
                 fragment = new CreateTaskFragment();
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, fragment, getString(R.string.create_task_fragment))
                         .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
                 break;
         }

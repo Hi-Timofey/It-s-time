@@ -62,6 +62,7 @@ public class CreateTaskFragment extends Fragment {
         super.onStart();
         l.setElevation(0);
         floatingActionMenu.hideMenuButton(true);
+        floatingActionMenu.close(true);
         floatingActionMenu.setVisibility(View.INVISIBLE);
     }
 
