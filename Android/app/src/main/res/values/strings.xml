@@ -61,4 +61,9 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="remind_me">Remind me</string>
+    <string name="time_and_date">Time and Date</string>
+    <string name="pick_deadline_date">Pick deadline date</string>
+    <string name="choose_sphere">Choose Sphere and Icon</string>
+    <string name="set_tags">Set tags</string>
+    <string name="future_event">Some days...</string>
 </resources>
