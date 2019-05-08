@@ -1,22 +1,17 @@
 package com.hitim.android.itstime;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 public class SphereActivity extends AppCompatActivity {
 
-    public com.github.clans.fab.FloatingActionMenu fabMenu;
-    public Toolbar toolbar;
+    private com.github.clans.fab.FloatingActionMenu fabMenu;
+    private Toolbar toolbar;
     private SphereFragment sphereFragment;
     private FragmentManager fragmentManager;
 

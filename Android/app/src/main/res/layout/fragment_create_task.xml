@@ -40,7 +40,8 @@
                 android:maxLines="3"
                 android:textColor="@color/whiteColor"
                 android:textColorHint="@color/whiteColor"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:importantForAutofill="no" />
 
         </LinearLayout>
 
@@ -61,8 +62,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="30dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
                 android:text="@string/description"
                 android:textColor="@color/b_primary_text"
                 android:textSize="18sp" />
@@ -115,7 +116,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="start"
                     android:layout_marginLeft="30dp"
                     android:text="@string/choose_sphere"
                     android:textColor="@color/b_primary_text"
@@ -128,7 +129,8 @@
                     android:layout_marginEnd="36dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="NestedWeights">
 
                     <include layout="@layout/sphere_mini_card"/>
 
@@ -153,7 +155,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
+                    android:layout_gravity="start"
                     android:layout_marginLeft="30dp"
                     android:text="@string/time_and_date"
                     android:textColor="@color/b_primary_text"

@@ -29,6 +29,8 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private CheckBox dateBox, remindBox;
     private CardView sphereCard;
 
+    private String taskName, taskDecsription;
+
     public CreateTaskFragment() {
     }
 
