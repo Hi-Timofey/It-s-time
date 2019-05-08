@@ -9,6 +9,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="350dp"
+        android:id="@+id/card_all_tasks"
         android:layout_height="139dp"
         android:layout_marginBottom="8dp"
         app:cardBackgroundColor="@color/b_accent"

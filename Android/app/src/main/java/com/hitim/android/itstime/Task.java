@@ -1,9 +1,13 @@
 package com.hitim.android.itstime;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.util.ArrayList;
 
+@Entity
 class Task {
-    private String name;
+    @PrimaryKey private String name;
     private String description;
 
     //public Color taskColor;

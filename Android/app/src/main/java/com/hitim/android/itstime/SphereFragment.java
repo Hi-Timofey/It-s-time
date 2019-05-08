@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.Toolbar;
 
-public class SphereFragment extends Fragment{
+public class SphereFragment extends Fragment implements View.OnClickListener {
 
     private Toolbar toolbar;
     private FragmentManager fragmentManager;
@@ -107,5 +107,14 @@ public class SphereFragment extends Fragment{
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.card_all_tasks:
+
+                break;
+        }
     }
 }
