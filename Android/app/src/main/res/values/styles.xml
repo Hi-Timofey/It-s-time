@@ -30,6 +30,9 @@
         <item name="android:textColor">@color/whiteColor</item>
     </style>
 
+    <style name="SphereCardView" parent="CardView.Light">
+
+    </style>
     <style name="HintText_til" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/b_primary</item>
     </style>
