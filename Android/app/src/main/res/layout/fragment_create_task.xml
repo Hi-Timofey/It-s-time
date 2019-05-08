@@ -7,7 +7,7 @@
     android:theme="@style/BlueApplicationStyle.LightTheme"
     tools:context=".CreateTaskFragment">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -15,11 +15,14 @@
         <LinearLayout
             android:id="@+id/editTaskName"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".6"
+            android:layout_height="100dp"
             android:background="?attr/colorPrimary"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <EditText
                 style="@style/FirebaseUI.TextInputEditText"
@@ -30,6 +33,7 @@
                 android:backgroundTint="@color/whiteColor"
                 android:gravity="start|bottom"
                 android:hint="@string/task_name"
+                android:layout_marginTop="65dp"
                 android:inputType="textAutoCorrect|textCapSentences"
                 android:lines="2"
                 android:maxLength="30"
@@ -42,14 +46,17 @@
 
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingTop="20dp">
+            android:paddingTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTaskName">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -85,10 +92,14 @@
 
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.5"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -119,7 +130,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <include layout="@layout/sphere_mini_card" />
+                    <include layout="@layout/sphere_mini_card"/>
 
 
                 </LinearLayout>
@@ -154,6 +165,7 @@
                     android:layout_marginStart="36dp"
                     android:layout_marginEnd="36dp"
                     android:layout_weight="1"
+                    android:baselineAligned="false"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -167,10 +179,12 @@
 
                     <TextView
                         android:layout_width="0dp"
+                        android:id="@+id/deadline_text_view"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:gravity="start"
                         android:paddingLeft="8dp"
+                        android:clickable="true"
                         android:paddingTop="8dp"
                         android:paddingRight="8dp"
                         android:paddingBottom="8dp"
@@ -179,6 +193,7 @@
                         android:textSize="16sp" />
 
                     <CheckBox
+                        android:id="@+id/date_check_box"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -213,6 +228,7 @@
                         android:layout_weight="2"
                         android:gravity="start"
                         android:paddingLeft="8dp"
+                        android:clickable="true"
                         android:paddingTop="8dp"
                         android:paddingRight="8dp"
                         android:paddingBottom="8dp"
@@ -222,6 +238,7 @@
 
                     <CheckBox
                         android:layout_width="wrap_content"
+                        android:id="@+id/reminder_check_box"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="0.6"
@@ -244,6 +261,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
+
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
@@ -251,6 +269,7 @@
                     android:text="@string/set_tags"
                     android:textColor="@color/b_primary_text"
                     android:textSize="24sp"
+                    android:clickable="true"
                     app:layout_constraintBottom_toTopOf="@+id/textView2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -271,12 +290,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+
+
             </android.support.constraint.ConstraintLayout>
 
 
         </LinearLayout>
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/makeToDoFloatingActionButton"

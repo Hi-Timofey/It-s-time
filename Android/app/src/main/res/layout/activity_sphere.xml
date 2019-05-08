@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:background="@color/whiteColor"
+        android:background="@color/fui_transparent"
         fab:menu_colorNormal="@color/b_accent"
         fab:menu_colorPressed="@color/b_accent_light"
         fab:menu_colorRipple="@color/b_accent_light"
