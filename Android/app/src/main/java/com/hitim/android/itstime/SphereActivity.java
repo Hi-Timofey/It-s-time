@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -14,6 +15,7 @@ public class SphereActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private SphereFragment sphereFragment;
     private FragmentManager fragmentManager;
+    private CardView healthCard, workCard, allCard, yourselfCard, routineCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,7 @@ public class SphereActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sphere);
         toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        cardViewEnable();
 
         fabMenu = findViewById(R.id.floating_button_menu);
         com.github.clans.fab.FloatingActionButton createTask = findViewById(R.id.create_task_fab);
@@ -53,5 +56,12 @@ public class SphereActivity extends AppCompatActivity {
                         .commit();
                 break;
         }
+    }
+
+    private void cardViewEnable() {
+        healthCard = findViewById(R.id.card_routine);
+        workCard = findViewById(R.id.card_work);
+        allCard = findViewById(R.id.card_all_tasks);
+
     }
 }
