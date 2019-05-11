@@ -16,12 +16,15 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 public class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     private FloatingActionMenu floatingActionMenu;
+    private FloatingActionButton createTaskButton;
     private Toolbar toolbar;
     private AppBarLayout l;
     private TextView deadText, reminderText, tagsText, sphereCardText;
@@ -52,18 +55,19 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         toolbar = getActivity().findViewById(R.id.tool_bar);
         sphereCard = v.findViewById(R.id.sphere_mini_card_view);
         sphereCardText = v.findViewById(R.id.mini_card_text);
-
-
+        createTaskButton = v.findViewById(R.id.makeToDoFloatingActionButton);
+        createTaskButton.setOnClickListener(this);
         sphereCard.setOnClickListener(this);
         dateBox.setOnCheckedChangeListener(this);
         remindBox.setOnCheckedChangeListener(this);
+
         toolbar.setTitle(getString(R.string.create_task));
         toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.fragment_container,fm.findFragmentByTag(getString(R.string.sphere_fragment)))
+                fm.beginTransaction().replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.sphere_fragment)))
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                         .addToBackStack(null)
                         .commit();
@@ -94,16 +98,32 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()){
+        switch (buttonView.getId()) {
             case R.id.date_check_box:
+                if (isChecked)
+                    Toast.makeText(getContext(), "Clicked DATEBOX_TRUE", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getContext(), "Clicked DATEBOX_FALSE", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.reminder_check_box:
+                if (isChecked) {
+
+                } else {
+
+                }
                 break;
         }
     }
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sphere_mini_card_view:
 
+                break;
+            case R.id.makeToDoFloatingActionButton:
+
+                break;
+        }
     }
 }
