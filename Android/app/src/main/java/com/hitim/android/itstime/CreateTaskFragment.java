@@ -1,14 +1,9 @@
 package com.hitim.android.itstime;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +11,21 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.android.material.appbar.AppBarLayout;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+
+import java.util.Calendar;
 
 public class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
@@ -31,11 +37,10 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private ImageButton deadImg, remindImg, taskIcon;
     private CheckBox dateBox, remindBox;
     private CardView sphereCard;
-
     private String taskName, taskDecsription;
-
-    public CreateTaskFragment() {
-    }
+    //Task arguments
+    private DatePicked datePicked = new DatePicked();
+    private DatePicked reminderPicked = new DatePicked();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,19 +103,60 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        //TODO: Вынести OnClick в переменные вот прям вот тута
         switch (buttonView.getId()) {
             case R.id.date_check_box:
-                if (isChecked)
-                    Toast.makeText(getContext(), "Clicked DATEBOX_TRUE", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(getContext(), "Clicked DATEBOX_FALSE", Toast.LENGTH_SHORT).show();
+                if (isChecked) {
+                    Calendar now = Calendar.getInstance();
+                    DialogInterface.OnCancelListener onCancelListener = new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            if (dateBox.isChecked()) dateBox.setChecked(false);
+                        }
+                    };
+                    TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+                            datePicked.setHour(hourOfDay);
+                            datePicked.setMinutes(minute);
+                            deadText.setText(datePicked.toString());
+                        }
+                    };
+                    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                            datePicked.setYear(year);
+                            datePicked.setMonth(monthOfYear+1);
+                            datePicked.setDay(dayOfMonth);
+                            TimePickerDialog tpd = TimePickerDialog.newInstance(
+                                    onTimeSetListener,
+                                    now.get(Calendar.HOUR),
+                                    now.get(Calendar.MINUTE),
+                                    DateFormat.is24HourFormat(getContext())
+                            );
+                            tpd.setTitle(getString(R.string.pick_time));
+                            tpd.setOnCancelListener(onCancelListener);
+                            tpd.show(getFragmentManager(), getString(R.string.time_picker_dialog));
+                        }
+                    };
+                    DatePickerDialog dpd = DatePickerDialog.newInstance(
+                            onDateSetListener,
+                            now.get(Calendar.YEAR),
+                            now.get(Calendar.MONTH),
+                            now.get(Calendar.DAY_OF_MONTH)
+                    );
+                    dpd.setTitle(getString(R.string.pick_date));
+                    dpd.setMinDate(now);
+                    dpd.setOnCancelListener(onCancelListener);
+                    dpd.show(getFragmentManager(), getString(R.string.date_picker_dialog));
+                } else deadText.setText(getString(R.string.pick_deadline_date));
                 break;
             case R.id.reminder_check_box:
                 if (isChecked) {
+                    Calendar now = Calendar.getInstance();
 
-                } else {
 
-                }
+                } else reminderText.setText(getString(R.string.remind_me));
                 break;
         }
     }

@@ -1,7 +1,7 @@
 package com.hitim.android.itstime;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 class Task {
     @PrimaryKey private String name;
     private String description;
-
+    private DatePicked datePicked;
     //public Color taskColor;
 
     private ArrayList<String> tags;
@@ -37,5 +37,29 @@ class Task {
 
     public String getSphere() {
         return this.sphere;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public DatePicked getDatePicked() {
+        return datePicked;
+    }
+
+    public void setDatePicked(DatePicked datePicked) {
+        this.datePicked = datePicked;
+    }
+
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
+    }
+
+    public void setSphere(String sphere) {
+        this.sphere = sphere;
     }
 }
