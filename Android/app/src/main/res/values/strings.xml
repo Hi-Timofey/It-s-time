@@ -1,34 +1,26 @@
 <resources>
-    <string name="app_name">It\'s Time!</string>
+    <string name="app_name" translatable="false">It\'s Time!</string>
     <!--List fragments name-->
-    <string name="user_profile_fragment">HI-0001</string>
-    <string name="sphere_fragment">HI-0002</string>
-    <string name="create_task_fragment">HI-0003</string>
-    <string name="create_sphere_fragment">HI-0004</string>
-    <string name="settings_fragment">HI-0005</string>
-    <string name="date_picker_dialog">Date Picker Dialog</string>
-    <string name="time_picker_dialog">Time Picker Dialog</string>
+    <string name="user_profile_fragment" translatable="false">HI-0001</string>
+    <string name="sphere_fragment" translatable="false">HI-0002</string>
+    <string name="create_task_fragment" translatable="false">HI-0003</string>
+    <string name="create_sphere_fragment" translatable="false">HI-0004</string>
+    <string name="settings_fragment" translatable="false">HI-0005</string>
+    <string name="date_picker_dialog" translatable="false">Date Picker Dialog</string>
+    <string name="time_picker_dialog" translatable="false">Time Picker Dialog</string>
     <!--On Board Activity strings-->
     <string name="start_now">Start Now!</string>
-    <string name="on_board_icons">OnBoardIcons</string>
+    <string name="on_board_icons" translatable="false">OnBoardIcons</string>
     <string name="head_1">Goals</string>
     <string name="head_2">Productivity</string>
     <string name="head_3">Life</string>
-    <string name="on_board_1">
-        Write down all your tasks and goals.
-    </string>
-    <string name="on_board_2">
-        Perform tasks more efficiently thanks to the alert system and calendar
-    </string>
-    <string name="on_board_3">
-        Free time for new experiences, pleasures and your life.
-    </string>
+    <string name="on_board_1">"Write down all your tasks and goals.\n    "</string>
+    <string name="on_board_2">Perform tasks more efficiently thanks to the alert system and calendar</string>
     <!--Log In Activity Strings-->
     <string name="reg_text">Or Register Now</string>
-    <string name="log_in">Log In!</string>
     <string name="password">Password</string>
-    <string name="e_mail">E-Mail</string>
-    <string name="divider">Divider</string>
+    <string name="e_mail" translatable="false">E-Mail</string>
+    <string name="divider" translatable="false">Divider</string>
     <string name="emptyString">Field can\'t be empty</string>
     <string name="incorrect_address">Wrong email address</string>
     <string name="login_complete">Log in Successful!</string>
@@ -52,19 +44,18 @@
     <string name="create_task">Create Task</string>
     <string name="create_sphere">Create Sphere</string>
     <!--Google SignIn strings-->
-    <string name="icon_of_the_project">Icon of the project</string>
-    <string name="registration_button_image">Registration button image</string>
+    <string name="icon_of_the_project" translatable="false">Icon of the project</string>
+    <string name="registration_button_image" translatable="false">Registration button image</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="task_name">Task name</string>
     <string name="description">Description</string>
     <string name="did_you_want_to_quit">Did you want to quit?</string>
     <string name="yes">Yes</string>
-    <string name="no">No</string>
     <string name="remind_me">Remind me</string>
     <string name="time_and_date">Time and Date</string>
-    <string name="pick_deadline_date">"Box" time</string>
+    <string name="pick_deadline_date">Pick \"deadline\" time</string>
     <string name="choose_sphere">Choose Sphere and Icon</string>
     <string name="set_tags">Set tags</string>
     <string name="future_event">Some days…</string>
@@ -75,4 +66,7 @@
     <string name="all_tasks">All task\'s</string>
     <string name="pick_date">Pick date!</string>
     <string name="pick_time">Pick time</string>
+    <string name="no">No</string>
+    <string name="log_in">Log In!</string>
+    <string name="on_board_3">Free time for new experiences, pleasures and your life.</string>
 </resources>

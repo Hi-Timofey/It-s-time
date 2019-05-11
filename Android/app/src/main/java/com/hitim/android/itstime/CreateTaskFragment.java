@@ -108,36 +108,30 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             case R.id.date_check_box:
                 if (isChecked) {
                     Calendar now = Calendar.getInstance();
-                    DialogInterface.OnCancelListener onCancelListener = new DialogInterface.OnCancelListener() {
-                        @Override
-                        public void onCancel(DialogInterface dialog) {
-                            if (dateBox.isChecked()) dateBox.setChecked(false);
+                    DialogInterface.OnCancelListener onCancelListener = dialog -> {
+                        if (dateBox.isChecked()) {
+                            dateBox.setChecked(false);
+                            datePicked.resetAll();
                         }
                     };
-                    TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-                            datePicked.setHour(hourOfDay);
-                            datePicked.setMinutes(minute);
-                            deadText.setText(datePicked.toString());
-                        }
+                    TimePickerDialog.OnTimeSetListener onTimeSetListener = (view, hourOfDay, minute, second) -> {
+                        datePicked.setHour(hourOfDay);
+                        datePicked.setMinutes(minute);
+                        deadText.setText(datePicked.toString());
                     };
-                    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                            datePicked.setYear(year);
-                            datePicked.setMonth(monthOfYear+1);
-                            datePicked.setDay(dayOfMonth);
-                            TimePickerDialog tpd = TimePickerDialog.newInstance(
-                                    onTimeSetListener,
-                                    now.get(Calendar.HOUR),
-                                    now.get(Calendar.MINUTE),
-                                    DateFormat.is24HourFormat(getContext())
-                            );
-                            tpd.setTitle(getString(R.string.pick_time));
-                            tpd.setOnCancelListener(onCancelListener);
-                            tpd.show(getFragmentManager(), getString(R.string.time_picker_dialog));
-                        }
+                    DatePickerDialog.OnDateSetListener onDateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
+                        datePicked.setYear(year);
+                        datePicked.setMonth(monthOfYear + 1);
+                        datePicked.setDay(dayOfMonth);
+                        TimePickerDialog tpd = TimePickerDialog.newInstance(
+                                onTimeSetListener,
+                                now.get(Calendar.HOUR),
+                                now.get(Calendar.MINUTE),
+                                DateFormat.is24HourFormat(getContext())
+                        );
+                        tpd.setTitle(getString(R.string.pick_time));
+                        tpd.setOnCancelListener(onCancelListener);
+                        tpd.show(getFragmentManager(), getString(R.string.time_picker_dialog));
                     };
                     DatePickerDialog dpd = DatePickerDialog.newInstance(
                             onDateSetListener,
