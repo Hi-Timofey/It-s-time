@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginLeft="30dp"
-                    android:text="@string/choose_sphere"
+                    android:text="@string/choose_sphere_and_icon"
                     android:textColor="@color/b_primary_text"
                     android:textSize="18sp" />
                 <!--TODO: Сделать выбор иконки-->

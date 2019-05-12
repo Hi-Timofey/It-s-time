@@ -62,6 +62,5 @@ public class SphereActivity extends AppCompatActivity {
         healthCard = findViewById(R.id.card_routine);
         workCard = findViewById(R.id.card_work);
         allCard = findViewById(R.id.card_all_tasks);
-
     }
 }
