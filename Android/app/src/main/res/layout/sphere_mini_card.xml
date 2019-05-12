@@ -24,7 +24,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Choose the right one"
+            android:text="@string/choose_the_right_one"
             android:textSize="20sp"
             android:textColor="@color/b_secondary_text"
             card_view:layout_constraintBottom_toBottomOf="parent"

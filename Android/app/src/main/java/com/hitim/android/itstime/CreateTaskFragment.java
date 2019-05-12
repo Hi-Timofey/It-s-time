@@ -12,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -41,16 +40,18 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private CheckBox dateBox, remindBox;
     private CardView sphereCard;
 
-    private  final String[] spheresOfLife = {getString(R.string.work),
-            getString(R.string.health),
-            getString(R.string.routine),
-            getString(R.string.yourself)
+    private final String[] spheresOfLife = {
+            "Work",
+            "Health",
+            "Routine",
+            "Yourself"
     };
 
     //Task arguments
-    private String taskName, taskDecsription;
+    private String taskName, taskDecsription, sphere;
     private DatePicked datePicked = new DatePicked();
     private DatePicked reminderPicked = new DatePicked();
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -210,8 +211,32 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                         .setCancelable(false)
                         .setNeutralButton(getString(R.string.back_button), (dialog, id) -> dialog.cancel())
                         .setSingleChoiceItems(spheresOfLife, -1,
-                                (DialogInterface.OnClickListener) (dialog, item) ->
-                                        Toast.makeText(getContext(), "Сфера жизни "+ spheresOfLife[item],Toast.LENGTH_SHORT).show()
+                                (DialogInterface.OnClickListener) (dialog, item) -> {
+                                    sphere = spheresOfLife[item];
+                                    sphereCardText.setTextColor(getResources().getColor(R.color.whiteColor));
+                                    switch (item) {
+                                        case 0:
+                                            sphereCardText.setText(getString(R.string.work));
+                                            sphereCard.setBackground(getResources().getDrawable(R.drawable.work_background));
+                                            break;
+                                        case 1:
+                                            sphereCardText.setText(getString(R.string.health));
+                                            sphereCard.setBackground(getResources().getDrawable(R.drawable.health_background));
+                                            break;
+                                        case 2:
+                                            sphereCardText.setText(getString(R.string.routine));
+                                            sphereCard.setBackground(getResources().getDrawable(R.drawable.routine_background));
+                                            break;
+                                        case 3:
+                                            sphereCardText.setText(getString(R.string.yourself));
+                                            sphereCard.setBackground(getResources().getDrawable(R.drawable.yourself_background));
+                                            break;
+                                        default:
+                                            sphereCardText.setText(getString(R.string.choose_the_right_one));
+                                            sphereCard.setCardBackgroundColor(getResources().getColor(R.color.whiteColor));
+                                    }
+                                    dialog.cancel();
+                                }
                         );
                 AlertDialog dialog = builder.show();
                 dialog.show();
