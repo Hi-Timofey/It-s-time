@@ -52,9 +52,7 @@
         <item name="android:actionMenuTextColor">@color/blackColor</item>
     </style>
 
-    <style name="ToolBar.Dark">
-
-    </style>
+    <style name="ToolBar.Dark" />
 
     <style name="ErrorText" parent="TextAppearance.Design.Error">
         <item name="android:textStyle">bold|italic</item>
@@ -62,5 +60,13 @@
     </style>
     <style name="PopupMenuStyle" parent="Theme.AppCompat.Light">
         <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="AlertDialogStyle.Light" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="android:textColor">@color/b_primary_text</item>
+        <item name="android:background">@color/whiteColor</item>
+    </style>
+
+    <style name="AlertDialogStyle.Dark" parent="Theme.MaterialComponents.Dialog">
     </style>
 </resources>

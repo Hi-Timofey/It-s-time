@@ -46,8 +46,6 @@
     <!--Google SignIn strings-->
     <string name="icon_of_the_project" translatable="false">Icon of the project</string>
     <string name="registration_button_image" translatable="false">Registration button image</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="task_name">Task name</string>
     <string name="description">Description</string>
@@ -56,7 +54,8 @@
     <string name="remind_me">Remind me</string>
     <string name="time_and_date">Time and Date</string>
     <string name="pick_deadline_date">Pick \"deadline\" time</string>
-    <string name="choose_sphere">Choose Sphere and Icon</string>
+    <string name="choose_sphere_and_icon">Choose Sphere and Icon</string>
+    <string name="choose_sphere">Choose Sphere</string>
     <string name="set_tags">Set tags</string>
     <string name="future_event">Some days…</string>
     <string name="work">Work</string>
@@ -69,4 +68,5 @@
     <string name="no">No</string>
     <string name="log_in">Log In!</string>
     <string name="on_board_3">Free time for new experiences, pleasures and your life.</string>
+    <string name="back_button">Back</string>
 </resources>

@@ -8,7 +8,7 @@
     <string name="yourself">Личность</string>
     <string name="work">Работа</string>
     <string name="yes">Да</string>
-    <string name="choose_sphere">Выберите Сферу и Иконку</string>
+    <string name="choose_sphere_and_icon">Выберите Сферу и Иконку</string>
     <string name="create_task">Создать задачу</string>
     <string name="error_password">Пароль должен состоять из минимум 8 символов</string>
     <string name="head_1">Цели</string>
@@ -47,4 +47,5 @@
     <string name="on_board_3">Освободите время для новых впечатлений, удовольствий и  жизни.</string>
     <string name="on_board_1">Запишите все ваши задачи и цели.</string>
     <string name="on_board_2">Выполняйте задачи более эффективно благодаря системе оповещения и календарю</string>
+    <string name="back_button">Назад</string>
 </resources>
