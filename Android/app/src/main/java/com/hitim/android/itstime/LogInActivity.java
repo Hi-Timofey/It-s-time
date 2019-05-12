@@ -52,7 +52,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+
         setTheme(R.style.BlueApplicationStyle_LightTheme);
+
         ImageButton regButton = findViewById(R.id.log_register_btn);
         mailLayout = findViewById(R.id.log_til_1);
         passLayout = findViewById(R.id.log_til_2);
