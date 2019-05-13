@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -39,6 +41,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private ImageButton deadImg, remindImg, taskIcon;
     private CheckBox dateBox, remindBox;
     private CardView sphereCard;
+    private EditText taskNameEditText, taskDescriptionEditText;
 
     private final String[] spheresOfLife = {
             "Work",
@@ -46,7 +49,6 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             "Routine",
             "Yourself"
     };
-
     //Task arguments
     private String taskName, taskDecsription, sphere;
     private DatePicked datePicked = new DatePicked();
@@ -75,6 +77,8 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         sphereCard.setOnClickListener(this);
         dateBox.setOnCheckedChangeListener(this);
         remindBox.setOnCheckedChangeListener(this);
+        taskDescriptionEditText = v.findViewById(R.id.edit_text_task_description);
+        taskNameEditText = v.findViewById(R.id.edit_text_task_name);
 
         toolbar.setTitle(getString(R.string.create_task));
         toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
@@ -108,7 +112,6 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         l.setElevation(2);
         floatingActionMenu.setVisibility(View.VISIBLE);
         floatingActionMenu.showMenuButton(true);
-
     }
 
     @Override
@@ -117,7 +120,6 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         TimePickerDialog.OnTimeSetListener onTimeSetListener;
         DatePickerDialog.OnDateSetListener onDateSetListener;
         DatePickerDialog dpd;
-        //TODO: Вынести OnClick в переменные вот прям вот тута
         switch (buttonView.getId()) {
             case R.id.date_check_box:
                 if (isChecked) {
@@ -157,7 +159,10 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                     dpd.setMinDate(now);
                     dpd.setOnCancelListener(onCancelListener);
                     dpd.show(getFragmentManager(), getString(R.string.date_picker_dialog));
-                } else deadText.setText(getString(R.string.pick_deadline_date));
+                } else {
+                    deadText.setText(getString(R.string.pick_deadline_date));
+                    datePicked.resetAll();
+                }
                 break;
             case R.id.reminder_check_box:
                 if (isChecked) {
@@ -211,7 +216,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                         .setCancelable(false)
                         .setNeutralButton(getString(R.string.back_button), (dialog, id) -> dialog.cancel())
                         .setSingleChoiceItems(spheresOfLife, -1,
-                                (DialogInterface.OnClickListener) (dialog, item) -> {
+                                (dialog, item) -> {
                                     sphere = spheresOfLife[item];
                                     sphereCardText.setTextColor(getResources().getColor(R.color.whiteColor));
                                     switch (item) {
@@ -242,8 +247,18 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 dialog.show();
                 break;
             case R.id.makeToDoFloatingActionButton:
-
+                if (isValid()) {
+                    //TODO: Do the shit!!!!!
+                } else {
+                    Toast.makeText(getContext(), getString(R.string.wrong_task), Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
+    }
+
+    private boolean isValid() {
+        taskName = taskNameEditText.getText().toString();
+        taskDecsription = taskDescriptionEditText.getText().toString();
+        return !taskName.isEmpty() && !sphere.isEmpty() && !datePicked.isNull();
     }
 }

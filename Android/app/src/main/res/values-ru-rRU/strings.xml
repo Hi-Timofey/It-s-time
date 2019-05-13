@@ -48,4 +48,5 @@
     <string name="on_board_1">Запишите все ваши задачи и цели.</string>
     <string name="on_board_2">Выполняйте задачи более эффективно благодаря системе оповещения и календарю</string>
     <string name="back_button">Назад</string>
+    <string name="wrong_task">Одно из важных полей не заполнено.</string>
 </resources>

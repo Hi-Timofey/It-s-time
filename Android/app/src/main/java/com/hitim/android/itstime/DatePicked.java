@@ -18,30 +18,30 @@ public class DatePicked {
     @NonNull
     @Override
     public String toString() {
-        if (minutes < 10){
-            return day+":"+month+":"+year+" "+ hour+":0"+minutes;
+        if (minutes < 10) {
+            return day + ":" + month + ":" + year + " " + hour + ":0" + minutes;
         } else {
-            return day+":"+month+":"+year+" "+ hour+":"+minutes;
+            return day + ":" + month + ":" + year + " " + hour + ":" + minutes;
         }
     }
 
-    public DatePicked(){
+    public DatePicked() {
     }
 
-    public DatePicked (int year, int month, int day){
+    public DatePicked(int year, int month, int day) {
         this.year = year;
         this.month = month;
         this.day = day;
         this.type = DATE_ONLY;
     }
 
-    public DatePicked (int hour, int minutes){
+    public DatePicked(int hour, int minutes) {
         this.hour = hour;
         this.minutes = minutes;
         this.type = TIME_ONLY;
     }
 
-    public DatePicked (int hour, int minutes, int year, int month, int day){
+    public DatePicked(int hour, int minutes, int year, int month, int day) {
         this.hour = hour;
         this.minutes = minutes;
         this.year = year;
@@ -50,15 +50,19 @@ public class DatePicked {
         this.type = TIME_DATE;
     }
 
-    public void resetAll(){
-        year = Integer.parseInt(null);
-        month = Integer.parseInt(null);
-        day = Integer.parseInt(null);
-        minutes = Integer.parseInt(null);
-        hour = Integer.parseInt(null);
-        type = NULL_TIME;
+    public void resetAll() {
+        this.year = -1;
+        this.month = -1;
+        this.day = -1;
+        this.minutes = -1;
+        this.hour = -1;
+        this.type = NULL_TIME;
     }
 
+    public boolean isNull() {
+        if (year == -1 || month == -1 || day == -1 || minutes == -1 || hour == -1) return true;
+        else return false;
+    }
 
     public int getYear() {
         return year;
