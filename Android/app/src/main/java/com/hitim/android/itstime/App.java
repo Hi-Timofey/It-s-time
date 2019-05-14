@@ -14,7 +14,9 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        dataBase = Room.databaseBuilder(this, TaskDataBase.class, getString(R.string.database_name)).build();
+        dataBase = Room.databaseBuilder(this, TaskDataBase.class, getString(R.string.database_name))
+                .allowMainThreadQueries()
+                .build();
     }
 
     public static App getInstance() {

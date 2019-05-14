@@ -30,6 +30,9 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
+import java.util.concurrent.Callable;
+
+import io.reactivex.Completable;
 
 public class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
@@ -249,7 +252,10 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                     TaskDataBase db = App.getInstance().getDataBase();
                     TaskDao dao = db.getTaskDao();
                     task = new Task(taskName, taskDecsription, datePicked, sphere);
-                    dao.insert(task);
+                    Callable<Void> clb = () -> {
+                        dao.insert(task);
+                        return null;
+                    };
                     getFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, getFragmentManager().findFragmentByTag(getString(R.string.sphere_fragment)))
                             .commit();
