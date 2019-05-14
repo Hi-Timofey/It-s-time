@@ -14,7 +14,7 @@ public interface
 TaskDao {
     //Получить все задачи
     @Query("SELECT * FROM task")
-    List<Task> getAll();
+    List<Task> getAllTasks();
 
     //Поиск по имени
     @Query("SELECT * FROM task WHERE name = :name")
@@ -22,11 +22,11 @@ TaskDao {
 
     //Получить все задачи с опр. сферы
     @Query("SELECT * FROM task WHERE sphere LIKE :sphere")
-    List<Task> getAllPeopleWithFavoriteColor(String sphere);
+    List<Task> getAllTasksWithSphere(String sphere);
 
     //Новая задача
     @Insert
-    void insert(Task... task);
+    void insert(Task task);
 
     //изменение старой задачи
     @Update
