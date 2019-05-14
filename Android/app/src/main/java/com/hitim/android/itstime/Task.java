@@ -1,38 +1,36 @@
 package com.hitim.android.itstime;
 
+import androidx.annotation.NonNull;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
-
 @Entity
 class Task {
-    @PrimaryKey private String name;
+    @PrimaryKey
+    @NonNull
+    private String name;
     private String description;
+    @Embedded(prefix = "deadline")
     private DatePicked datePicked;
     //public Color taskColor;
-
-    private ArrayList<String> tags;
+    //private ArrayList<String> tags;
     private String sphere;
 
-    public Task(String name,String description/*,Color taskColor*/,ArrayList<String> tags, String sphere){
+    public Task(@NonNull String name, String description, DatePicked datePicked, String sphere) {
         this.name = name;
         this.description = description;
-        //this.taskColor = taskColor;
-        this.tags = tags;
         this.sphere = sphere;
+        this.datePicked = datePicked;
     }
 
+    @NonNull
     public String getName() {
         return this.name;
     }
 
     public String getDescription() {
         return this.description;
-    }
-
-    public ArrayList<String> getTags() {
-        return this.tags;
     }
 
     public String getSphere() {
@@ -53,10 +51,6 @@ class Task {
 
     public void setDatePicked(DatePicked datePicked) {
         this.datePicked = datePicked;
-    }
-
-    public void setTags(ArrayList<String> tags) {
-        this.tags = tags;
     }
 
     public void setSphere(String sphere) {

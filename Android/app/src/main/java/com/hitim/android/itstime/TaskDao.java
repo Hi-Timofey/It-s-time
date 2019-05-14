@@ -9,8 +9,9 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface TaskDao {
+public interface
 
+TaskDao {
     //Получить все задачи
     @Query("SELECT * FROM task")
     List<Task> getAll();
@@ -25,7 +26,7 @@ public interface TaskDao {
 
     //Новая задача
     @Insert
-    void insert(Task task);
+    void insert(Task... task);
 
     //изменение старой задачи
     @Update

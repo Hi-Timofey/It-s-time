@@ -50,6 +50,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             "Yourself"
     };
     //Task arguments
+    private Task task;
     private String taskName, taskDecsription, sphere;
     private DatePicked datePicked = new DatePicked();
     private DatePicked reminderPicked = new DatePicked();
@@ -82,15 +83,12 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
 
         toolbar.setTitle(getString(R.string.create_task));
         toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.sphere_fragment)))
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                        .addToBackStack(null)
-                        .commit();
-            }
+        toolbar.setNavigationOnClickListener(v1 -> {
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.sphere_fragment)))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                    .addToBackStack(null)
+                    .commit();
         });
         l = getActivity().findViewById(R.id.tool_bar_layout);
         return v;
@@ -248,7 +246,13 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 break;
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
-                    //TODO: Do the shit!!!!!
+                    TaskDataBase db = App.getInstance().getDataBase();
+                    TaskDao dao = db.getTaskDao();
+                    task = new Task(taskName, taskDecsription, datePicked, sphere);
+                    dao.insert(task);
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, getFragmentManager().findFragmentByTag(getString(R.string.sphere_fragment)))
+                            .commit();
                 } else {
                     Toast.makeText(getContext(), getString(R.string.wrong_task), Toast.LENGTH_SHORT).show();
                 }

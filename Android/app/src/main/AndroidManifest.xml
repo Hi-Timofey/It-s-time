@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hitim.android.itstime">
+
     <uses-permission android:name="android.permission.INTERNET">
     </uses-permission>
     <application
@@ -12,7 +13,7 @@
         android:theme="@style/BlueApplicationStyle"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".SphereActivity" />
+        <activity android:name=".SphereActivity"  />
         <activity android:name=".LogInActivity"/>
         <activity android:name=".OnBoardActivity">
             <intent-filter>
