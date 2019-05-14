@@ -74,18 +74,15 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
                 return false;
             }
         });
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //floatingActionButton.hide(false);
-            }
+        searchView.setOnSearchClickListener(view -> {
+            //floatingActionButton.hide(false);
         });
     }
 
     //Обработка нажатий кнопок на Toolbar'е
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Fragment fragment = null;
+        Fragment fragment;
         switch (item.getItemId()) {
             case R.id.action_profile:
                 fragment = new UserProfileFragment();
@@ -111,10 +108,10 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        /*switch (v.getId()){
             case R.id.card_all_tasks:
 
                 break;
-        }
+        }*/
     }
 }

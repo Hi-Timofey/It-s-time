@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">It\'s Time!</string>
+    <string name="database_name" translatable="false">hi-data</string>
     <!--List fragments name-->
     <string name="user_profile_fragment" translatable="false">HI-0001</string>
     <string name="sphere_fragment" translatable="false">HI-0002</string>

@@ -1,7 +1,6 @@
 package com.hitim.android.itstime;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -23,11 +22,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -78,19 +75,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
 
         AlertDialog.Builder builder = new AlertDialog.Builder(LogInActivity.this);
         builder.setTitle(getString(R.string.did_you_want_to_quit));
-        builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                finishAffinity();
-            }
+        builder.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+            dialog.dismiss();
+            finishAffinity();
         });
-        builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+        builder.setNegativeButton(getString(R.string.no), (dialog, which) -> dialog.dismiss());
         alert = builder.create();
     }
 
@@ -135,18 +124,15 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         }
         //TODO 3 раза ввел неправильно пароль - вывд диалога с попыткой помочь(восстановление)
         dialog.show();
-        mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    dialog.hide();
-                    Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LogInActivity.this, SphereActivity.class));
-                    finish();
-                } else {
-                    Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
-                    dialog.hide();
-                }
+        mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                dialog.hide();
+                Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LogInActivity.this, SphereActivity.class));
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
+                dialog.hide();
             }
         });
     }
@@ -201,17 +187,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
 
         mFirebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            dialog.hide();
-                            Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LogInActivity.this, SphereActivity.class));
-                        } else {
-                            dialog.hide();
-                            Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        dialog.hide();
+                        Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LogInActivity.this, SphereActivity.class));
+                    } else {
+                        dialog.hide();
+                        Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

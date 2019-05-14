@@ -2,7 +2,7 @@ package com.hitim.android.itstime;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import androidx.annotation.NonNull;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,10 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
@@ -55,19 +52,16 @@ public class RegisterActivity extends AppCompatActivity {
         }
         dialog.show();
 
-        mFirebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    Objects.requireNonNull(mFirebaseAuth.getCurrentUser()).sendEmailVerification();
-                    Toast.makeText(getApplicationContext(), getString(R.string.register_complete), Toast.LENGTH_SHORT).show();
-                    dialog.hide();
-                    startActivity(new Intent(RegisterActivity.this, SphereActivity.class));
-                    finish();
-                } else {
-                    Toast.makeText(getApplicationContext(),getString(R.string.register_failed),Toast.LENGTH_SHORT).show();
-                    dialog.hide();
-                }
+        mFirebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this, task -> {
+            if(task.isSuccessful()) {
+                Objects.requireNonNull(mFirebaseAuth.getCurrentUser()).sendEmailVerification();
+                Toast.makeText(getApplicationContext(), getString(R.string.register_complete), Toast.LENGTH_SHORT).show();
+                dialog.hide();
+                startActivity(new Intent(RegisterActivity.this, SphereActivity.class));
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(),getString(R.string.register_failed),Toast.LENGTH_SHORT).show();
+                dialog.hide();
             }
         });
 

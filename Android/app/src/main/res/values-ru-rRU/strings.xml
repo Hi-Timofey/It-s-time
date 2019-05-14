@@ -49,4 +49,6 @@
     <string name="on_board_2">Выполняйте задачи более эффективно благодаря системе оповещения и календарю</string>
     <string name="back_button">Назад</string>
     <string name="wrong_task">Одно из важных полей не заполнено.</string>
+    <string name="choose_sphere">Выберите Сферу</string>
+    <string name="choose_the_right_one">Выберите нужную</string>
 </resources>
