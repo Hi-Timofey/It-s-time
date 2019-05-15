@@ -9,7 +9,7 @@
     android:maxHeight="110dp">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/task_layout_image"
         android:layout_width="82dp"
         android:layout_height="82dp"
         android:layout_marginStart="16dp"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/task_layout_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -33,22 +33,22 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/b_primary_text"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/task_layout_image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/task_layout_sphere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Sphere"
         android:textSize="12sp"
         android:textColor="@color/b_secondary_text"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toEndOf="@+id/task_layout_image"
+        app:layout_constraintTop_toBottomOf="@+id/task_layout_name" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/task_layout_deadline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -59,8 +59,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/b_secondary_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toEndOf="@+id/task_layout_image"
+        app:layout_constraintTop_toBottomOf="@+id/task_layout_sphere" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
