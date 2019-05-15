@@ -33,6 +33,13 @@ import java.util.Calendar;
 import java.util.concurrent.Callable;
 
 import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
@@ -104,15 +111,6 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         floatingActionMenu.hideMenuButton(true);
         floatingActionMenu.close(true);
         floatingActionMenu.setVisibility(View.INVISIBLE);
-    }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        l.setElevation(2);
-        floatingActionMenu.setVisibility(View.VISIBLE);
-        floatingActionMenu.showMenuButton(true);
     }
 
     @Override
@@ -256,6 +254,24 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                         dao.insert(task);
                         return null;
                     };
+
+                    Completable.fromAction(new Action() {
+                        @Override
+                        public void run() throws Exception {
+
+                        }
+                    }).subscribe(new CompletableObserver() {
+                        @Override
+                        public void onSubscribe(Disposable d) {}
+                        @Override
+                        public void onComplete() {
+                            Toast.makeText(getContext(),"COMPLETED", Toast.LENGTH_SHORT).show();
+                        }
+                        @Override
+                        public void onError(Throwable e) {
+                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     getFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, getFragmentManager().findFragmentByTag(getString(R.string.sphere_fragment)))
                             .commit();

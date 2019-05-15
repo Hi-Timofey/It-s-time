@@ -13,7 +13,7 @@ public class SphereActivity extends AppCompatActivity {
 
     private com.github.clans.fab.FloatingActionMenu fabMenu;
     private Toolbar toolbar;
-    private SphereFragment sphereFragment;
+    private SphereFragment sphereFragment = new SphereFragment();
     private FragmentManager fragmentManager;
     private CardView healthCard, workCard, allCard, yourselfCard, routineCard;
 
@@ -35,11 +35,23 @@ public class SphereActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        sphereFragment = new SphereFragment();
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, sphereFragment, getString(R.string.sphere_fragment))
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fabMenu.setVisibility(View.VISIBLE);
+        fabMenu.showMenuButton(true);
+        toolbar.setElevation(2);
     }
 
     public void OnFabClick(View view) {
