@@ -2,6 +2,8 @@ package com.hitim.android.itstime;
 
 
 import android.app.Activity;
+
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.Context;
@@ -17,6 +19,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.github.clans.fab.FloatingActionMenu;
@@ -27,10 +31,7 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
     private FragmentManager fragmentManager;
     private final Activity activity = getActivity();
     private FloatingActionMenu floatingActionMenu;
-
-
-    public SphereFragment() {
-    }
+    private CardView allCard, workCard, healthCard, routineCard, youCard;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +45,16 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_sphere, container, false);
         toolbar = getActivity().findViewById(R.id.tool_bar);
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
+        allCard = v.findViewById(R.id.card_all_tasks);
+        allCard.setOnClickListener(this);
+        healthCard = v.findViewById(R.id.card_health);
+        healthCard.setOnClickListener(this);
+        routineCard = v.findViewById(R.id.card_routine);
+        routineCard.setOnClickListener(this);
+        workCard = v.findViewById(R.id.card_work);
+        workCard.setOnClickListener(this);
+        youCard = v.findViewById(R.id.card_yourself);
+        youCard.setOnClickListener(this);
         return v;
     }
 
@@ -126,10 +137,13 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        /*switch (v.getId()){
+        switch (v.getId()){
             case R.id.card_all_tasks:
 
                 break;
-        }*/
+            default:
+                Toast.makeText(getContext(),"Ooops",Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

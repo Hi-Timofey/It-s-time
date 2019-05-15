@@ -66,21 +66,11 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_create_task, container, false);
-        reminderText = v.findViewById(R.id.userToDoRemindMeTextView);
-        deadText = v.findViewById(R.id.deadline_text_view);
-        dateBox = v.findViewById(R.id.date_check_box);
-        remindBox = v.findViewById(R.id.reminder_check_box);
-        floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
-        toolbar = getActivity().findViewById(R.id.tool_bar);
-        sphereCard = v.findViewById(R.id.sphere_mini_card_view);
-        sphereCardText = v.findViewById(R.id.mini_card_text);
-        createTaskButton = v.findViewById(R.id.makeToDoFloatingActionButton);
+        getAllViews(v);
         createTaskButton.setOnClickListener(this);
         sphereCard.setOnClickListener(this);
         dateBox.setOnCheckedChangeListener(this);
         remindBox.setOnCheckedChangeListener(this);
-        taskDescriptionEditText = v.findViewById(R.id.edit_text_task_description);
-        taskNameEditText = v.findViewById(R.id.edit_text_task_name);
 
         toolbar.setTitle(getString(R.string.create_task));
         toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
@@ -106,93 +96,12 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        DialogInterface.OnCancelListener onCancelListener;
-        TimePickerDialog.OnTimeSetListener onTimeSetListener;
-        DatePickerDialog.OnDateSetListener onDateSetListener;
-        DatePickerDialog dpd;
         switch (buttonView.getId()) {
             case R.id.date_check_box:
-                if (isChecked) {
-                    Calendar now = Calendar.getInstance();
-                    onCancelListener = dialog -> {
-                        if (dateBox.isChecked()) {
-                            dateBox.setChecked(false);
-                            datePicked.resetAll();
-                        }
-                    };
-                    onTimeSetListener = (view, hourOfDay, minute, second) -> {
-                        datePicked.setHour(hourOfDay);
-                        datePicked.setMinutes(minute);
-                        deadText.setText(datePicked.toString());
-                    };
-                    onDateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
-                        datePicked.setYear(year);
-                        datePicked.setMonth(monthOfYear + 1);
-                        datePicked.setDay(dayOfMonth);
-                        TimePickerDialog tpd = TimePickerDialog.newInstance(
-                                onTimeSetListener,
-                                now.get(Calendar.HOUR),
-                                now.get(Calendar.MINUTE),
-                                DateFormat.is24HourFormat(getContext())
-                        );
-                        tpd.setTitle(getString(R.string.pick_time));
-                        tpd.setOnCancelListener(onCancelListener);
-                        tpd.show(getFragmentManager(), getString(R.string.time_picker_dialog));
-                    };
-                    dpd = DatePickerDialog.newInstance(
-                            onDateSetListener,
-                            now.get(Calendar.YEAR),
-                            now.get(Calendar.MONTH),
-                            now.get(Calendar.DAY_OF_MONTH)
-                    );
-                    dpd.setTitle(getString(R.string.pick_date));
-                    dpd.setMinDate(now);
-                    dpd.setOnCancelListener(onCancelListener);
-                    dpd.show(getFragmentManager(), getString(R.string.date_picker_dialog));
-                } else {
-                    deadText.setText(getString(R.string.pick_deadline_date));
-                    datePicked.resetAll();
-                }
+                enableDateCheckBoxDialog(isChecked);
                 break;
             case R.id.reminder_check_box:
-                if (isChecked) {
-                    Calendar now = Calendar.getInstance();
-                    onCancelListener = dialog -> {
-                        if (remindBox.isChecked()) {
-                            remindBox.setChecked(false);
-                            reminderPicked.resetAll();
-                        }
-                    };
-                    onTimeSetListener = (view, hourOfDay, minute, second) -> {
-                        reminderPicked.setHour(hourOfDay);
-                        reminderPicked.setMinutes(minute);
-                        reminderText.setText(reminderPicked.toString());
-                    };
-                    onDateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
-                        reminderPicked.setYear(year);
-                        reminderPicked.setMonth(monthOfYear + 1);
-                        reminderPicked.setDay(dayOfMonth);
-                        TimePickerDialog tpd = TimePickerDialog.newInstance(
-                                onTimeSetListener,
-                                now.get(Calendar.HOUR),
-                                now.get(Calendar.MINUTE),
-                                DateFormat.is24HourFormat(getContext())
-                        );
-                        tpd.setTitle(getString(R.string.pick_time));
-                        tpd.setOnCancelListener(onCancelListener);
-                        tpd.show(getFragmentManager(), getString(R.string.time_picker_dialog));
-                    };
-                    dpd = DatePickerDialog.newInstance(
-                            onDateSetListener,
-                            now.get(Calendar.YEAR),
-                            now.get(Calendar.MONTH),
-                            now.get(Calendar.DAY_OF_MONTH)
-                    );
-                    dpd.setTitle(getString(R.string.pick_date));
-                    dpd.setMinDate(now);
-                    dpd.setOnCancelListener(onCancelListener);
-                    dpd.show(getFragmentManager(), getString(R.string.date_picker_dialog));
-                } else reminderText.setText(getString(R.string.remind_me));
+                enableReminderCheckBoxDialog(isChecked);
                 break;
         }
     }
@@ -201,48 +110,15 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sphere_mini_card_view:
-                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.AlertDialogStyle_Light));
-                builder.setTitle(R.string.choose_sphere)
-                        .setCancelable(false)
-                        .setNeutralButton(getString(R.string.back_button), (dialog, id) -> dialog.cancel())
-                        .setSingleChoiceItems(spheresOfLife, -1,
-                                (dialog, item) -> {
-                                    sphere = spheresOfLife[item];
-                                    sphereCardText.setTextColor(getResources().getColor(R.color.whiteColor));
-                                    switch (item) {
-                                        case 0:
-                                            sphereCardText.setText(getString(R.string.work));
-                                            sphereCard.setBackground(getResources().getDrawable(R.drawable.work_background));
-                                            break;
-                                        case 1:
-                                            sphereCardText.setText(getString(R.string.health));
-                                            sphereCard.setBackground(getResources().getDrawable(R.drawable.health_background));
-                                            break;
-                                        case 2:
-                                            sphereCardText.setText(getString(R.string.routine));
-                                            sphereCard.setBackground(getResources().getDrawable(R.drawable.routine_background));
-                                            break;
-                                        case 3:
-                                            sphereCardText.setText(getString(R.string.yourself));
-                                            sphereCard.setBackground(getResources().getDrawable(R.drawable.yourself_background));
-                                            break;
-                                        default:
-                                            sphereCardText.setText(getString(R.string.choose_the_right_one));
-                                            sphereCard.setCardBackgroundColor(getResources().getColor(R.color.whiteColor));
-                                    }
-                                    dialog.cancel();
-                                }
-                        );
-                AlertDialog dialog = builder.show();
-                dialog.show();
+                changeSphereDialog();
                 break;
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
                     task = new Task(taskName, taskDecsription, datePicked, sphere);
-                    //Потоки=============================================================
+
                     Creator lol = new Creator();
                     lol.execute(task);
-                    //=================================================================
+
                     getFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, getFragmentManager().findFragmentByTag(getString(R.string.sphere_fragment)))
                             .commit();
@@ -259,7 +135,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         return !taskName.isEmpty() && !sphere.isEmpty() && !datePicked.isNull();
     }
 
-    public class Creator extends AsyncTask<Task,Integer,Boolean>{
+    public class Creator extends AsyncTask<Task, Integer, Boolean> {
 
         @Override
         protected Boolean doInBackground(Task... tasks) {
@@ -273,8 +149,162 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
-            if (aBoolean) Toast.makeText(getContext(),"SUCCESFUL 2",Toast.LENGTH_SHORT).show();
-            else Toast.makeText(getContext(),"FAILED 2",Toast.LENGTH_SHORT).show();
+            if (aBoolean) Toast.makeText(getContext(), "SUCCESFUL 2", Toast.LENGTH_SHORT).show();
+            else Toast.makeText(getContext(), "FAILED 2", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    //Начало огромных методов
+
+    //Собирает все view элементы
+    private void getAllViews(View v) {
+        reminderText = v.findViewById(R.id.userToDoRemindMeTextView);
+        deadText = v.findViewById(R.id.deadline_text_view);
+        dateBox = v.findViewById(R.id.date_check_box);
+        remindBox = v.findViewById(R.id.reminder_check_box);
+        floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
+        toolbar = getActivity().findViewById(R.id.tool_bar);
+        sphereCard = v.findViewById(R.id.sphere_mini_card_view);
+        sphereCardText = v.findViewById(R.id.mini_card_text);
+        createTaskButton = v.findViewById(R.id.makeToDoFloatingActionButton);
+        taskDescriptionEditText = v.findViewById(R.id.edit_text_task_description);
+        taskNameEditText = v.findViewById(R.id.edit_text_task_name);
+    }
+
+    //Вызывает диалоги для выбора даты дэдлайна задачи
+    private void enableDateCheckBoxDialog(boolean isChecked) {
+
+        DialogInterface.OnCancelListener onCancelListener;
+        TimePickerDialog.OnTimeSetListener onTimeSetListener;
+        DatePickerDialog.OnDateSetListener onDateSetListener;
+        DatePickerDialog dpd;
+
+        if (isChecked) {
+            Calendar now = Calendar.getInstance();
+            onCancelListener = dialog -> {
+                if (dateBox.isChecked()) {
+                    dateBox.setChecked(false);
+                    datePicked.resetAll();
+                }
+            };
+            onTimeSetListener = (view, hourOfDay, minute, second) -> {
+                datePicked.setHour(hourOfDay);
+                datePicked.setMinutes(minute);
+                deadText.setText(datePicked.toString());
+            };
+            onDateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
+                datePicked.setYear(year);
+                datePicked.setMonth(monthOfYear + 1);
+                datePicked.setDay(dayOfMonth);
+                TimePickerDialog tpd = TimePickerDialog.newInstance(
+                        onTimeSetListener,
+                        now.get(Calendar.HOUR),
+                        now.get(Calendar.MINUTE),
+                        DateFormat.is24HourFormat(getContext())
+                );
+                tpd.setTitle(getString(R.string.pick_time));
+                tpd.setOnCancelListener(onCancelListener);
+                tpd.show(getFragmentManager(), getString(R.string.time_picker_dialog));
+            };
+            dpd = DatePickerDialog.newInstance(
+                    onDateSetListener,
+                    now.get(Calendar.YEAR),
+                    now.get(Calendar.MONTH),
+                    now.get(Calendar.DAY_OF_MONTH)
+            );
+            dpd.setTitle(getString(R.string.pick_date));
+            dpd.setMinDate(now);
+            dpd.setOnCancelListener(onCancelListener);
+            dpd.show(getFragmentManager(), getString(R.string.date_picker_dialog));
+        } else {
+            deadText.setText(getString(R.string.pick_deadline_date));
+            datePicked.resetAll();
+        }
+    }
+
+    //Вызывает диалоги для выбора даты напоминания задачи
+    private void enableReminderCheckBoxDialog(boolean isChecked) {
+
+        DialogInterface.OnCancelListener onCancelListener;
+        TimePickerDialog.OnTimeSetListener onTimeSetListener;
+        DatePickerDialog.OnDateSetListener onDateSetListener;
+        DatePickerDialog dpd;
+
+        if (isChecked) {
+            Calendar now = Calendar.getInstance();
+            onCancelListener = dialog -> {
+                if (remindBox.isChecked()) {
+                    remindBox.setChecked(false);
+                    reminderPicked.resetAll();
+                }
+            };
+            onTimeSetListener = (view, hourOfDay, minute, second) -> {
+                reminderPicked.setHour(hourOfDay);
+                reminderPicked.setMinutes(minute);
+                reminderText.setText(reminderPicked.toString());
+            };
+            onDateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
+                reminderPicked.setYear(year);
+                reminderPicked.setMonth(monthOfYear + 1);
+                reminderPicked.setDay(dayOfMonth);
+                TimePickerDialog tpd = TimePickerDialog.newInstance(
+                        onTimeSetListener,
+                        now.get(Calendar.HOUR),
+                        now.get(Calendar.MINUTE),
+                        DateFormat.is24HourFormat(getContext())
+                );
+                tpd.setTitle(getString(R.string.pick_time));
+                tpd.setOnCancelListener(onCancelListener);
+                tpd.show(getFragmentManager(), getString(R.string.time_picker_dialog));
+            };
+            dpd = DatePickerDialog.newInstance(
+                    onDateSetListener,
+                    now.get(Calendar.YEAR),
+                    now.get(Calendar.MONTH),
+                    now.get(Calendar.DAY_OF_MONTH)
+            );
+            dpd.setTitle(getString(R.string.pick_date));
+            dpd.setMinDate(now);
+            dpd.setOnCancelListener(onCancelListener);
+            dpd.show(getFragmentManager(), getString(R.string.date_picker_dialog));
+        } else reminderText.setText(getString(R.string.remind_me));
+
+    }
+
+    private void changeSphereDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.AlertDialogStyle_Light));
+        builder.setTitle(R.string.choose_sphere)
+                .setCancelable(false)
+                .setNeutralButton(getString(R.string.back_button), (dialog, id) -> dialog.cancel())
+                .setSingleChoiceItems(spheresOfLife, -1,
+                        (dialog, item) -> {
+                            sphere = spheresOfLife[item];
+                            sphereCardText.setTextColor(getResources().getColor(R.color.whiteColor));
+                            switch (item) {
+                                case 0:
+                                    sphereCardText.setText(getString(R.string.work));
+                                    sphereCard.setBackground(getResources().getDrawable(R.drawable.work_background));
+                                    break;
+                                case 1:
+                                    sphereCardText.setText(getString(R.string.health));
+                                    sphereCard.setBackground(getResources().getDrawable(R.drawable.health_background));
+                                    break;
+                                case 2:
+                                    sphereCardText.setText(getString(R.string.routine));
+                                    sphereCard.setBackground(getResources().getDrawable(R.drawable.routine_background));
+                                    break;
+                                case 3:
+                                    sphereCardText.setText(getString(R.string.yourself));
+                                    sphereCard.setBackground(getResources().getDrawable(R.drawable.yourself_background));
+                                    break;
+                                default:
+                                    sphereCardText.setText(getString(R.string.choose_the_right_one));
+                                    sphereCard.setCardBackgroundColor(getResources().getColor(R.color.whiteColor));
+                            }
+                            dialog.cancel();
+                        }
+                );
+        AlertDialog dialog = builder.show();
+        dialog.show();
     }
 }
