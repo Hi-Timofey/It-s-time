@@ -18,7 +18,6 @@ public class DetailsFragment extends ListFragment {
     public DetailsFragment() {
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,4 +26,13 @@ public class DetailsFragment extends ListFragment {
         return v;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
 }
