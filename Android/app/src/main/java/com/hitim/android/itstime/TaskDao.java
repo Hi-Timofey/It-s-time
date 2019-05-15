@@ -8,6 +8,13 @@ import androidx.room.Update;
 
 import java.util.List;
 
+/**{@link TaskDao} - интерфейс, реализующий методы
+ * взаимодействия с базой данных от {@link androidx.room.Room}
+ * Через него происходят запросы.
+ * Получить {@link Dao} для работы с базойт данных можно
+ * только через класс {@link TaskDataBase}
+ */
+
 @Dao
 public interface TaskDao {
     //Получить все задачи

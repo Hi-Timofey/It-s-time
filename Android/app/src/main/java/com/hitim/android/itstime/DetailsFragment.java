@@ -2,18 +2,21 @@ package com.hitim.android.itstime;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.ListFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import androidx.fragment.app.ListFragment;
+
+import com.github.clans.fab.FloatingActionMenu;
+
+import java.util.List;
+
 public class DetailsFragment extends ListFragment {
 
-    private ListView listView;
+    private FloatingActionMenu floatingActionMenu;
+    private ListView myListview;
 
     public DetailsFragment() {
     }
@@ -22,17 +25,26 @@ public class DetailsFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_details, container, false);
-        listView = v.findViewById(R.id.task_list_view);
+        myListview = v.findViewById(android.R.id.list);
+        floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
         return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        floatingActionMenu.hideMenuButton(true);
+        floatingActionMenu.close(true);
+        floatingActionMenu.setVisibility(View.INVISIBLE);
+        fillListView();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
+    public void fillListView() {
+        AsyncWorker worker = new AsyncWorker();
+        List<Task> taskArrayList = worker.getAllTasks();
+
+        TaskAdapter myAdapter = new TaskAdapter(taskArrayList, getContext());
+        myListview.setAdapter(myAdapter);
     }
+
 }

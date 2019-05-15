@@ -3,6 +3,11 @@ package com.hitim.android.itstime;
 
 import androidx.annotation.NonNull;
 
+/** {@link DatePicked} - класс для работы с временем
+ * Используется для указания времени дедлайна и ремайндра
+ * в классе {@link Task}
+ */
+
 public class DatePicked {
     public final static int DATE_ONLY = 0;
     public final static int TIME_ONLY = 1;

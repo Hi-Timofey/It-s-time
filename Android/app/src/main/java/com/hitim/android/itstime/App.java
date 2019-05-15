@@ -4,6 +4,11 @@ import android.app.Application;
 
 import androidx.room.Room;
 
+/**
+ * {@link App} создан для работы с {@link TaskDataBase}
+ * в стиле SINGLETON: один экземпляр класса на всю программу
+ */
+
 public class App extends Application {
 
     public static App instance;

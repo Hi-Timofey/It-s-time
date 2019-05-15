@@ -115,9 +115,8 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
                     task = new Task(taskName, taskDecsription, datePicked, sphere);
-
-                    Creator lol = new Creator();
-                    lol.execute(task);
+                    Creator inserttask = new Creator();
+                    inserttask.execute(task);
 
                     getFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, getFragmentManager().findFragmentByTag(getString(R.string.sphere_fragment)))
@@ -135,26 +134,27 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         return !taskName.isEmpty() && !sphere.isEmpty() && !datePicked.isNull();
     }
 
-    public class Creator extends AsyncTask<Task, Integer, Boolean> {
+    public class Creator extends AsyncTask<Task, Void, Exception> {
 
         @Override
-        protected Boolean doInBackground(Task... tasks) {
+        protected Exception doInBackground(Task... tasks) {
             try {
                 App.getInstance().getDataBase().getTaskDao().insert(tasks[0]);
-                return true;
+                return null;
             } catch (Exception e) {
-                return false;
+                return e;
             }
         }
 
         @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            if (aBoolean) Toast.makeText(getContext(), "SUCCESFUL 2", Toast.LENGTH_SHORT).show();
-            else Toast.makeText(getContext(), "FAILED 2", Toast.LENGTH_SHORT).show();
+        protected void onPostExecute(Exception e) {
+            if (e == null) Toast.makeText(getContext(), "SUCCESFUL", Toast.LENGTH_SHORT).show();
+            else Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
     //Начало огромных методов
+    //===================================================================================================
 
     //Собирает все view элементы
     private void getAllViews(View v) {

@@ -139,7 +139,11 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.card_all_tasks:
-
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container,new DetailsFragment(), getString(R.string.details_fragment))
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
                 break;
             default:
                 Toast.makeText(getContext(),"Ooops",Toast.LENGTH_SHORT).show();

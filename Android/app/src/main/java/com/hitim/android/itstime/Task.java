@@ -5,6 +5,12 @@ import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/** {@link Task } - класс описывающий задачу пользователя.
+ * Содержит время дедлайна, название, сферу жизни и описание.
+ * При помощи {@link androidx.room.Room} сохраняется в качестве
+ * базы данных ({@link TaskDataBase})
+ */
+
 @Entity
 class Task {
     @PrimaryKey

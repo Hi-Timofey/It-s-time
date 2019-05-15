@@ -34,8 +34,4 @@ public class UserProfileFragment extends Fragment {
         floatingActionMenu.setVisibility(View.INVISIBLE);
     }
 
-    @Override
-    public void onPause() {
-            super.onPause();
-    }
 }
