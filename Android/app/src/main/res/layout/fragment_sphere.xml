@@ -10,14 +10,12 @@
         android:id="@+id/card_all_tasks"
         style="@style/SphereCardView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:minHeight="110dp"
+        android:minHeight="60dp"
         app:cardBackgroundColor="@color/b_primary"
-        app:layout_constraintBottom_toTopOf="@+id/card_statistics"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,43 +48,21 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_statistics"
-        style="@style/SphereCardView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:minHeight="110dp"
-        app:cardBackgroundColor="@color/b_accent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_all_tasks">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:minHeight="110dp">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
         android:id="@+id/card_routine"
         style="@style/SphereCardView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="185dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:maxHeight="210dp"
+        android:minHeight="160dp"
         app:layout_constraintBottom_toTopOf="@+id/card_yourself"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/card_work"
-        app:layout_constraintTop_toBottomOf="@+id/card_statistics">
+        app:layout_constraintTop_toBottomOf="@+id/card_all_tasks">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -124,15 +100,17 @@
         android:id="@+id/card_work"
         style="@style/SphereCardView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="185dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:maxHeight="210dp"
+        android:minHeight="160dp"
         app:layout_constraintBottom_toTopOf="@+id/card_health"
         app:layout_constraintEnd_toStartOf="@+id/card_routine"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_statistics">
+        app:layout_constraintTop_toBottomOf="@+id/card_all_tasks">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -170,12 +148,12 @@
         android:id="@+id/card_health"
         style="@style/SphereCardView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="185dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:maxHeight="210dp"
+        android:minHeight="160dp"
         app:layout_constraintEnd_toStartOf="@+id/card_yourself"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_work">
@@ -216,12 +194,12 @@
         android:id="@+id/card_yourself"
         style="@style/SphereCardView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="185dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:maxHeight="210dp"
+        android:minHeight="160dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/card_health"
         app:layout_constraintTop_toBottomOf="@+id/card_routine">

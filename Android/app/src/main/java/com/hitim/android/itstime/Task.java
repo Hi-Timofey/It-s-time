@@ -12,12 +12,14 @@ class Task {
     private String name;
     private String description;
     @Embedded(prefix = "deadline")
+    @NonNull
     private DatePicked datePicked;
     //public Color taskColor;
     //private ArrayList<String> tags;
+    @NonNull
     private String sphere;
 
-    public Task(@NonNull String name, String description, DatePicked datePicked, String sphere) {
+    public Task(@NonNull String name, String description, @NonNull DatePicked datePicked, @NonNull String sphere) {
         this.name = name;
         this.description = description;
         this.sphere = sphere;
@@ -33,11 +35,13 @@ class Task {
         return this.description;
     }
 
+    @NonNull
     public String getSphere() {
         return this.sphere;
     }
 
-    public void setName(String name) {
+    @NonNull
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 
@@ -45,15 +49,17 @@ class Task {
         this.description = description;
     }
 
+    @NonNull
     public DatePicked getDatePicked() {
         return datePicked;
     }
 
-    public void setDatePicked(DatePicked datePicked) {
+    public void setDatePicked(@NonNull DatePicked datePicked) {
         this.datePicked = datePicked;
     }
 
-    public void setSphere(String sphere) {
+    public void setSphere(@NonNull String sphere) {
         this.sphere = sphere;
     }
+
 }

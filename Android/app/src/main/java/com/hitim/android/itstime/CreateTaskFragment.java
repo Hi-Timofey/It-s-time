@@ -2,6 +2,7 @@ package com.hitim.android.itstime;
 
 
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.ContextThemeWrapper;
@@ -30,16 +31,6 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
-import java.util.concurrent.Callable;
-
-import io.reactivex.Completable;
-import io.reactivex.CompletableObserver;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 public class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
@@ -247,32 +238,11 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 break;
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
-
-
-                    TaskDao dao = App.getInstance().getDataBase().getTaskDao();
                     task = new Task(taskName, taskDecsription, datePicked, sphere);
-                    Callable<Void> clb = () -> {
-                        dao.insert(task);
-                        return null;
-                    };
-                    Completable.fromAction(new Action() {
-                        @Override
-                        public void run() throws Exception {
-
-                        }
-                    }).subscribe(new CompletableObserver() {
-                        @Override
-                        public void onSubscribe(Disposable d) {}
-                        @Override
-                        public void onComplete() {
-                            Toast.makeText(getContext(),"COMPLETED", Toast.LENGTH_SHORT).show();
-                        }
-                        @Override
-                        public void onError(Throwable e) {
-                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
+                    //Потоки=============================================================
+                    Creator lol = new Creator();
+                    lol.execute(task);
+                    //=================================================================
                     getFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, getFragmentManager().findFragmentByTag(getString(R.string.sphere_fragment)))
                             .commit();
@@ -287,5 +257,24 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         taskName = taskNameEditText.getText().toString();
         taskDecsription = taskDescriptionEditText.getText().toString();
         return !taskName.isEmpty() && !sphere.isEmpty() && !datePicked.isNull();
+    }
+
+    public class Creator extends AsyncTask<Task,Integer,Boolean>{
+
+        @Override
+        protected Boolean doInBackground(Task... tasks) {
+            try {
+                App.getInstance().getDataBase().getTaskDao().insert(tasks[0]);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if (aBoolean) Toast.makeText(getContext(),"SUCCESFUL 2",Toast.LENGTH_SHORT).show();
+            else Toast.makeText(getContext(),"FAILED 2",Toast.LENGTH_SHORT).show();
+        }
     }
 }

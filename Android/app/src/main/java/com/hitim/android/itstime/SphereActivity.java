@@ -1,13 +1,14 @@
 package com.hitim.android.itstime;
 
 import android.os.Bundle;
+import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.appcompat.widget.Toolbar;
-import android.view.View;
 
 public class SphereActivity extends AppCompatActivity {
 
@@ -26,8 +27,6 @@ public class SphereActivity extends AppCompatActivity {
         cardViewEnable();
 
         fabMenu = findViewById(R.id.floating_button_menu);
-        com.github.clans.fab.FloatingActionButton createTask = findViewById(R.id.create_task_fab);
-        com.github.clans.fab.FloatingActionButton createSphere = findViewById(R.id.create_sphere_fab);
 
         fragmentManager = getSupportFragmentManager();
     }
