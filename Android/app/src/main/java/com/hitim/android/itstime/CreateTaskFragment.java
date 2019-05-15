@@ -247,14 +247,14 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 break;
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
-                    TaskDataBase db = App.getInstance().getDataBase();
-                    TaskDao dao = db.getTaskDao();
+
+
+                    TaskDao dao = App.getInstance().getDataBase().getTaskDao();
                     task = new Task(taskName, taskDecsription, datePicked, sphere);
                     Callable<Void> clb = () -> {
                         dao.insert(task);
                         return null;
                     };
-
                     Completable.fromAction(new Action() {
                         @Override
                         public void run() throws Exception {
@@ -272,6 +272,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
+
                     getFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, getFragmentManager().findFragmentByTag(getString(R.string.sphere_fragment)))
                             .commit();
