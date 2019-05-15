@@ -19,11 +19,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.widget.Toolbar;
 
+import com.github.clans.fab.FloatingActionMenu;
+
 public class SphereFragment extends Fragment implements View.OnClickListener {
 
     private Toolbar toolbar;
     private FragmentManager fragmentManager;
     private final Activity activity = getActivity();
+    private FloatingActionMenu floatingActionMenu;
 
 
     public SphereFragment() {
@@ -40,17 +43,32 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_sphere, container, false);
         toolbar = getActivity().findViewById(R.id.tool_bar);
+        floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
         return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+            floatingActionMenu.setVisibility(View.VISIBLE);
+            floatingActionMenu.showMenuButton(true);
         toolbar.setTitle(R.string.sphere);
         toolbar.setFocusable(false);
+        toolbar.setElevation(2);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (floatingActionMenu.isOpened()){
+            floatingActionMenu.close(true);
+            floatingActionMenu.hideMenuButton(true);
+            floatingActionMenu.setVisibility(View.INVISIBLE);
+        }
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.sphere_menu, menu);

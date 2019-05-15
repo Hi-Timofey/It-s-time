@@ -41,19 +41,6 @@ public class SphereActivity extends AppCompatActivity {
                 .commit();
     }
 
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        super.onAttachFragment(fragment);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        fabMenu.setVisibility(View.VISIBLE);
-        fabMenu.showMenuButton(true);
-        toolbar.setElevation(2);
-    }
-
     public void OnFabClick(View view) {
         Fragment fragment;
         switch (view.getId()) {
