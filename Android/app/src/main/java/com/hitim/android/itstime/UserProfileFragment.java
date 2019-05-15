@@ -7,7 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.clans.fab.FloatingActionMenu;
+
 public class UserProfileFragment extends Fragment {
+
+    private FloatingActionMenu floatingActionMenu;
 
 
     public UserProfileFragment() {
@@ -17,7 +21,21 @@ public class UserProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_user_profile, container, false);
+        View v = inflater.inflate(R.layout.fragment_user_profile, container, false);
+        floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
+        return v;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        floatingActionMenu.hideMenuButton(true);
+        floatingActionMenu.close(true);
+        floatingActionMenu.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onPause() {
+            super.onPause();
+    }
 }
