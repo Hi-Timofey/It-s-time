@@ -145,6 +145,18 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
                 break;
+            case R.id.card_health:
+                Toast.makeText(getContext(),"Health",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.card_work:
+                Toast.makeText(getContext(),"Work",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.card_routine:
+                Toast.makeText(getContext(),"Routine",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.card_yourself:
+                Toast.makeText(getContext(),"Yourself",Toast.LENGTH_SHORT).show();
+                break;
             default:
                 Toast.makeText(getContext(),"Ooops",Toast.LENGTH_SHORT).show();
                 break;

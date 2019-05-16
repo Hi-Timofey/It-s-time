@@ -42,7 +42,6 @@ public class DetailsFragment extends ListFragment {
     public void fillListView() {
         AsyncWorker worker = new AsyncWorker();
         List<Task> taskArrayList = worker.getAllTasks();
-
         TaskAdapter myAdapter = new TaskAdapter(taskArrayList, getContext());
         myListview.setAdapter(myAdapter);
     }
