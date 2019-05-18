@@ -53,6 +53,33 @@ public class AsyncWorker {
         return null;
     }
 
+    public List<Task> getAllTasksWithSphere(String sphere){
+        @SuppressLint("StaticFieldLeak") AsyncTask<Void, Void, List<Task>> asyncTask =
+                new AsyncTask<Void, Void, List<Task>>() {
+
+                    @Override
+                    protected List<Task> doInBackground(Void... voids) {
+                        try {
+                            return taskDao.getAllTasksWithSphere(sphere);
+                        } catch (Exception e) {
+                            return null;
+                        }
+                    }
+
+                };
+        asyncTask.execute();
+        try {
+            return asyncTask.get(4, TimeUnit.SECONDS);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 
     public boolean insertTask(Task task) {

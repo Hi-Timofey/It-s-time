@@ -33,6 +33,8 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
     private FloatingActionMenu floatingActionMenu;
     private CardView allCard, workCard, healthCard, routineCard, youCard;
 
+    private int nextSphere;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,27 +141,28 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.card_all_tasks:
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container,new TaskListFragment(), getString(R.string.task_list_fragment))
-                        .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit();
+                nextSphere = R.string.all_tasks;
                 break;
             case R.id.card_health:
-                Toast.makeText(getContext(),"Health",Toast.LENGTH_SHORT).show();
+                nextSphere = R.string.health;
                 break;
             case R.id.card_work:
-                Toast.makeText(getContext(),"Work",Toast.LENGTH_SHORT).show();
+                nextSphere = R.string.work;
                 break;
             case R.id.card_routine:
-                Toast.makeText(getContext(),"Routine",Toast.LENGTH_SHORT).show();
+                nextSphere = R.string.routine;
                 break;
             case R.id.card_yourself:
-                Toast.makeText(getContext(),"Yourself",Toast.LENGTH_SHORT).show();
+                nextSphere = R.string.yourself;
                 break;
             default:
                 Toast.makeText(getContext(),"Ooops",Toast.LENGTH_SHORT).show();
                 break;
         }
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container,new TaskListFragment(nextSphere), getString(R.string.task_list_fragment))
+                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }
 }

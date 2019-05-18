@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
@@ -18,10 +20,13 @@ import java.util.List;
 public class TaskListFragment extends ListFragment {
 
     private FloatingActionMenu floatingActionMenu;
+    private Toolbar toolbar;
     private ListView myListview;
     private List<Task> taskArrayList;
+    private int sphere;
 
-    public TaskListFragment() {
+    public TaskListFragment(int sphere) {
+        this.sphere = sphere;
     }
 
     @Override
@@ -30,6 +35,7 @@ public class TaskListFragment extends ListFragment {
         View v = inflater.inflate(R.layout.fragment_task_list, container, false);
         myListview = v.findViewById(android.R.id.list);
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
+        toolbar = getActivity().findViewById(R.id.tool_bar);
         return v;
     }
 
@@ -39,14 +45,23 @@ public class TaskListFragment extends ListFragment {
         floatingActionMenu.hideMenuButton(true);
         floatingActionMenu.close(true);
         floatingActionMenu.setVisibility(View.INVISIBLE);
+        toolbar.setTitle(sphere);
         fillListView();
+        Toast.makeText(getContext(),sphere,Toast.LENGTH_SHORT).show();
     }
 
     public void fillListView() {
         AsyncWorker worker = new AsyncWorker();
-        taskArrayList = worker.getAllTasks();
-        TaskAdapter myAdapter = new TaskAdapter(taskArrayList, getContext());
-        myListview.setAdapter(myAdapter);
+        TaskAdapter taskAdapter;
+        if (sphere == R.string.all_tasks){
+            taskArrayList = worker.getAllTasks();
+            taskAdapter = new TaskAdapter(taskArrayList, getContext());
+            myListview.setAdapter(taskAdapter);
+        } else {
+            taskArrayList = worker.getAllTasksWithSphere(getString(sphere));
+            taskAdapter = new TaskAdapter(taskArrayList, getContext());
+            myListview.setAdapter(taskAdapter);
+        }
     }
 
     @Override
@@ -56,7 +71,7 @@ public class TaskListFragment extends ListFragment {
         String taskName = tv.getText().toString();
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container,new DetailsFragment(taskName), getString(R.string.details_fragment))
-                .addToBackStack()
+                .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
     }
