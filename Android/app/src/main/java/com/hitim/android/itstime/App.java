@@ -20,7 +20,6 @@ public class App extends Application {
         super.onCreate();
         instance = this;
         dataBase = Room.databaseBuilder(this, TaskDataBase.class, getString(R.string.database_name))
-                //.allowMainThreadQueries()
                 .build();
     }
 
