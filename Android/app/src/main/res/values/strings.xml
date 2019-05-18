@@ -7,7 +7,8 @@
     <string name="create_task_fragment" translatable="false">HI-0003</string>
     <string name="create_sphere_fragment" translatable="false">HI-0004</string>
     <string name="settings_fragment" translatable="false">HI-0005</string>
-    <string name="details_fragment" translatable="false">HI-0006</string>
+    <string name="task_list_fragment" translatable="false">HI-0006</string>
+    <string name="details_fragment" translatable="false">HI-0007</string>
     <string name="date_picker_dialog" translatable="false">Date Picker Dialog</string>
     <string name="time_picker_dialog" translatable="false">Time Picker Dialog</string>
     <!--On Board Activity strings-->

@@ -140,7 +140,7 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.card_all_tasks:
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container,new DetailsFragment(), getString(R.string.details_fragment))
+                        .replace(R.id.fragment_container,new TaskListFragment(), getString(R.string.task_list_fragment))
                         .addToBackStack(null)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
