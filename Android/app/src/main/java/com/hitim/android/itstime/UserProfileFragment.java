@@ -1,7 +1,7 @@
 package com.hitim.android.itstime;
 
 
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,23 +12,27 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.firebase.ui.auth.AuthUI;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.joooonho.SelectableRoundedImageView;
+import com.squareup.picasso.Picasso;
 
 public class UserProfileFragment extends Fragment {
 
     private FloatingActionMenu floatingActionMenu;
     private Toolbar toolbar;
     private FirebaseUser mUser;
-    private TextView userNameText,userEmailText;
+    private TextView userNameText, userEmailText;
     private SelectableRoundedImageView userPictureImageView;
 
     public UserProfileFragment() {
@@ -72,15 +76,28 @@ public class UserProfileFragment extends Fragment {
         if (mUser != null) {
             String name = mUser.getDisplayName();
             String email = mUser.getEmail();
-            Uri photoUrl = mUser.getPhotoUrl();
-            if (name.equals("")) {
+            if (name == null) {
                 userNameText.setText(email);
                 userNameText.setTextSize(18);
             } else {
                 userNameText.setText(name);
                 userEmailText.setText(email);
             }
-            userPictureImageView.setImageURI(photoUrl);
+            try {
+                String photoUrl = mUser.getPhotoUrl().toString();
+                Picasso.with(getContext())
+                        .load(photoUrl)
+                        .fit().centerCrop()
+                        .placeholder(R.drawable.user_profile_image_placeholder)
+                        .error(R.drawable.ic_account)
+                        .into(userPictureImageView);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Picasso.with(getContext())
+                        .load(R.drawable.ic_account)
+                        .fit().centerCrop()
+                        .into(userPictureImageView);
+            }
         }
     }
 
@@ -91,11 +108,14 @@ public class UserProfileFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_log_out:
-                Toast.makeText(getContext(),"Log out",Toast.LENGTH_SHORT).show();
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getContext(),LogInActivity.class));
+                getActivity().finish();
                 break;
-            default: super.onOptionsItemSelected(item);
+            default:
+                super.onOptionsItemSelected(item);
         }
         return true;
     }
