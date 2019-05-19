@@ -199,7 +199,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="159dp"
+                android:layout_marginBottom="32dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -296,9 +296,7 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -320,7 +318,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/userToDoRemindMeTextView"
+                        android:id="@+id/userToDoNeededTimeText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -333,16 +331,16 @@
                         android:paddingTop="8dp"
                         android:paddingRight="8dp"
                         android:paddingBottom="8dp"
-                        android:text="@string/remind_me"
+                        android:text="@string/when_to_start_worrying"
                         android:textColor="@color/b_primary_text"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/reminder_check_box"
+                        app:layout_constraintEnd_toStartOf="@+id/needed_time_check_box"
                         app:layout_constraintStart_toEndOf="@+id/userToDoReminderIconImageButton"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <CheckBox
-                        android:id="@+id/reminder_check_box"
+                        android:id="@+id/needed_time_check_box"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -355,7 +353,7 @@
                         android:padding="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/userToDoRemindMeTextView"
+                        app:layout_constraintStart_toEndOf="@+id/userToDoNeededTimeText"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

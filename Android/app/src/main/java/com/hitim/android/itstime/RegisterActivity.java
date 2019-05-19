@@ -58,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), getString(R.string.register_complete), Toast.LENGTH_SHORT).show();
                 dialog.hide();
                 startActivity(new Intent(RegisterActivity.this, SphereActivity.class));
+                overridePendingTransition(R.anim.fade_out_3,R.anim.fade_in_5);
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(),getString(R.string.register_failed),Toast.LENGTH_SHORT).show();

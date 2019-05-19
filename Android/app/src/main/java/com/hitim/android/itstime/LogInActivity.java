@@ -112,7 +112,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            //TODO Нормальная анимация переключеия(снизу вверх)
             startActivity(new Intent(LogInActivity.this, RegisterActivity.class));
         }
         return false;
@@ -122,13 +121,13 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         if (!validate()) {
             return;
         }
-        //TODO 3 раза ввел неправильно пароль - вывд диалога с попыткой помочь(восстановление)
         dialog.show();
         mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
                 dialog.hide();
                 Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LogInActivity.this, SphereActivity.class));
+                //overridePendingTransition(R.anim.fade_out_3,R.anim.fade_in_5);
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();

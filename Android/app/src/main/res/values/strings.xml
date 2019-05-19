@@ -54,7 +54,7 @@
     <string name="description">Description</string>
     <string name="did_you_want_to_quit">Did you want to quit?</string>
     <string name="yes">Yes</string>
-    <string name="remind_me">Remind me</string>
+    <string name="when_to_start_worrying">When to start worrying?</string>
     <string name="time_and_date">Time and Date</string>
     <string name="pick_deadline_date">Pick \"deadline\" time</string>
     <string name="choose_sphere_and_icon">Choose Sphere and Icon</string>

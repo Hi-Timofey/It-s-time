@@ -1,10 +1,7 @@
 package com.hitim.android.itstime;
 
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -21,12 +18,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -47,10 +42,10 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private FloatingActionButton createTaskButton;
     private Toolbar toolbar;
     private AppBarLayout l;
-    private TextView deadText, reminderText, tagsText, sphereCardText;
+    private TextView deadText, neededTimeText, tagsText, sphereCardText;
     private ImageButton deadImg, remindImg, taskIcon;
     private SelectableRoundedImageView roundedImageView;
-    private CheckBox dateBox, remindBox;
+    private CheckBox dateBox, neededTimeBox;
     private CardView sphereCard;
     private EditText taskNameEditText, taskDescriptionEditText;
 
@@ -64,7 +59,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private Task task;
     private String taskName = "", taskDecsription = "", sphere = "";
     private DatePicked datePicked = new DatePicked();
-    private DatePicked reminderPicked = new DatePicked();
+    private DatePicked neededTimePicked = new DatePicked();
     private int taskColor = -1;
 
     @Override
@@ -81,7 +76,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         createTaskButton.setOnClickListener(this);
         sphereCard.setOnClickListener(this);
         dateBox.setOnCheckedChangeListener(this);
-        remindBox.setOnCheckedChangeListener(this);
+        neededTimeBox.setOnCheckedChangeListener(this);
         roundedImageView.setOnClickListener(this);
         toolbar.setTitle(getString(R.string.create_task));
         toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
@@ -111,8 +106,8 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             case R.id.date_check_box:
                 enableDateCheckBoxDialog(isChecked);
                 break;
-            case R.id.reminder_check_box:
-                enableReminderCheckBoxDialog(isChecked);
+            case R.id.needed_time_check_box:
+                enableNeededTimeCheckBoxDialog(isChecked);
                 break;
         }
     }
@@ -126,7 +121,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
                     //TODO: Переписать на AsyncWorker
-                    task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor);
+                    task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked);
                     Creator inserttask = new Creator();
                     inserttask.execute(task);
 
@@ -174,11 +169,11 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
 
     //Собирает все view элементы
     private void getAllViews(View v) {
-        reminderText = v.findViewById(R.id.userToDoRemindMeTextView);
+        neededTimeText = v.findViewById(R.id.userToDoNeededTimeText);
         roundedImageView = v.findViewById(R.id.set_icon_button);
         deadText = v.findViewById(R.id.deadline_text_view);
         dateBox = v.findViewById(R.id.date_check_box);
-        remindBox = v.findViewById(R.id.reminder_check_box);
+        neededTimeBox = v.findViewById(R.id.needed_time_check_box);
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
         toolbar = getActivity().findViewById(R.id.tool_bar);
         sphereCard = v.findViewById(R.id.sphere_mini_card_view);
@@ -240,30 +235,28 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     }
 
     //Вызывает диалоги для выбора даты напоминания задачи
-    private void enableReminderCheckBoxDialog(boolean isChecked) {
-
+    private void enableNeededTimeCheckBoxDialog(boolean isChecked) {
         DialogInterface.OnCancelListener onCancelListener;
         TimePickerDialog.OnTimeSetListener onTimeSetListener;
         DatePickerDialog.OnDateSetListener onDateSetListener;
         DatePickerDialog dpd;
-
         if (isChecked) {
             Calendar now = Calendar.getInstance();
             onCancelListener = dialog -> {
-                if (remindBox.isChecked()) {
-                    remindBox.setChecked(false);
-                    reminderPicked.resetAll();
+                if (neededTimeBox.isChecked()) {
+                    neededTimeBox.setChecked(false);
+                    neededTimePicked.resetAll();
                 }
             };
             onTimeSetListener = (view, hourOfDay, minute, second) -> {
-                reminderPicked.setHour(hourOfDay);
-                reminderPicked.setMinutes(minute);
-                reminderText.setText(reminderPicked.toString());
+                neededTimePicked.setHour(hourOfDay);
+                neededTimePicked.setMinutes(minute);
+                neededTimeText.setText(neededTimePicked.toString());
             };
             onDateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
-                reminderPicked.setYear(year);
-                reminderPicked.setMonth(monthOfYear + 1);
-                reminderPicked.setDay(dayOfMonth);
+                neededTimePicked.setYear(year);
+                neededTimePicked.setMonth(monthOfYear + 1);
+                neededTimePicked.setDay(dayOfMonth);
                 TimePickerDialog tpd = TimePickerDialog.newInstance(
                         onTimeSetListener,
                         now.get(Calendar.HOUR),
@@ -271,6 +264,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                         DateFormat.is24HourFormat(getContext())
                 );
                 tpd.setTitle(getString(R.string.pick_time));
+                tpd.setVersion(TimePickerDialog.Version.VERSION_2);
                 tpd.setOnCancelListener(onCancelListener);
                 tpd.show(getFragmentManager(), getString(R.string.time_picker_dialog));
             };
@@ -284,8 +278,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             dpd.setMinDate(now);
             dpd.setOnCancelListener(onCancelListener);
             dpd.show(getFragmentManager(), getString(R.string.date_picker_dialog));
-        } else reminderText.setText(getString(R.string.remind_me));
-
+        } else neededTimeText.setText(getString(R.string.when_to_start_worrying));
     }
 
     private void changeSphereDialog() {

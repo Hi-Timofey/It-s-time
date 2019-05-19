@@ -21,19 +21,25 @@ class Task {
     @Embedded(prefix = "deadline")
     @NonNull
     private DatePicked datePicked;
+    @Embedded(prefix = "needed_time")
+    private DatePicked neededTimePicked;
     private int color;
     //public Color taskColor;
     //private ArrayList<String> tags;
     @NonNull
     private String sphere;
 
-    public Task(@NonNull String name, String description, @NonNull DatePicked datePicked, @NonNull String sphere, @NonNull int color) {
+    public Task(@NonNull String name, String description, @NonNull DatePicked datePicked, @NonNull String sphere, @NonNull int color, DatePicked neededTimePicked) {
         this.name = name;
         this.description = description;
         this.sphere = sphere;
         this.datePicked = datePicked;
         this.color = color;
+        if (!neededTimePicked.isNull()) {
+            this.neededTimePicked = neededTimePicked;
+        }
     }
+
 
     @NonNull
     public String getName() {
@@ -79,4 +85,11 @@ class Task {
         this.color = color;
     }
 
+    public DatePicked getNeededTimePicked() {
+        return neededTimePicked;
+    }
+
+    public void setNeededTimePicked(DatePicked neededTimePicked) {
+        this.neededTimePicked = neededTimePicked;
+    }
 }

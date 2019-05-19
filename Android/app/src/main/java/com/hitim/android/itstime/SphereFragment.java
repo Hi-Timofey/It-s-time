@@ -2,17 +2,9 @@ package com.hitim.android.itstime;
 
 
 import android.app.Activity;
-
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,7 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.github.clans.fab.FloatingActionMenu;
 
@@ -63,8 +62,8 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-            floatingActionMenu.setVisibility(View.VISIBLE);
-            floatingActionMenu.showMenuButton(true);
+        floatingActionMenu.setVisibility(View.VISIBLE);
+        floatingActionMenu.showMenuButton(true);
         toolbar.setTitle(R.string.sphere);
         toolbar.setFocusable(false);
         toolbar.setElevation(2);
@@ -75,7 +74,7 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onPause() {
         super.onPause();
-        if (floatingActionMenu.isOpened()){
+        if (floatingActionMenu.isOpened()) {
             floatingActionMenu.close(true);
             floatingActionMenu.hideMenuButton(true);
             floatingActionMenu.setVisibility(View.INVISIBLE);
@@ -139,7 +138,7 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.card_all_tasks:
                 nextSphere = R.string.all_tasks;
                 break;
@@ -156,11 +155,11 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
                 nextSphere = R.string.yourself;
                 break;
             default:
-                Toast.makeText(getContext(),"Ooops",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Ooops", Toast.LENGTH_SHORT).show();
                 break;
         }
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container,new TaskListFragment(nextSphere), getString(R.string.task_list_fragment))
+                .replace(R.id.fragment_container, new TaskListFragment(nextSphere), getString(R.string.task_list_fragment))
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();

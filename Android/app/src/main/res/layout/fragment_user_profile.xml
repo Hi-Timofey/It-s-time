@@ -8,6 +8,7 @@
     tools:context=".UserProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@color/b_primary_200"
@@ -17,8 +18,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <ImageView
-            android:id="@+id/imageView"
+        <com.joooonho.SelectableRoundedImageView
+            android:id="@+id/user_picture_image_view"
+            app:sriv_left_top_corner_radius="16dip"
+            app:sriv_right_top_corner_radius="16dip"
+            app:sriv_left_bottom_corner_radius="16dip"
+            app:sriv_right_bottom_corner_radius="16dip"
+            app:sriv_border_width="2dip"
+            app:sriv_border_color="#000000"
+            app:sriv_oval="true"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginStart="24dp"
@@ -30,14 +38,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/user_name_textview"
             style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="52dp"
+            android:maxLines="2"
             android:layout_marginEnd="8dp"
-            android:text="User name"
             android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.037"
@@ -47,16 +55,30 @@
         <TextView
             style="@style/TextAppearance.MaterialComponents.Headline1"
             android:layout_width="wrap_content"
+            android:id="@+id/user_email_textview"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:text="User e-mail"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.004"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/user_name_textview" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
