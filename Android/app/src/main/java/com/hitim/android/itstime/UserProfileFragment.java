@@ -74,11 +74,12 @@ public class UserProfileFragment extends Fragment {
                     .commit();
         });
         if (mUser != null) {
+            Toast.makeText(getContext(),"Мать жива?",Toast.LENGTH_SHORT).show();
             String name = mUser.getDisplayName();
             String email = mUser.getEmail();
             if (name == null) {
                 userNameText.setText(email);
-                userNameText.setTextSize(18);
+                userNameText.setTextSize(30);
             } else {
                 userNameText.setText(name);
                 userEmailText.setText(email);
@@ -97,7 +98,9 @@ public class UserProfileFragment extends Fragment {
                         .load(R.drawable.ic_account)
                         .fit().centerCrop()
                         .into(userPictureImageView);
+                userPictureImageView.setImageResource(R.drawable.ic_account);
             }
+
         }
     }
 

@@ -20,22 +20,24 @@
 
         <com.joooonho.SelectableRoundedImageView
             android:id="@+id/user_picture_image_view"
-            app:sriv_left_top_corner_radius="16dip"
-            app:sriv_right_top_corner_radius="16dip"
-            app:sriv_left_bottom_corner_radius="16dip"
-            app:sriv_right_bottom_corner_radius="16dip"
-            app:sriv_border_width="2dip"
-            app:sriv_border_color="#000000"
-            app:sriv_oval="true"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="291dp"
             android:layout_marginBottom="24dp"
             android:src="@drawable/user_profile_image_placeholder"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:sriv_border_color="#000000"
+            app:sriv_border_width="2dip"
+            app:sriv_left_bottom_corner_radius="16dip"
+            app:sriv_left_top_corner_radius="16dip"
+            app:sriv_oval="true"
+            app:sriv_right_bottom_corner_radius="16dip"
+            app:sriv_right_top_corner_radius="16dip" />
 
         <TextView
             android:id="@+id/user_name_textview"
@@ -44,26 +46,30 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="52dp"
-            android:maxLines="2"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="110dp"
+            android:maxLines="2"
             android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.037"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/user_picture_image_view"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/user_email_textview"
             style="@style/TextAppearance.MaterialComponents.Headline1"
             android:layout_width="wrap_content"
-            android:id="@+id/user_email_textview"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="70dp"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.004"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/user_picture_image_view"
             app:layout_constraintTop_toBottomOf="@+id/user_name_textview" />
 
 
