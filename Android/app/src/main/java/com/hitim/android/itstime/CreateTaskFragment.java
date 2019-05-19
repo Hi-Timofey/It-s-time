@@ -2,7 +2,6 @@ package com.hitim.android.itstime;
 
 
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -28,6 +27,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.appbar.AppBarLayout;
+import com.joooonho.SelectableRoundedImageView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
@@ -41,6 +41,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private AppBarLayout l;
     private TextView deadText, reminderText, tagsText, sphereCardText;
     private ImageButton deadImg, remindImg, taskIcon;
+    private SelectableRoundedImageView roundedImageView;
     private CheckBox dateBox, remindBox;
     private CardView sphereCard;
     private EditText taskNameEditText, taskDescriptionEditText;
@@ -72,7 +73,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         sphereCard.setOnClickListener(this);
         dateBox.setOnCheckedChangeListener(this);
         remindBox.setOnCheckedChangeListener(this);
-
+        roundedImageView.setOnClickListener(this);
         toolbar.setTitle(getString(R.string.create_task));
         toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
         toolbar.setNavigationOnClickListener(v1 -> {
@@ -126,6 +127,9 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                     Toast.makeText(getContext(), getString(R.string.wrong_task), Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.set_icon_button:
+                chengeIconAndColor();
+                break;
         }
     }
 
@@ -160,6 +164,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     //Собирает все view элементы
     private void getAllViews(View v) {
         reminderText = v.findViewById(R.id.userToDoRemindMeTextView);
+        roundedImageView = v.findViewById(R.id.set_icon_button);
         deadText = v.findViewById(R.id.deadline_text_view);
         dateBox = v.findViewById(R.id.date_check_box);
         remindBox = v.findViewById(R.id.reminder_check_box);
@@ -272,7 +277,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
 
     }
 
-    private void changeSphereDialog(){
+    private void changeSphereDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.AlertDialogStyle_Light));
         builder.setTitle(R.string.choose_sphere)
                 .setCancelable(false)
@@ -307,5 +312,9 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 );
         AlertDialog dialog = builder.show();
         dialog.show();
+    }
+
+    private void chengeIconAndColor() {
+
     }
 }

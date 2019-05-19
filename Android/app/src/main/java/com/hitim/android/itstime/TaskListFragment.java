@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 
@@ -46,6 +47,14 @@ public class TaskListFragment extends ListFragment {
         floatingActionMenu.close(true);
         floatingActionMenu.setVisibility(View.INVISIBLE);
         toolbar.setTitle(sphere);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationOnClickListener(v1 -> {
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.sphere_fragment)))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                    .addToBackStack(null)
+                    .commit();
+        });
         fillListView();
         Toast.makeText(getContext(),sphere,Toast.LENGTH_SHORT).show();
     }

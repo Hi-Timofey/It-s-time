@@ -25,9 +25,7 @@ public class SphereActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         cardViewEnable();
-
         fabMenu = findViewById(R.id.floating_button_menu);
-
         fragmentManager = getSupportFragmentManager();
     }
 
