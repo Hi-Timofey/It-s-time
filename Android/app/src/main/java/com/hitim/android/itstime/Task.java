@@ -5,7 +5,8 @@ import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-/** {@link Task } - класс описывающий задачу пользователя.
+/**
+ * {@link Task } - класс описывающий задачу пользователя.
  * Содержит время дедлайна, название, сферу жизни и описание.
  * При помощи {@link androidx.room.Room} сохраняется в качестве
  * базы данных ({@link TaskDataBase})
@@ -20,16 +21,18 @@ class Task {
     @Embedded(prefix = "deadline")
     @NonNull
     private DatePicked datePicked;
+    private int color;
     //public Color taskColor;
     //private ArrayList<String> tags;
     @NonNull
     private String sphere;
 
-    public Task(@NonNull String name, String description, @NonNull DatePicked datePicked, @NonNull String sphere) {
+    public Task(@NonNull String name, String description, @NonNull DatePicked datePicked, @NonNull String sphere, @NonNull int color) {
         this.name = name;
         this.description = description;
         this.sphere = sphere;
         this.datePicked = datePicked;
+        this.color = color;
     }
 
     @NonNull
@@ -66,6 +69,14 @@ class Task {
 
     public void setSphere(@NonNull String sphere) {
         this.sphere = sphere;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
 }

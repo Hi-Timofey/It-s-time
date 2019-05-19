@@ -1,11 +1,15 @@
 package com.hitim.android.itstime;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.joooonho.SelectableRoundedImageView;
 
 import java.util.List;
 
@@ -43,7 +47,6 @@ public class TaskAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
 
-
         if(convertView == null){
             LayoutInflater inf = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inf.inflate(R.layout.task_layout, null);
@@ -52,6 +55,7 @@ public class TaskAdapter extends BaseAdapter {
             holder.name = convertView.findViewById(R.id.task_layout_name);
             holder.sphere = convertView.findViewById(R.id.task_layout_sphere);
             holder.deadline = convertView.findViewById(R.id.task_layout_deadline);
+            holder.imageView = convertView.findViewById(R.id.task_layout_image);
 
             convertView.setTag(holder);
         }
@@ -59,10 +63,16 @@ public class TaskAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        Task stu = taskArrayList.get(position);
-        holder.name.setText(stu.getName());
-        holder.sphere.setText(stu.getSphere());
-        holder.deadline.setText(stu.getDatePicked().toString());
+        Task task = taskArrayList.get(position);
+        int color = task.getColor();
+        Drawable image = context.getResources().getDrawable(R.drawable.ic_check);
+        image.setColorFilter(color, PorterDuff.Mode.XOR);
+
+        holder.name.setText(task.getName());
+        holder.sphere.setText(task.getSphere());
+        holder.deadline.setText(task.getDatePicked().toString());
+        holder.imageView.setImageDrawable(image);
+        holder.imageView.setBorderColor(color);
 
         return convertView;
     }
@@ -71,5 +81,6 @@ public class TaskAdapter extends BaseAdapter {
         public TextView name;
         public TextView sphere;
         public TextView deadline;
+        public SelectableRoundedImageView imageView;
     }
 }

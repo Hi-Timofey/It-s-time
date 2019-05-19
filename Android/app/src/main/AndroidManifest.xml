@@ -14,7 +14,9 @@
         android:theme="@style/BlueApplicationStyle"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".SphereActivity"  />
+        <activity android:name=".SphereActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <!--android:windowSoftInputMode="stateVisible|adjustPan"-->
         <activity android:name=".LogInActivity"/>
         <activity android:name=".OnBoardActivity">
             <intent-filter>

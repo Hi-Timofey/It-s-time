@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/BlueApplicationStyle.LightTheme"
+    app:layout_collapseMode="none"
     tools:context=".CreateTaskFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,6 +57,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingTop="20dp"
@@ -121,8 +123,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout6"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".27"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
@@ -141,16 +144,15 @@
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <!--TODO: Сделать выбор иконки-->
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:maxHeight="80dp"
                     android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView60"
@@ -171,23 +173,21 @@
                         android:id="@+id/set_icon_button"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:scaleType="centerCrop"
-                        app:sriv_left_top_corner_radius="16dip"
-                        app:sriv_right_top_corner_radius="16dip"
-                        app:sriv_left_bottom_corner_radius="16dip"
-                        app:sriv_right_bottom_corner_radius="16dip"
-                        app:sriv_border_width="2dip"
-                        app:sriv_border_color="#008fea"
-                        app:sriv_oval="true"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="32dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/ic_color"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/sphere_mini_card_view"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:sriv_border_color="#008fea"
+                        app:sriv_border_width="2dip"
+                        app:sriv_left_bottom_corner_radius="16dip"
+                        app:sriv_left_top_corner_radius="16dip"
+                        app:sriv_oval="true"
+                        app:sriv_right_bottom_corner_radius="16dip"
+                        app:sriv_right_top_corner_radius="16dip" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -198,10 +198,11 @@
                 android:id="@+id/constraintLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight=".35"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="159dp"
                 android:gravity="center"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
@@ -358,51 +359,6 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout4"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
-
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:text="@string/set_tags"
-                    android:textColor="@color/b_primary_text"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/future_event"
-                    android:textColor="@color/b_secondary_text"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

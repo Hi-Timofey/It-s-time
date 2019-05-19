@@ -2,6 +2,7 @@ package com.hitim.android.itstime;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,7 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class SphereActivity extends AppCompatActivity {
+import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
+
+public class SphereActivity extends AppCompatActivity implements ColorPickerDialogListener {
 
     private com.github.clans.fab.FloatingActionMenu fabMenu;
     private Toolbar toolbar;
@@ -59,4 +62,14 @@ public class SphereActivity extends AppCompatActivity {
         workCard = findViewById(R.id.card_work);
         allCard = findViewById(R.id.card_all_tasks);
     }
+
+    //Обработка ColorPicker фрагмента(не работает внутри фрагмента CreateTaskFragment
+    @Override
+    public void onColorSelected(int dialogId, int color) {
+        CreateTaskFragment f = (CreateTaskFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.create_task_fragment));
+        f.setTaskColor(color);
+    }
+
+    @Override
+    public void onDialogDismissed(int dialogId) {}
 }

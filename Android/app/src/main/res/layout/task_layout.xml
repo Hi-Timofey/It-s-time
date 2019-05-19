@@ -6,7 +6,7 @@
     android:minHeight="90dp"
     android:maxHeight="110dp">
 
-    <ImageView
+    <com.joooonho.SelectableRoundedImageView
         android:id="@+id/task_layout_image"
         android:layout_width="82dp"
         android:layout_height="82dp"
@@ -14,8 +14,16 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="313dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/whiteColor"
+        app:sriv_left_top_corner_radius="16dip"
+        app:sriv_right_top_corner_radius="16dip"
+        app:sriv_left_bottom_corner_radius="16dip"
+        app:sriv_right_bottom_corner_radius="16dip"
+        app:sriv_border_width="2dip"
+        app:sriv_border_color="#008fea"
+        app:sriv_oval="true"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic_check"
+        android:background="@color/whiteColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -61,4 +61,9 @@
     <color name="blue_100">#50B5E9</color>
     <color name="blue_50">#46A7D9</color>
     <color name="blue_10">#2995cd</color>
+
+    <string-array name="color_picker_colors">
+        <item>#46A7D9</item>
+        <item>#20B780</item>
+    </string-array>
 </resources>

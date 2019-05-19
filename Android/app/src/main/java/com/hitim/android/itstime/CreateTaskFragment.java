@@ -1,7 +1,12 @@
 package com.hitim.android.itstime;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -16,10 +21,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -27,6 +34,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.appbar.AppBarLayout;
+import com.jaredrummler.android.colorpicker.ColorPickerDialog;
 import com.joooonho.SelectableRoundedImageView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -54,9 +62,10 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     };
     //Task arguments
     private Task task;
-    private String taskName, taskDecsription, sphere;
+    private String taskName = "", taskDecsription = "", sphere = "";
     private DatePicked datePicked = new DatePicked();
     private DatePicked reminderPicked = new DatePicked();
+    private int taskColor = -1;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -116,7 +125,8 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 break;
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
-                    task = new Task(taskName, taskDecsription, datePicked, sphere);
+                    //TODO: Переписать на AsyncWorker
+                    task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor);
                     Creator inserttask = new Creator();
                     inserttask.execute(task);
 
@@ -136,8 +146,9 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private boolean isValid() {
         taskName = taskNameEditText.getText().toString();
         taskDecsription = taskDescriptionEditText.getText().toString();
-        return !taskName.isEmpty() && !sphere.isEmpty() && !datePicked.isNull();
+        return !taskName.equals("") && !sphere.equals("") && !datePicked.isNull() && taskColor != -1;
     }
+
 
     public class Creator extends AsyncTask<Task, Void, Exception> {
 
@@ -314,7 +325,17 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         dialog.show();
     }
 
+    //Диалог для выбора цвета
     private void chengeIconAndColor() {
+        ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
+        colorPickerDialog.newBuilder().setColor(getResources().getColor(R.color.whiteColor)).show(getActivity());
+    }
 
+    public void setTaskColor(int color) {
+        Drawable image = getContext().getResources().getDrawable(R.drawable.ic_check);
+        image.setColorFilter(color, PorterDuff.Mode.XOR);
+        roundedImageView.setImageDrawable(image);
+        roundedImageView.setBorderColor(color);
+        taskColor = color;
     }
 }

@@ -19,6 +19,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        setTheme(R.style.BlueApplicationStyle_LightTheme);
         dataBase = Room.databaseBuilder(this, TaskDataBase.class, getString(R.string.database_name))
                 .build();
     }
