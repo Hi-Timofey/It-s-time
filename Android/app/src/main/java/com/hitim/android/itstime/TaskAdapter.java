@@ -66,10 +66,11 @@ public class TaskAdapter extends BaseAdapter {
         holder.name.setText(task.getName());
         holder.sphere.setText(task.getSphere());
         holder.deadline.setText(task.getDatePicked().toString());
+        holder.priority.setText(String.valueOf(task.getPriority()));
         holder.imageView.setImageDrawable(image);
         holder.imageView.setBorderColor(color);
         holder.imageView.setOnClickListener(v -> {
-            Toast.makeText(context,task.getName(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,task.getId(),Toast.LENGTH_SHORT).show();
             /* AsyncWorker worker = new AsyncWorker();
             if (worker.deleteTask(task)) {
                 Toast.makeText(context,"Удалил",Toast.LENGTH_SHORT).show();
@@ -86,6 +87,7 @@ public class TaskAdapter extends BaseAdapter {
         public TextView sphere;
         public TextView deadline;
         public SelectableRoundedImageView imageView;
+        public TextView priority;
 
         public ViewHolder(View v){
 
@@ -93,6 +95,7 @@ public class TaskAdapter extends BaseAdapter {
             this.sphere = v.findViewById(R.id.task_layout_sphere);
             this.deadline = v.findViewById(R.id.task_layout_deadline);
             this.imageView = v.findViewById(R.id.task_layout_image);
+            this.priority = v.findViewById(R.id.priority_number);
         }
     }
 }

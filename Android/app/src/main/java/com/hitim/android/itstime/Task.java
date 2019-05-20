@@ -25,13 +25,14 @@ class Task {
     private DatePicked datePicked;
     @Embedded(prefix = "needed_time")
     private DatePicked neededTimePicked;
+    @NonNull
     private int priority;
     private int color;
     //private ArrayList<String> tags;
     @NonNull
     private String sphere;
 
-    public Task(@NonNull String name, String description, @NonNull DatePicked datePicked, @NonNull String sphere, @NonNull int color, DatePicked neededTimePicked, int priority) {
+    public Task(@NonNull String name, String description, @NonNull DatePicked datePicked, @NonNull String sphere, @NonNull int color, DatePicked neededTimePicked,@NonNull int priority) {
         this.name = name;
         this.description = description;
         this.sphere = sphere;
@@ -40,9 +41,7 @@ class Task {
         if (!neededTimePicked.isNull()) {
             this.neededTimePicked = neededTimePicked;
         }
-        if(priority != -1) {
-            this.priority = priority;
-        }
+        this.priority = priority;
     }
 
 

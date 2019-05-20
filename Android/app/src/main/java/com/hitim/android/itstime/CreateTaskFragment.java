@@ -36,18 +36,24 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
 
+import nl.dionsegijn.steppertouch.OnStepCallback;
+import nl.dionsegijn.steppertouch.StepperTouch;
+
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+
 public class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     private FloatingActionMenu floatingActionMenu;
     private FloatingActionButton createTaskButton;
     private Toolbar toolbar;
     private AppBarLayout l;
-    private TextView deadText, neededTimeText, tagsText, sphereCardText;
+    private TextView deadText, neededTimeText, priorityText, sphereCardText;
     private ImageButton deadImg, remindImg, taskIcon;
     private SelectableRoundedImageView roundedImageView;
     private CheckBox dateBox, neededTimeBox;
     private CardView sphereCard;
     private EditText taskNameEditText, taskDescriptionEditText;
+    private StepperTouch stepperTouchPriority;
 
     private final String[] spheresOfLife = {
             "Work",
@@ -61,6 +67,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private DatePicked datePicked = new DatePicked();
     private DatePicked neededTimePicked = new DatePicked();
     private int taskColor = -1;
+    private int priority = -1;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,6 +95,17 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                     .commit();
         });
         l = getActivity().findViewById(R.id.tool_bar_layout);
+        stepperTouchPriority.setMinValue(1);
+        stepperTouchPriority.setMaxValue(6);
+        stepperTouchPriority.setSideTapEnabled(true);
+        stepperTouchPriority.addStepCallback((value, positive) -> {
+            priority = value;
+            if (value <= 3) {
+                priorityText.setText(R.string.high_priority);
+            } else {
+                priorityText.setText(R.string.low_priority);
+            }
+        });
         return v;
     }
 
@@ -120,9 +138,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 break;
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
-                    //TODO: ПРИОРИТЕТ!
-                    task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked,-1);
-
+                    task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked,priority);
                     AsyncWorker worker = new AsyncWorker();
                     if ( worker.insertTask(task)){
                         Toast.makeText(getContext(),"Successful",Toast.LENGTH_SHORT).show();
@@ -144,7 +160,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private boolean isValid() {
         taskName = taskNameEditText.getText().toString();
         taskDecsription = taskDescriptionEditText.getText().toString();
-        return !taskName.equals("") && !sphere.equals("") && !datePicked.isNull() && taskColor != -1;
+        return !taskName.equals("") && !sphere.equals("") && !datePicked.isNull() && taskColor != -1 && priority != -1;
     }
     //Начало огромных методов
     //===================================================================================================
@@ -163,6 +179,8 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         createTaskButton = v.findViewById(R.id.makeToDoFloatingActionButton);
         taskDescriptionEditText = v.findViewById(R.id.edit_text_task_description);
         taskNameEditText = v.findViewById(R.id.edit_text_task_name);
+        stepperTouchPriority = v.findViewById(R.id.stepperTouch);
+        priorityText = v.findViewById(R.id.priority_level_text);
     }
 
     //Вызывает диалоги для выбора даты дэдлайна задачи
