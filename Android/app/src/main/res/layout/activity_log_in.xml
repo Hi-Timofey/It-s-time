@@ -177,7 +177,6 @@
                 android:id="@+id/signInButtonGoogle"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:onClick="onLogIn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/log_button_login"

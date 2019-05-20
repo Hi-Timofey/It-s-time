@@ -22,6 +22,8 @@
             android:id="@+id/user_picture_image_view"
             android:layout_width="96dp"
             android:layout_height="96dp"
+            android:minHeight="80dp"
+            android:minWidth="80dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="291dp"

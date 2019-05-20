@@ -3,26 +3,25 @@ package com.hitim.android.itstime;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,47 +39,21 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     private TextInputEditText edLogin, edPass;
     private ProgressDialog dialog;
     private AlertDialog alert;
+    private ImageButton regButton;
     //Firebase
     private FirebaseAuth mFirebaseAuth;
-    private GoogleSignInClient mGoogleSignInClient;
+    private SignInButton signInButton;
+    private GoogleApiClient googleApiClient;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
-
         setTheme(R.style.BlueApplicationStyle_LightTheme);
-
-        ImageButton regButton = findViewById(R.id.log_register_btn);
-        mailLayout = findViewById(R.id.log_til_1);
-        passLayout = findViewById(R.id.log_til_2);
-        edLogin = findViewById(R.id.log_edit_log);
-        edPass = findViewById(R.id.log_edit_pass);
-        SignInButton signInButton = findViewById(R.id.signInButtonGoogle);
-
-        dialog = new ProgressDialog(LogInActivity.this);
-        dialog.setTitle(R.string.dialog_signing_in);
-        dialog.setMessage(getString(R.string.dialog_text));
-        regButton.setOnTouchListener(this);
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .build();
-        GoogleApiClient googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API)
-                .build();
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(LogInActivity.this);
-        builder.setTitle(getString(R.string.did_you_want_to_quit));
-        builder.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
-            dialog.dismiss();
-            finishAffinity();
-        });
-        builder.setNegativeButton(getString(R.string.no), (dialog, which) -> dialog.dismiss());
-        alert = builder.create();
+        setContentView(R.layout.activity_log_in);
+        initViews();
+        initGoogle();
+        dialogsBuilder();
     }
 
     //Обрабтка Firebase
@@ -91,22 +64,17 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         mFirebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
         if (currentUser != null) {
-            Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(LogInActivity.this, SphereActivity.class));
             finish();
         }
+        signInButton.setOnClickListener(v -> {
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+            startActivityForResult(signInIntent, GOOGLE_INTENT);
+        });
     }
 
     public void onLogIn(View view) {
-        switch (view.getId()) {
-            case R.id.signInButtonGoogle:
-                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, GOOGLE_INTENT);
-                break;
-            case R.id.log_button_login:
-                signIn(Objects.requireNonNull(edLogin.getText()).toString(), Objects.requireNonNull(edPass.getText()).toString());
-                break;
-        }
+        signIn(Objects.requireNonNull(edLogin.getText()).toString(), Objects.requireNonNull(edPass.getText()).toString());
     }
 
     @Override
@@ -122,18 +90,98 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
             return;
         }
         dialog.show();
+
         mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
                 dialog.hide();
                 Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LogInActivity.this, SphereActivity.class));
-                //overridePendingTransition(R.anim.fade_out_3,R.anim.fade_in_5);
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
                 dialog.hide();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GOOGLE_INTENT) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleResultGoogleAuth(result);
+        }
+    }
+
+    private void handleResultGoogleAuth(GoogleSignInResult result) {
+        dialog.show();
+        if (result.isSuccess()) {
+            GoogleSignInAccount account = result.getSignInAccount();
+            signInWithGoogle(account);
+        } else {
+            dialog.dismiss();
+            Log.d("result message", result.getStatus().toString());
+            Toast.makeText(this, "result isn't successful", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void signInWithGoogle(GoogleSignInAccount account) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        mFirebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        dialog.dismiss();
+                        Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LogInActivity.this, SphereActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        if (!connectionResult.isSuccess()) {
+            Toast.makeText(this, getString(R.string.connection_failed), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //Обработки и инициализация ====================================
+
+    @Override
+    public void onBackPressed() {
+        alert.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (alert != null) {
+            alert.dismiss();
+            alert = null;
+        }
+    }
+
+    private void initViews() {
+        regButton = findViewById(R.id.log_register_btn);
+        mailLayout = findViewById(R.id.log_til_1);
+        passLayout = findViewById(R.id.log_til_2);
+        edLogin = findViewById(R.id.log_edit_log);
+        edPass = findViewById(R.id.log_edit_pass);
+        signInButton = findViewById(R.id.signInButtonGoogle);
+    }
+
+    private void initGoogle() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .build();
+
+        googleApiClient = new GoogleApiClient.Builder(LogInActivity.this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
     }
 
     private boolean validate() {
@@ -165,59 +213,20 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         return valid;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GOOGLE_INTENT) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                if (account != null) {
-                    firebaseAuthWithGoogle(account);
-                }
-            } catch (ApiException e) {
-                Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
+    public void dialogsBuilder() {
+        dialog = new ProgressDialog(LogInActivity.this);
+        dialog.setTitle(R.string.dialog_signing_in);
+        dialog.setMessage(getString(R.string.dialog_text));
+        regButton.setOnTouchListener(this);
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
-        dialog.show();
-        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-
-        mFirebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        dialog.hide();
-                        Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LogInActivity.this, SphereActivity.class));
-                    } else {
-                        dialog.hide();
-                        Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        alert.show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (dialog != null) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(LogInActivity.this);
+        builder.setTitle(getString(R.string.did_you_want_to_quit));
+        builder.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
             dialog.dismiss();
-            dialog = null;
-        }
-        if (alert != null) {
-            alert.dismiss();
-            alert = null;
-        }
+            finishAffinity();
+        });
+        builder.setNegativeButton(getString(R.string.no), (dialog, which) -> dialog.dismiss());
+        alert = builder.create();
     }
+
 }

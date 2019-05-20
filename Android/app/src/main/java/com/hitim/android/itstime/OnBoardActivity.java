@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class OnBoardActivity extends AppCompatActivity {
 
@@ -28,6 +29,11 @@ public class OnBoardActivity extends AppCompatActivity {
         setTheme(R.style.BlueApplicationStyle_LightTheme);
         itsSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         createSharedPref();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         if (!itsSettings.getBoolean(APP_FIRST_OPEN,true)) {
             Intent i = new Intent(this, LogInActivity.class);
             startActivity(i);
@@ -44,6 +50,12 @@ public class OnBoardActivity extends AppCompatActivity {
             addDots(0);
             vPager.addOnPageChangeListener(pageChangeListener);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 
     //Инициализирует создание настроек приложения

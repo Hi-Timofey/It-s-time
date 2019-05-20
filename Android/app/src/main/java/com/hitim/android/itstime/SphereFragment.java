@@ -56,6 +56,7 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
         workCard.setOnClickListener(this);
         youCard = v.findViewById(R.id.card_yourself);
         youCard.setOnClickListener(this);
+
         return v;
     }
 
