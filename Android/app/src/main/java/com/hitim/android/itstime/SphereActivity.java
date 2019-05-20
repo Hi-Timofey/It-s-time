@@ -19,7 +19,6 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
     private Toolbar toolbar;
     private SphereFragment sphereFragment = new SphereFragment();
     private FragmentManager fragmentManager;
-    private CardView healthCard, workCard, allCard, yourselfCard, routineCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,6 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
         setContentView(R.layout.activity_sphere);
         toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        cardViewEnable();
         fabMenu = findViewById(R.id.floating_button_menu);
         fragmentManager = getSupportFragmentManager();
     }
@@ -54,12 +52,6 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
                         .commit();
                 break;
         }
-    }
-
-    private void cardViewEnable() {
-        healthCard = findViewById(R.id.card_routine);
-        workCard = findViewById(R.id.card_work);
-        allCard = findViewById(R.id.card_all_tasks);
     }
 
     //Обработка ColorPicker фрагмента(не работает внутри фрагмента CreateTaskFragment
