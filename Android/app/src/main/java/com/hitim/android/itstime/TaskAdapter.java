@@ -51,13 +51,7 @@ public class TaskAdapter extends BaseAdapter {
         if(convertView == null){
             LayoutInflater inf = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inf.inflate(R.layout.task_layout, null);
-
-            holder = new ViewHolder();
-            holder.name = convertView.findViewById(R.id.task_layout_name);
-            holder.sphere = convertView.findViewById(R.id.task_layout_sphere);
-            holder.deadline = convertView.findViewById(R.id.task_layout_deadline);
-            holder.imageView = convertView.findViewById(R.id.task_layout_image);
-
+            holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         }
         else {
@@ -92,5 +86,13 @@ public class TaskAdapter extends BaseAdapter {
         public TextView sphere;
         public TextView deadline;
         public SelectableRoundedImageView imageView;
+
+        public ViewHolder(View v){
+
+            this.name = v.findViewById(R.id.task_layout_name);
+            this.sphere = v.findViewById(R.id.task_layout_sphere);
+            this.deadline = v.findViewById(R.id.task_layout_deadline);
+            this.imageView = v.findViewById(R.id.task_layout_image);
+        }
     }
 }

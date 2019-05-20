@@ -83,7 +83,28 @@ public class AsyncWorker {
 
 
     public boolean insertTask(Task task) {
-        return true;
+        @SuppressLint("StaticFieldLeak") AsyncTask<Task, Void, Boolean> asyncTask = new AsyncTask<Task, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Task... tasks) {
+                try {
+                    taskDao.insert(tasks[0]);
+                    return true;
+                } catch (Exception e) {
+                    return false;
+                }
+            }
+        };
+        asyncTask.execute(task);
+        try {
+            return asyncTask.get(4, TimeUnit.SECONDS);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public boolean deleteTask(Task task) {

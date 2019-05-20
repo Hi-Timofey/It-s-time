@@ -120,11 +120,13 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 break;
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
-                    //TODO: Переписать на AsyncWorker
                     //TODO: ПРИОРИТЕТ!
                     task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked,-1);
-                    Creator inserttask = new Creator();
-                    inserttask.execute(task);
+
+                    AsyncWorker worker = new AsyncWorker();
+                    if ( worker.insertTask(task)){
+                        Toast.makeText(getContext(),"Successful",Toast.LENGTH_SHORT).show();
+                    }
 
                     getFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, getFragmentManager().findFragmentByTag(getString(R.string.sphere_fragment)))
@@ -144,27 +146,6 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
         taskDecsription = taskDescriptionEditText.getText().toString();
         return !taskName.equals("") && !sphere.equals("") && !datePicked.isNull() && taskColor != -1;
     }
-
-
-    public class Creator extends AsyncTask<Task, Void, Exception> {
-
-        @Override
-        protected Exception doInBackground(Task... tasks) {
-            try {
-                App.getInstance().getDataBase().getTaskDao().insert(tasks[0]);
-                return null;
-            } catch (Exception e) {
-                return e;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Exception e) {
-            if (e == null) Toast.makeText(getContext(), "SUCCESFUL", Toast.LENGTH_SHORT).show();
-            else Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
-
     //Начало огромных методов
     //===================================================================================================
 
