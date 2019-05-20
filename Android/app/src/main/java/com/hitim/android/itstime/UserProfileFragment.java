@@ -10,18 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.firebase.ui.auth.AuthUI;
 import com.github.clans.fab.FloatingActionMenu;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.joooonho.SelectableRoundedImageView;
@@ -73,13 +69,36 @@ public class UserProfileFragment extends Fragment {
                     .addToBackStack(null)
                     .commit();
         });
+        initUserProfileInformation();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.profile_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_log_out:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getContext(), LogInActivity.class));
+                getActivity().finish();
+                break;
+            default:
+                super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
+    private void initUserProfileInformation() {
         if (mUser != null) {
-            Toast.makeText(getContext(),"Мать жива?",Toast.LENGTH_SHORT).show();
             String name = mUser.getDisplayName();
             String email = mUser.getEmail();
             if (name == null) {
                 userNameText.setText(email);
                 userNameText.setTextSize(30);
+                userEmailText.setVisibility(View.INVISIBLE);
             } else {
                 userNameText.setText(name);
                 userEmailText.setText(email);
@@ -101,25 +120,9 @@ public class UserProfileFragment extends Fragment {
                 userPictureImageView.setImageResource(R.drawable.ic_account);
             }
 
+        } else {
+            startActivity(new Intent(getContext(),LogInActivity.class));
+            getActivity().finish();
         }
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.profile_menu, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_log_out:
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getContext(),LogInActivity.class));
-                getActivity().finish();
-                break;
-            default:
-                super.onOptionsItemSelected(item);
-        }
-        return true;
     }
 }
