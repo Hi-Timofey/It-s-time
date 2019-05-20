@@ -21,6 +21,7 @@ public class App extends Application {
         instance = this;
         setTheme(R.style.BlueApplicationStyle_LightTheme);
         dataBase = Room.databaseBuilder(this, TaskDataBase.class, getString(R.string.database_name))
+                .fallbackToDestructiveMigration()
                 .build();
     }
 
@@ -28,7 +29,7 @@ public class App extends Application {
         return instance;
     }
 
-    public TaskDataBase getDataBase() {
+    public synchronized TaskDataBase getDataBase() {
         return dataBase;
     }
 }
