@@ -121,7 +121,8 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
                     //TODO: Переписать на AsyncWorker
-                    task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked);
+                    //TODO: ПРИОРИТЕТ!
+                    task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked,-1);
                     Creator inserttask = new Creator();
                     inserttask.execute(task);
 

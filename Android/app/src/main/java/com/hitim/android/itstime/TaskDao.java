@@ -1,5 +1,6 @@
 package com.hitim.android.itstime;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -21,6 +22,9 @@ public interface TaskDao {
     @Query("SELECT * FROM task")
     List<Task> getAllTasks();
 
+    //Находит задачу по id
+    @Query("SELECT * FROM task WHERE id = :id")
+    Task getById(int id);
     //Поиск по имени
     @Query("SELECT * FROM task WHERE name = :name")
     Task getByName(long name);

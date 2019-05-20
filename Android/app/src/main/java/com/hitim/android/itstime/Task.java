@@ -14,7 +14,9 @@ import androidx.room.PrimaryKey;
 
 @Entity
 class Task {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @NonNull
     private String name;
     private String description;
@@ -23,13 +25,13 @@ class Task {
     private DatePicked datePicked;
     @Embedded(prefix = "needed_time")
     private DatePicked neededTimePicked;
+    private int priority;
     private int color;
-    //public Color taskColor;
     //private ArrayList<String> tags;
     @NonNull
     private String sphere;
 
-    public Task(@NonNull String name, String description, @NonNull DatePicked datePicked, @NonNull String sphere, @NonNull int color, DatePicked neededTimePicked) {
+    public Task(@NonNull String name, String description, @NonNull DatePicked datePicked, @NonNull String sphere, @NonNull int color, DatePicked neededTimePicked, int priority) {
         this.name = name;
         this.description = description;
         this.sphere = sphere;
@@ -37,6 +39,9 @@ class Task {
         this.color = color;
         if (!neededTimePicked.isNull()) {
             this.neededTimePicked = neededTimePicked;
+        }
+        if(priority != -1) {
+            this.priority = priority;
         }
     }
 
@@ -91,5 +96,21 @@ class Task {
 
     public void setNeededTimePicked(DatePicked neededTimePicked) {
         this.neededTimePicked = neededTimePicked;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }
