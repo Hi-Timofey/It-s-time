@@ -7,12 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.clans.fab.FloatingActionMenu;
 
@@ -22,7 +25,7 @@ public class TaskListFragment extends ListFragment {
 
     private FloatingActionMenu floatingActionMenu;
     private Toolbar toolbar;
-    private ListView myListview;
+    private ListView taskListview;
     private List<Task> taskArrayList;
     private int sphere;
 
@@ -34,7 +37,7 @@ public class TaskListFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_task_list, container, false);
-        myListview = v.findViewById(android.R.id.list);
+        taskListview = v.findViewById(android.R.id.list);
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
         toolbar = getActivity().findViewById(R.id.tool_bar);
         return v;
@@ -56,7 +59,6 @@ public class TaskListFragment extends ListFragment {
                     .commit();
         });
         fillListView();
-        Toast.makeText(getContext(),sphere,Toast.LENGTH_SHORT).show();
     }
 
     public void fillListView() {
@@ -65,11 +67,11 @@ public class TaskListFragment extends ListFragment {
         if (sphere == R.string.all_tasks){
             taskArrayList = worker.getAllTasks();
             taskAdapter = new TaskAdapter(taskArrayList, getContext());
-            myListview.setAdapter(taskAdapter);
+            taskListview.setAdapter(taskAdapter);
         } else {
             taskArrayList = worker.getAllTasksWithSphere(getString(sphere));
             taskAdapter = new TaskAdapter(taskArrayList, getContext());
-            myListview.setAdapter(taskAdapter);
+            taskListview.setAdapter(taskAdapter);
         }
     }
 

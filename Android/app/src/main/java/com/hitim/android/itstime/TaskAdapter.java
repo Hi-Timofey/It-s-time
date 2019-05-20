@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.joooonho.SelectableRoundedImageView;
 
@@ -73,7 +74,16 @@ public class TaskAdapter extends BaseAdapter {
         holder.deadline.setText(task.getDatePicked().toString());
         holder.imageView.setImageDrawable(image);
         holder.imageView.setBorderColor(color);
+        holder.imageView.setOnClickListener(v -> {
+            Toast.makeText(context,task.getName(),Toast.LENGTH_SHORT).show();
+            /* AsyncWorker worker = new AsyncWorker();
+            if (worker.deleteTask(task)) {
+                Toast.makeText(context,"Удалил",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context,"Не удалил",Toast.LENGTH_SHORT).show();
+            } */
 
+        });
         return convertView;
     }
 
