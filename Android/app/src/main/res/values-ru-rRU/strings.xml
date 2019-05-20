@@ -53,4 +53,9 @@
     <string name="choose_the_right_one">Выберите нужную</string>
     <string name="log_out_succesful">Выход успешен!</string>
     <string name="connection_failed">Связь потеряна!</string>
+    <string name="choose_priority">Назначьте приоритет</string>
+    <string name="priority_level">Выберите уровень</string>
+    <string name="high_priority">Высокий приоритет</string>
+    <string name="low_priority">Низкий приоритет</string>
+    <string name="priority">Приоритет:</string>
 </resources>

@@ -76,4 +76,9 @@
     <string name="wrong_task">One of the important fields is empty.</string>
     <string name="log_out_succesful">Log out Successful!</string>
     <string name="connection_failed">Connection failed!</string>
+    <string name="choose_priority">Choose Priority</string>
+    <string name="priority_level">Choose level</string>
+    <string name="high_priority">High priority</string>
+    <string name="low_priority">Low priority</string>
+    <string name="priority">Priority:</string>
 </resources>
