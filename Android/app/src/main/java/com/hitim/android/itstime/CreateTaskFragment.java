@@ -4,7 +4,6 @@ package com.hitim.android.itstime;
 import android.content.DialogInterface;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.ContextThemeWrapper;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,10 +34,7 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
 
-import nl.dionsegijn.steppertouch.OnStepCallback;
 import nl.dionsegijn.steppertouch.StepperTouch;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
@@ -48,7 +43,6 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private Toolbar toolbar;
     private AppBarLayout l;
     private TextView deadText, neededTimeText, priorityText, sphereCardText;
-    private ImageButton deadImg, remindImg, taskIcon;
     private SelectableRoundedImageView roundedImageView;
     private CheckBox dateBox, neededTimeBox;
     private CardView sphereCard;
@@ -138,10 +132,10 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 break;
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
-                    task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked,priority);
+                    task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked, priority);
                     AsyncWorker worker = new AsyncWorker();
-                    if ( worker.insertTask(task)){
-                        Toast.makeText(getContext(),"Successful",Toast.LENGTH_SHORT).show();
+                    if (worker.insertTask(task)) {
+                        Toast.makeText(getContext(), "Successful", Toast.LENGTH_SHORT).show();
                     }
 
                     getFragmentManager().beginTransaction()
@@ -160,7 +154,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private boolean isValid() {
         taskName = taskNameEditText.getText().toString();
         taskDecsription = taskDescriptionEditText.getText().toString();
-        return !taskName.equals("") && !sphere.equals("") && !datePicked.isNull() && taskColor != -1 && priority != -1;
+        return !taskName.trim().isEmpty() && !sphere.equals("") && !datePicked.isNull() && taskColor != -1 && priority != -1;
     }
     //Начало огромных методов
     //===================================================================================================

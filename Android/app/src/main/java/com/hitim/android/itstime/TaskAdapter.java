@@ -70,7 +70,7 @@ public class TaskAdapter extends BaseAdapter {
         holder.imageView.setImageDrawable(image);
         holder.imageView.setBorderColor(color);
         holder.imageView.setOnClickListener(v -> {
-            Toast.makeText(context,task.getId(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,String.valueOf(task.getId()),Toast.LENGTH_SHORT).show();
             /* AsyncWorker worker = new AsyncWorker();
             if (worker.deleteTask(task)) {
                 Toast.makeText(context,"Удалил",Toast.LENGTH_SHORT).show();
