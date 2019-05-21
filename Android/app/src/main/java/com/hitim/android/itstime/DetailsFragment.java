@@ -2,13 +2,15 @@ package com.hitim.android.itstime;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
 /**
@@ -16,15 +18,20 @@ import android.widget.Toast;
  */
 public class DetailsFragment extends Fragment {
 
-
     private String taskName;
+    private Toolbar toolbar;
+    private TextView nameTextView;
+    private Task task;
 
     public DetailsFragment() {
         // Required empty public constructor
     }
 
-    public DetailsFragment(String taskName){
+    //TODO: КАВОООООООООООООО????
+
+    public DetailsFragment(String taskName) {
         this.taskName = taskName;
+        task = new AsyncWorker().getTaskByName(taskName);
     }
 
 
@@ -32,13 +39,23 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_details, container, false);
-
+        toolbar = getActivity().findViewById(R.id.tool_bar);
+        nameTextView = v.findViewById(R.id.details_task_name);
+        toolbar.setTitle("");
+        toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
+        toolbar.setNavigationOnClickListener(v1 -> {
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.task_list_fragment)))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                    .addToBackStack(null)
+                    .commit();
+        });
         return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Toast.makeText(getContext(),taskName,Toast.LENGTH_SHORT).show();
+        nameTextView.setText(task.getName());
     }
 }

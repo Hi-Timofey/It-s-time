@@ -80,8 +80,9 @@ public class TaskListFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
         TextView tv = v.findViewById(R.id.task_layout_name);
         String taskName = tv.getText().toString();
+        DetailsFragment f = new DetailsFragment(taskName);
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container,new DetailsFragment(taskName), getString(R.string.details_fragment))
+                .replace(R.id.fragment_container,f, getString(R.string.details_fragment))
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();

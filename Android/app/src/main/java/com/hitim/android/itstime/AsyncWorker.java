@@ -8,9 +8,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-/**Класс {@link AsyncWorker} создан для работы с бд асинхронно
+/**
+ * Класс {@link AsyncWorker} создан для работы с бд асинхронно
  * Для каждого запроса к базе генерирует анонимный класс для работы в другом потоке с этими данными
- *
  */
 
 
@@ -53,7 +53,7 @@ public class AsyncWorker {
         return null;
     }
 
-    public List<Task> getAllTasksWithSphere(String sphere){
+    public List<Task> getAllTasksWithSphere(String sphere) {
         @SuppressLint("StaticFieldLeak") AsyncTask<Void, Void, List<Task>> asyncTask =
                 new AsyncTask<Void, Void, List<Task>>() {
 
@@ -79,7 +79,6 @@ public class AsyncWorker {
         }
         return null;
     }
-
 
 
     public boolean insertTask(Task task) {
@@ -136,4 +135,27 @@ public class AsyncWorker {
         return true;
     }
 
+    public Task getTaskByName(String taskName) {
+        @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, Task> asyncTask = new AsyncTask<String, Void, Task>() {
+            @Override
+            protected Task doInBackground(String... strings) {
+                try {
+                    return taskDao.getByName(strings[0]);
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+        };
+        asyncTask.execute();
+        try {
+            return asyncTask.get(4, TimeUnit.SECONDS);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
