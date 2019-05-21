@@ -48,7 +48,9 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //FIREBASE
     implementation 'com.google.firebase:firebase-auth:16.2.0'
+    implementation 'com.google.firebase:firebase-database:16.1.0'
     implementation 'com.google.firebase:firebase-core:16.0.8'
+
     implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
     //Google auth
     implementation 'com.google.android.gms:play-services-auth:16.0.1'

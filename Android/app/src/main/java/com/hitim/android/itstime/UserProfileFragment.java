@@ -1,6 +1,8 @@
 package com.hitim.android.itstime;
 
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -20,6 +23,12 @@ import androidx.fragment.app.FragmentTransaction;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.joooonho.SelectableRoundedImageView;
 import com.squareup.picasso.Picasso;
 
@@ -30,6 +39,9 @@ public class UserProfileFragment extends Fragment {
     private FirebaseUser mUser;
     private TextView userNameText, userEmailText;
     private SelectableRoundedImageView userPictureImageView;
+    private DatabaseReference databaseReference;
+    private String name, email, uid;
+    private ProgressDialog dialog;
 
     public UserProfileFragment() {
     }
@@ -39,6 +51,8 @@ public class UserProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
+        uid = mUser.getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference("DataUsers").child("Users").child(mUser.getUid());
 
     }
 
@@ -51,6 +65,9 @@ public class UserProfileFragment extends Fragment {
         userPictureImageView = v.findViewById(R.id.user_picture_image_view);
         userEmailText = v.findViewById(R.id.user_email_textview);
         toolbar = getActivity().findViewById(R.id.tool_bar);
+        dialog = new ProgressDialog(getContext(),R.style.AlertDialogStyle_Light);
+        dialog.setProgressStyle(R.style.Widget_AppCompat_ProgressBar);
+        dialog.setMessage(getString(R.string.fui_progress_dialog_loading));
         return v;
     }
 
@@ -69,6 +86,7 @@ public class UserProfileFragment extends Fragment {
                     .addToBackStack(null)
                     .commit();
         });
+        dialog.show();
         initUserProfileInformation();
     }
 
@@ -93,36 +111,36 @@ public class UserProfileFragment extends Fragment {
 
     private void initUserProfileInformation() {
         if (mUser != null) {
-            String name = mUser.getDisplayName();
-            String email = mUser.getEmail();
-            if (name == null) {
-                userNameText.setText(email);
-                userNameText.setTextSize(30);
-                userEmailText.setVisibility(View.INVISIBLE);
-            } else {
-                userNameText.setText(name);
-                userEmailText.setText(email);
-            }
-            try {
-                String photoUrl = mUser.getPhotoUrl().toString();
-                Picasso.with(getContext())
-                        .load(photoUrl)
-                        .fit().centerCrop()
-                        .placeholder(R.drawable.user_profile_image_placeholder)
-                        .error(R.drawable.ic_account)
-                        .into(userPictureImageView);
-            } catch (Exception e) {
-                e.printStackTrace();
-                Picasso.with(getContext())
-                        .load(R.drawable.ic_account)
-                        .fit().centerCrop()
-                        .into(userPictureImageView);
-                userPictureImageView.setImageResource(R.drawable.ic_account);
-            }
+            getUserData();
+            Picasso.with(getContext())
+                    .load(mUser.getPhotoUrl())
+                    .fit().centerCrop()
+                    .placeholder(R.drawable.user_profile_image_placeholder)
+                    .error(R.drawable.ic_account)
+                    .into(userPictureImageView);
 
         } else {
-            startActivity(new Intent(getContext(),LogInActivity.class));
+            startActivity(new Intent(getContext(), LogInActivity.class));
             getActivity().finish();
         }
+    }
+
+    private void getUserData() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                name = user.getName();
+                email = user.getEmail();
+                userNameText.setText(name);
+                userEmailText.setText(email);
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                throw new DatabaseException(databaseError.getMessage());
+            }
+        });
     }
 }

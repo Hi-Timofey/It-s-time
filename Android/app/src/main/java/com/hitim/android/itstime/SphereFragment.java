@@ -91,8 +91,9 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
         searchView.setQueryHint(getString(R.string.search_text));
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setIconifiedByDefault(true);
+        //TODO: Вынести в отдельный фрагмент
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            //TODO: делать нормальную анимацию для Floating Button когад идет поиск текста
+
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //floatingActionButton.show(false);

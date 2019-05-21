@@ -40,8 +40,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!--TODO:Перенести как кнопку в activity-sphere-->
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

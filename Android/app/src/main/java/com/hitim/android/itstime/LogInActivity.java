@@ -27,6 +27,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -35,6 +36,9 @@ import java.util.regex.Pattern;
 public class LogInActivity extends AppCompatActivity implements View.OnTouchListener, GoogleApiClient.OnConnectionFailedListener {
 
     private final int GOOGLE_INTENT = 4003;
+    //Ветка на FirebaseDatabase
+    private final String DATA_USERS = "DataUsers";
+
     private TextInputLayout mailLayout, passLayout;
     private TextInputEditText edLogin, edPass;
     private ProgressDialog dialog;
@@ -129,15 +133,26 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mFirebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
+                    dialog.dismiss();
                     if (task.isSuccessful()) {
-                        dialog.dismiss();
+                        addUserInfoInDataBase();
                         Toast.makeText(getApplicationContext(), getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LogInActivity.this, SphereActivity.class));
                         finish();
+
                     } else {
                         Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void addUserInfoInDataBase() {
+        FirebaseUser fire_user = FirebaseAuth.getInstance().getCurrentUser();
+        User user = new User(fire_user.getEmail(), fire_user.getDisplayName());
+        FirebaseDatabase.getInstance().getReference(DATA_USERS)
+                .child("Users")
+                .child(fire_user.getUid())
+                .setValue(user);
     }
 
     @Override

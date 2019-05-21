@@ -81,10 +81,40 @@
             tools:layout_conversion_absoluteWidth="411dp">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_til_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/name"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/ErrorText"
+                app:hintTextAppearance="@style/HintText_til"
+                app:layout_constraintBottom_toTopOf="@+id/reg_til_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reg_edit_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:importantForAutofill="no"
+                    android:inputType="textAutoCorrect" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/reg_til_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
                 android:hint="@string/e_mail"
@@ -94,7 +124,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/reg_til_2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reg_til_0"
                 tools:layout_conversion_absoluteHeight="45dp"
                 tools:layout_conversion_absoluteWidth="379dp">
 
@@ -146,8 +176,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/reg_buttons_layout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

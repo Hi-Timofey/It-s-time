@@ -69,16 +69,16 @@ public class TaskAdapter extends BaseAdapter {
         holder.priority.setText(String.valueOf(task.getPriority()));
         holder.imageView.setImageDrawable(image);
         holder.imageView.setBorderColor(color);
-        holder.imageView.setOnClickListener(v -> {
+        /*holder.imageView.setOnClickListener(v -> {
             Toast.makeText(context,String.valueOf(task.getId()),Toast.LENGTH_SHORT).show();
-            /* AsyncWorker worker = new AsyncWorker();
+             AsyncWorker worker = new AsyncWorker();
             if (worker.deleteTask(task)) {
                 Toast.makeText(context,"Удалил",Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context,"Не удалил",Toast.LENGTH_SHORT).show();
-            } */
+            }
 
-        });
+        });*/
         return convertView;
     }
 
