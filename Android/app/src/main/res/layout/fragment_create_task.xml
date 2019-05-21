@@ -39,7 +39,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textAutoCorrect|textCapSentences"
                 android:lines="1"
-                android:maxLength="30"
+                android:maxLength="18"
                 android:maxLines="1"
                 android:textColor="@color/whiteColor"
                 android:textColorHint="@color/whiteColor"
