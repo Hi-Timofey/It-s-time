@@ -38,9 +38,11 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
     protected void onStart() {
         super.onStart();
         mFireUser = mFirebaseAuth.getCurrentUser();
-        if (mFireUser == null){
+        if (mFireUser == null) {
             mFirebaseAuth.signOut();
-            startActivity(new Intent(SphereActivity.this,LogInActivity.class));
+            //TODO: Обработать вылет юзера из сети
+            Intent i = new Intent(SphereActivity.this, LogInActivity.class);
+            startActivity(i);
             finish();
         }
         fragmentManager.beginTransaction()
@@ -73,7 +75,7 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
 
     @Override
     public void onDialogDismissed(int dialogId) {
-        
+
     }
 
     @Override
@@ -82,5 +84,6 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, sphereFragment, getString(R.string.sphere_fragment))
                 .commit();
+
     }
 }

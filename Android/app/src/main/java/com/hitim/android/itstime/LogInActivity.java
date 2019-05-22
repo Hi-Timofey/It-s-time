@@ -244,4 +244,5 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         alert = builder.create();
     }
 
+
 }

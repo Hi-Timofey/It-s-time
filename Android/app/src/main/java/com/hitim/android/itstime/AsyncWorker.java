@@ -135,7 +135,7 @@ public class AsyncWorker {
         return true;
     }
 
-    public Task getTaskByName(String taskName) {
+    public synchronized Task getTaskByName(String taskName, OnPostExecuteTask executerTask) {
         @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, Task> asyncTask = new AsyncTask<String, Void, Task>() {
             @Override
             protected Task doInBackground(String... strings) {
@@ -144,6 +144,12 @@ public class AsyncWorker {
                 } catch (Exception e) {
                     return null;
                 }
+            }
+
+            @Override
+            protected void onPostExecute(Task task) {
+                if (executerTask != null) executerTask.run(task);
+                super.onPostExecute(task);
             }
         };
         asyncTask.execute();
@@ -158,4 +164,6 @@ public class AsyncWorker {
         }
         return null;
     }
+
+
 }

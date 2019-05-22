@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sphere_mini_card_view"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="50dp"
     android:maxHeight="60dp"
     android:layout_gravity="center"
     android:elevation="@dimen/cardview_default_elevation"
     android:minHeight="40dp"
     card_view:cardBackgroundColor="@color/whiteColor"
-    card_view:cardCornerRadius="10dp" >
+    card_view:cardCornerRadius="8dp" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,20 +19,15 @@ import androidx.fragment.app.FragmentTransaction;
  */
 public class DetailsFragment extends Fragment {
 
-    private String taskName;
-    private Toolbar toolbar;
-    private TextView nameTextView;
     private Task task;
+    private Toolbar toolbar;
+    private CardView nameTextView;
 
     public DetailsFragment() {
-        // Required empty public constructor
     }
 
-    //TODO: КАВОООООООООООООО????
-
-    public DetailsFragment(String taskName) {
-        this.taskName = taskName;
-        task = new AsyncWorker().getTaskByName(taskName);
+    public DetailsFragment(Task task) {
+        this.task = task;
     }
 
 
@@ -40,7 +36,6 @@ public class DetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_details, container, false);
         toolbar = getActivity().findViewById(R.id.tool_bar);
-        nameTextView = v.findViewById(R.id.details_task_name);
         toolbar.setTitle("");
         toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
         toolbar.setNavigationOnClickListener(v1 -> {
@@ -50,12 +45,15 @@ public class DetailsFragment extends Fragment {
                     .addToBackStack(null)
                     .commit();
         });
+        nameTextView = v.findViewById(R.id.sphere_mini_card_view);
         return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        nameTextView.setText(task.getName());
+        String name = task.getName();
+        TextView tv =nameTextView.findViewById(R.id.mini_card_text);
+        tv.setText(name);
     }
 }

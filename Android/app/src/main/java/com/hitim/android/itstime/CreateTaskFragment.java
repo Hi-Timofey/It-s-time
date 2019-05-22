@@ -50,10 +50,10 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private StepperTouch stepperTouchPriority;
 
     private final String[] spheresOfLife = {
-            "Work",
-            "Health",
-            "Routine",
-            "Yourself"
+            getString(R.string.work),
+            getString(R.string.health),
+            getString(R.string.routine),
+            getString(R.string.yourself)
     };
     //Task arguments
     private Task task;

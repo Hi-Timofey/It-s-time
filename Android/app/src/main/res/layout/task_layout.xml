@@ -30,6 +30,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--TODO:Пофиксить размеры-->
+
     <TextView
         android:id="@+id/task_layout_name"
         android:layout_width="0dp"
