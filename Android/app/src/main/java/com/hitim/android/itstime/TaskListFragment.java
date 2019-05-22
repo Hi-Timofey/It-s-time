@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,9 +25,17 @@ public class TaskListFragment extends ListFragment {
     private ListView taskListview;
     private List<Task> taskArrayList;
     private int sphere;
+    public TaskListFragment() {
+    }
 
     public TaskListFragment(int sphere) {
         this.sphere = sphere;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        fm = getChildFragmentManager();
     }
 
     @Override
@@ -59,17 +69,19 @@ public class TaskListFragment extends ListFragment {
     public void fillListView() {
         AsyncWorker worker = new AsyncWorker();
         TaskAdapter taskAdapter;
-
-        if (sphere == R.string.all_tasks) {
-            taskArrayList = worker.getAllTasks();
-            taskAdapter = new TaskAdapter(taskArrayList, getContext());
-            taskListview.setAdapter(taskAdapter);
-        } else {
-            taskArrayList = worker.getAllTasksWithSphere(getString(sphere));
-            taskAdapter = new TaskAdapter(taskArrayList, getContext());
-            taskListview.setAdapter(taskAdapter);
+        try {
+            if (sphere == R.string.all_tasks) {
+                taskArrayList = worker.getAllTasks();
+                taskAdapter = new TaskAdapter(taskArrayList, getContext());
+                taskListview.setAdapter(taskAdapter);
+            } else {
+                taskArrayList = worker.getAllTasksWithSphere(getString(sphere));
+                taskAdapter = new TaskAdapter(taskArrayList, getContext());
+                taskListview.setAdapter(taskAdapter);
+            }
+        } catch (NullPointerException e) {
+            Toast.makeText(getContext(), "Ooops:  " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
