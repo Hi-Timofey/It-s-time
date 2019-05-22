@@ -84,6 +84,7 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
         inflater.inflate(R.menu.sphere_menu, menu);
         MenuItem mSearch = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
@@ -158,6 +159,7 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
                 break;
             default:
                 Toast.makeText(getContext(), "Ooops", Toast.LENGTH_SHORT).show();
+                nextSphere = -1;
                 break;
         }
         getFragmentManager().beginTransaction()
