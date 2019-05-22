@@ -24,18 +24,42 @@ public class TaskListFragment extends ListFragment {
     private Toolbar toolbar;
     private ListView taskListview;
     private List<Task> taskArrayList;
-    private int sphere;
+    private FragmentManager fm;
+    private String sphere = "";
+    private View viewEmpty;
+    private String[] sphereArr = {"All Task's", "Work", "Health", "Routine", "Yourself"};
+
     public TaskListFragment() {
     }
 
     public TaskListFragment(int sphere) {
-        this.sphere = sphere;
+        switch (sphere) {
+            case R.string.all_tasks:
+                this.sphere = sphereArr[0];
+                break;
+            case R.string.work:
+                this.sphere = sphereArr[1];
+                break;
+            case R.string.health:
+                this.sphere = sphereArr[2];
+                break;
+            case R.string.routine:
+                this.sphere = sphereArr[3];
+                break;
+            case R.string.yourself:
+                this.sphere = sphereArr[4];
+                break;
+        }
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fm = getChildFragmentManager();
+        fm = getActivity().getSupportFragmentManager();
+        if (sphere.equals("")) {
+            fm.beginTransaction().replace(R.id.fragment_container, new SphereFragment()).commit();
+        }
+
     }
 
     @Override
@@ -45,6 +69,7 @@ public class TaskListFragment extends ListFragment {
         taskListview = v.findViewById(android.R.id.list);
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
         toolbar = getActivity().findViewById(R.id.tool_bar);
+        viewEmpty = getActivity().findViewById(R.id.empty_list_view);
         return v;
     }
 
@@ -57,7 +82,6 @@ public class TaskListFragment extends ListFragment {
         toolbar.setTitle(sphere);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         toolbar.setNavigationOnClickListener(v1 -> {
-            FragmentManager fm = getActivity().getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.sphere_fragment)))
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                     .addToBackStack(null)
@@ -70,14 +94,22 @@ public class TaskListFragment extends ListFragment {
         AsyncWorker worker = new AsyncWorker();
         TaskAdapter taskAdapter;
         try {
-            if (sphere == R.string.all_tasks) {
+            if (sphere.equals(sphereArr[0])) {
+
                 taskArrayList = worker.getAllTasks();
-                taskAdapter = new TaskAdapter(taskArrayList, getContext());
-                taskListview.setAdapter(taskAdapter);
+                if (!taskArrayList.isEmpty()) {
+                    taskAdapter = new TaskAdapter(taskArrayList, getContext());
+                    taskListview.setAdapter(taskAdapter);
+                } else taskListview.setEmptyView(viewEmpty);
+
             } else {
-                taskArrayList = worker.getAllTasksWithSphere(getString(sphere));
-                taskAdapter = new TaskAdapter(taskArrayList, getContext());
-                taskListview.setAdapter(taskAdapter);
+
+                taskArrayList = worker.getAllTasksWithSphere(sphere);
+                if (!taskArrayList.isEmpty()) {
+                    taskAdapter = new TaskAdapter(taskArrayList, getContext());
+                    taskListview.setAdapter(taskAdapter);
+                } else taskListview.setEmptyView(viewEmpty);
+
             }
         } catch (NullPointerException e) {
             Toast.makeText(getContext(), "Ooops:  " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -88,7 +120,7 @@ public class TaskListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         DetailsFragment f = new DetailsFragment(taskArrayList.get(position));
-        getFragmentManager().beginTransaction()
+        fm.beginTransaction()
                 .replace(R.id.fragment_container, f, getString(R.string.details_fragment))
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)

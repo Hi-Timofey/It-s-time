@@ -376,6 +376,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
+                        android:layout_marginBottom="4dp"
                         android:text="@string/choose_priority"
                         android:textColor="@color/b_primary_text"
                         android:textSize="20sp"

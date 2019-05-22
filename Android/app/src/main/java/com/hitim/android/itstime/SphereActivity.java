@@ -3,6 +3,7 @@ package com.hitim.android.itstime;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -54,6 +55,8 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
         Fragment fragment;
         switch (view.getId()) {
             case R.id.create_sphere_fab:
+                Toast.makeText(this,"Someday...",Toast.LENGTH_SHORT).show();
+                view.setClickable(false);
                 break;
             case R.id.create_task_fab:
                 fragment = new CreateTaskFragment();

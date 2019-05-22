@@ -58,4 +58,6 @@
     <string name="high_priority">Высокий приоритет</string>
     <string name="low_priority">Низкий приоритет</string>
     <string name="priority">Приоритет:</string>
+    <string name="name">Имя</string>
+    <string name="no_plans">Нет никаких планов</string>
 </resources>
