@@ -31,16 +31,17 @@
 
             <ImageView
                 android:id="@+id/log_welcome_icon"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="2dp"
                 android:adjustViewBounds="false"
+                android:contentDescription="@string/icon_of_the_project"
                 android:cropToPadding="true"
                 android:gravity="center"
                 android:maxWidth="512dp"
                 android:maxHeight="5126dp"
-                android:minWidth="100dp"
-                android:minHeight="100dp"
+                android:minWidth="50dp"
+                android:minHeight="50dp"
                 android:src="@drawable/ic_ghost_only"
                 app:layout_constraintBottom_toTopOf="@+id/log_welcome_text"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,8 +49,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_conversion_absoluteHeight="60dp"
-                tools:layout_conversion_absoluteWidth="60dp"
-                android:contentDescription="@string/icon_of_the_project" />
+                tools:layout_conversion_absoluteWidth="60dp" />
 
             <TextView
                 android:id="@+id/log_welcome_text"
@@ -86,11 +86,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/log_til_1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
                 android:hint="@string/e_mail"
+                android:minHeight="50dp"
+                android:maxHeight="70dp"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/ErrorText"
                 app:hintTextAppearance="@style/HintText_til"
@@ -104,7 +106,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/log_edit_log"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
@@ -117,11 +119,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/log_til_2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:hint="@string/password"
+                android:minHeight="50dp"
+                android:maxHeight="70dp"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/ErrorText"
                 app:hintTextAppearance="@style/HintText_til"
@@ -134,7 +138,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/log_edit_pass"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
@@ -247,13 +251,13 @@
             android:layout_height="25dp"
             android:background="@color/b_primary"
             android:backgroundTint="@color/whiteColor"
+            android:contentDescription="@string/registration_button_image"
             android:src="@drawable/arrow_up"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_conversion_absoluteHeight="48dp"
-            tools:layout_conversion_absoluteWidth="48dp"
-            android:contentDescription="@string/registration_button_image" />
+            tools:layout_conversion_absoluteWidth="48dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

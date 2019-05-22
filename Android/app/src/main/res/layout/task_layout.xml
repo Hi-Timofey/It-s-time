@@ -2,100 +2,116 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout16"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:minHeight="90dp"
-    android:maxHeight="110dp">
+    android:maxHeight="110dp"
+    android:minHeight="90dp">
 
     <com.joooonho.SelectableRoundedImageView
         android:id="@+id/task_layout_image"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="313dp"
-        android:layout_marginBottom="8dp"
-        app:sriv_left_top_corner_radius="16dip"
-        app:sriv_right_top_corner_radius="16dip"
-        app:sriv_left_bottom_corner_radius="16dip"
-        app:sriv_right_bottom_corner_radius="16dip"
-        app:sriv_border_width="2dip"
-        app:sriv_border_color="#008fea"
-        app:sriv_oval="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_check"
-        android:background="@color/whiteColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!--TODO:Пофиксить размеры-->
-
-    <TextView
-        android:id="@+id/task_layout_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:maxLength="18"
-        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/b_primary_text"
-        android:textSize="24sp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/whiteColor"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_check"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:sriv_border_color="#008fea"
+        app:sriv_border_width="2dip"
+        app:sriv_left_bottom_corner_radius="16dip"
+        app:sriv_left_top_corner_radius="16dip"
+        app:sriv_oval="true"
+        app:sriv_right_bottom_corner_radius="16dip"
+        app:sriv_right_top_corner_radius="16dip" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout15"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/task_layout_image"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/task_layout_sphere"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Sphere"
-        android:textColor="@color/b_secondary_text"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/task_layout_deadline"
-        app:layout_constraintStart_toEndOf="@+id/task_layout_image"
-        app:layout_constraintTop_toBottomOf="@+id/task_layout_name" />
+        <TextView
+            android:id="@+id/task_layout_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:maxLength="18"
+            android:text="Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/b_primary_text"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/task_layout_sphere"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/task_layout_deadline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="15:06:2019 15:45"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@color/b_secondary_text"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/task_layout_image" />
+        <TextView
+            android:id="@+id/task_layout_sphere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            android:text="Sphere"
+            android:textColor="@color/b_secondary_text"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/task_layout_deadline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/task_layout_name" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/priority"
-        android:textColor="@color/b_secondary_text"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/priority_number" />
+        <TextView
+            android:id="@+id/task_layout_deadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="15:06:2019 15:45"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/b_secondary_text"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/priority_number"
-        android:layout_width="20dp"
-        android:layout_height="23dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="TextView"
-        android:textColor="@color/b_secondary_text"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/priority"
+            android:textColor="@color/b_secondary_text"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/priority_number"
+            app:layout_constraintTop_toTopOf="@+id/task_layout_deadline" />
+
+        <TextView
+            android:id="@+id/priority_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="1"
+            android:textColor="@color/b_secondary_text"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
