@@ -46,7 +46,7 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
             finish();
         }
         fragmentManager.beginTransaction()
-                .add(R.id.fragment_container, sphereFragment, getString(R.string.sphere_fragment))
+                .replace(R.id.fragment_container, sphereFragment, getString(R.string.sphere_fragment))
                 .commit();
     }
 
@@ -84,6 +84,5 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, sphereFragment, getString(R.string.sphere_fragment))
                 .commit();
-
     }
 }
