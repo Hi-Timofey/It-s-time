@@ -65,7 +65,7 @@ public class DatePicked {
     }
 
     public boolean isNull() {
-        return year == -1 || month == -1 || day == -1 || minutes == -1 || hour == -1;
+        return year != -1 && month != -1 && day != -1 && minutes != -1 && hour != -1;
     }
 
     public int getYear() {

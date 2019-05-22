@@ -2,7 +2,6 @@ package com.hitim.android.itstime;
 
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -97,14 +96,12 @@ public class UserProfileFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_log_out:
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getContext(), LogInActivity.class));
-                getActivity().finish();
-                break;
-            default:
-                super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_log_out) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getContext(), LogInActivity.class));
+            getActivity().finish();
+        } else {
+            super.onOptionsItemSelected(item);
         }
         return true;
     }

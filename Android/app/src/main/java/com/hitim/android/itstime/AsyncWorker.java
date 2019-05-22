@@ -14,15 +14,13 @@ import java.util.concurrent.TimeoutException;
  */
 
 
-public class AsyncWorker {
+class AsyncWorker {
 
-    private TaskDataBase taskDataBase;
     private TaskDao taskDao;
 
 
     public AsyncWorker() {
-        taskDataBase = App.getInstance().getDataBase();
-        taskDao = taskDataBase.getTaskDao();
+        taskDao = App.getInstance().getDataBase().getTaskDao();
     }
 
     public List<Task> getAllTasks() {
@@ -131,11 +129,7 @@ public class AsyncWorker {
         return false;
     }
 
-    public boolean updateTask(Task task) {
-        return true;
-    }
-
-    public synchronized Task getTaskByName(String taskName, OnPostExecuteTask executerTask) {
+    public synchronized Task getTaskByName(String taskName, OnPostExecuteTask executedTask) {
         @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, Task> asyncTask = new AsyncTask<String, Void, Task>() {
             @Override
             protected Task doInBackground(String... strings) {
@@ -148,7 +142,7 @@ public class AsyncWorker {
 
             @Override
             protected void onPostExecute(Task task) {
-                if (executerTask != null) executerTask.run(task);
+                if (executedTask != null) executedTask.run(task);
                 super.onPostExecute(task);
             }
         };

@@ -51,7 +51,7 @@
     <string name="wrong_task">Одно из важных полей не заполнено.</string>
     <string name="choose_sphere">Выберите Сферу</string>
     <string name="choose_the_right_one">Выберите нужную</string>
-    <string name="log_out_succesful">Выход успешен!</string>
+    <string name="log_out_successful">Выход успешен!</string>
     <string name="connection_failed">Связь потеряна!</string>
     <string name="choose_priority">Назначьте приоритет</string>
     <string name="priority_level">Выберите уровень</string>
@@ -60,4 +60,5 @@
     <string name="priority">Приоритет:</string>
     <string name="name">Имя</string>
     <string name="no_plans">Нет никаких планов</string>
+    <string name="oops">Упс…</string>
 </resources>

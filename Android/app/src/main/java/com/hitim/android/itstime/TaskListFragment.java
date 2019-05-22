@@ -81,12 +81,11 @@ public class TaskListFragment extends ListFragment {
         floatingActionMenu.setVisibility(View.INVISIBLE);
         toolbar.setTitle(sphere);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        toolbar.setNavigationOnClickListener(v1 -> {
-            fm.beginTransaction().replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.sphere_fragment)))
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                    .addToBackStack(null)
-                    .commit();
-        });
+        toolbar.setNavigationOnClickListener(v1 -> fm.beginTransaction()
+                .replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.sphere_fragment)))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .addToBackStack(null)
+                .commit());
         fillListView();
     }
 

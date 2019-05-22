@@ -270,7 +270,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/date_check_box"
                         app:layout_constraintStart_toEndOf="@+id/imageButton"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:focusable="true" />
 
                     <CheckBox
                         android:id="@+id/date_check_box"
@@ -340,7 +341,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/needed_time_check_box"
                         app:layout_constraintStart_toEndOf="@+id/userToDoReminderIconImageButton"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:focusable="true" />
 
                     <CheckBox
                         android:id="@+id/needed_time_check_box"

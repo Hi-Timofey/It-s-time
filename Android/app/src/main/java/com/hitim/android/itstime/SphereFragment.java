@@ -158,7 +158,7 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
                 nextSphere = R.string.yourself;
                 break;
             default:
-                Toast.makeText(getContext(), "Ooops", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.oops), Toast.LENGTH_SHORT).show();
                 nextSphere = -1;
                 break;
         }

@@ -38,7 +38,7 @@ class Task {
         this.sphere = sphere;
         this.datePicked = datePicked;
         this.color = color;
-        if (!neededTimePicked.isNull()) {
+        if (neededTimePicked.isNull()) {
             this.neededTimePicked = neededTimePicked;
         }
         this.priority = priority;

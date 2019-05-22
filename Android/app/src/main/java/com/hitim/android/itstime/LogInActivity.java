@@ -228,7 +228,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         return valid;
     }
 
-    public void dialogsBuilder() {
+    private void dialogsBuilder() {
         dialog = new ProgressDialog(LogInActivity.this);
         dialog.setTitle(R.string.dialog_signing_in);
         dialog.setMessage(getString(R.string.dialog_text));

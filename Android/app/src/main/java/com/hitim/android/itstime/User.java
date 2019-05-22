@@ -1,6 +1,6 @@
 package com.hitim.android.itstime;
 
-public class User {
+class User {
     private String email;
     private String name;
 

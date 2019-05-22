@@ -36,6 +36,8 @@ import java.util.Calendar;
 
 import nl.dionsegijn.steppertouch.StepperTouch;
 
+import static com.jaredrummler.android.colorpicker.ColorPickerDialog.newBuilder;
+
 public class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     private FloatingActionMenu floatingActionMenu;
@@ -146,7 +148,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 }
                 break;
             case R.id.set_icon_button:
-                chengeIconAndColor();
+                changeIconAndColor();
                 break;
         }
     }
@@ -154,7 +156,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     private boolean isValid() {
         taskName = taskNameEditText.getText().toString();
         taskDecsription = taskDescriptionEditText.getText().toString();
-        return !taskName.trim().isEmpty() && !sphere.equals("") && !datePicked.isNull() && taskColor != -1 && priority != -1;
+        return !taskName.trim().isEmpty() && !sphere.equals("") && datePicked.isNull() && taskColor != -1 && priority != -1;
     }
     //Начало огромных методов
     //===================================================================================================
@@ -313,9 +315,9 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     }
 
     //Диалог для выбора цвета
-    private void chengeIconAndColor() {
+    private void changeIconAndColor() {
         ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
-        colorPickerDialog.newBuilder().setColor(getResources().getColor(R.color.whiteColor)).show(getActivity());
+        newBuilder().setColor(getResources().getColor(R.color.whiteColor)).show(getActivity());
     }
 
     public void setTaskColor(int color) {
