@@ -44,7 +44,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout14"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -61,8 +61,10 @@
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:maxLines="2"
                 android:textSize="28sp"
+                app:layout_constraintBottom_toTopOf="@+id/user_email_textview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -75,9 +77,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/user_picture_image_view"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/user_picture_image_view"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/user_name_textview"
                 app:layout_constraintVertical_bias="0.0" />
 
