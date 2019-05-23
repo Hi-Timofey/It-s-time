@@ -278,11 +278,13 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     }
 
     private void changeSphereDialog() {
+        //TODO: Пофиксить баг с переводом
+        String[] spheresTranslated = {getString(R.string.work),getString(R.string.health),getString(R.string.routine),getString(R.string.yourself)};
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.AlertDialogStyle_Light));
         builder.setTitle(R.string.choose_sphere)
                 .setCancelable(false)
                 .setNeutralButton(getString(R.string.back_button), (dialog, id) -> dialog.cancel())
-                .setSingleChoiceItems(spheresOfLife, -1,
+                .setSingleChoiceItems(spheresTranslated, -1,
                         (dialog, item) -> {
                             sphere = spheresOfLife[item];
                             sphereCardText.setTextColor(getResources().getColor(R.color.whiteColor));

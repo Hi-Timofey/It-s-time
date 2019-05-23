@@ -11,10 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -31,16 +33,17 @@ import com.google.firebase.database.ValueEventListener;
 import com.joooonho.SelectableRoundedImageView;
 import com.squareup.picasso.Picasso;
 
-public class UserProfileFragment extends Fragment {
+public class UserProfileFragment extends Fragment implements View.OnClickListener {
 
     private FloatingActionMenu floatingActionMenu;
+    private ConstraintLayout googleSyncLayout;
     private Toolbar toolbar;
     private FirebaseUser mUser;
     private TextView userNameText, userEmailText;
     private SelectableRoundedImageView userPictureImageView;
     private DatabaseReference databaseReference;
     private String name, email, uid;
-    private ProgressDialog dialog;
+    private ProgressDialog dialogOnStart, dialogOnGoogleSync;
 
     public UserProfileFragment() {
     }
@@ -61,12 +64,19 @@ public class UserProfileFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_user_profile, container, false);
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
         userNameText = v.findViewById(R.id.user_name_textview);
+        googleSyncLayout = v.findViewById(R.id.constraintLayout9);
+        googleSyncLayout.setOnClickListener(this);
         userPictureImageView = v.findViewById(R.id.user_picture_image_view);
         userEmailText = v.findViewById(R.id.user_email_textview);
         toolbar = getActivity().findViewById(R.id.tool_bar);
-        dialog = new ProgressDialog(getContext(),R.style.AlertDialogStyle_Light);
-        dialog.setProgressStyle(R.style.Widget_AppCompat_ProgressBar);
-        dialog.setMessage(getString(R.string.fui_progress_dialog_loading));
+
+        dialogOnStart = new ProgressDialog(getContext(),R.style.AlertDialogStyle_Light);
+        dialogOnStart.setProgressStyle(R.style.Widget_AppCompat_ProgressBar);
+        dialogOnStart.setMessage(getString(R.string.fui_progress_dialog_loading));
+
+        dialogOnGoogleSync = new ProgressDialog(getContext(),R.style.AlertDialogStyle_Light);
+        dialogOnGoogleSync.setProgressStyle(R.style.Widget_AppCompat_ProgressBar);
+        dialogOnGoogleSync.setMessage(getString(R.string.synchronization));
         return v;
     }
 
@@ -85,7 +95,7 @@ public class UserProfileFragment extends Fragment {
                     .addToBackStack(null)
                     .commit();
         });
-        dialog.show();
+        dialogOnStart.show();
         initUserProfileInformation();
     }
 
@@ -131,7 +141,7 @@ public class UserProfileFragment extends Fragment {
                 email = user.getEmail();
                 userNameText.setText(name);
                 userEmailText.setText(email);
-                dialog.dismiss();
+                dialogOnStart.dismiss();
             }
 
             @Override
@@ -139,5 +149,20 @@ public class UserProfileFragment extends Fragment {
                 throw new DatabaseException(databaseError.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.constraintLayout9) {
+            dialogOnGoogleSync.show();
+            AsyncWorker worker = new AsyncWorker();
+            Exception result = worker.syncAllTasks();
+            dialogOnGoogleSync.dismiss();
+            if (result == null){
+                 //Результат положительный
+            } else {
+                Toast.makeText(getContext(),getString(R.string.oops) + result.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

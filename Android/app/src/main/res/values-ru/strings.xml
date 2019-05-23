@@ -61,4 +61,6 @@
     <string name="name">Имя</string>
     <string name="no_plans">Нет никаких планов</string>
     <string name="oops">Упс…</string>
+    <string name="sync_with_calendar">Синхронизация с Google Calendar</string>
+    <string name="synchronization">Синхронизация</string>
 </resources>
