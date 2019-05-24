@@ -65,4 +65,6 @@
     <string name="synchronization">Синхронизация</string>
     <string name="confirmed">Почта подтверждена!</string>
     <string name="after_verified">Проверьте свою почту!</string>
+    <string name="delete">Удалить</string>
+    <string name="sure_want_delete">Уверены что хотите удалить задачу</string>
 </resources>

@@ -6,16 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".DetailsFragment">
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_check_white"
         app:layout_anchor="@+id/cardView"
-        app:layout_anchorGravity="start|center" />
+        app:layout_anchorGravity="start|center"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginStart="48dp"
         app:cardBackgroundColor="@color/whiteColor"
         app:layout_anchor="@id/constraintLayout8"
         app:layout_anchorGravity="center|bottom"
@@ -34,7 +40,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:textColor="@color/whiteColor"
+                android:textColor="@color/b_primary_text"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -47,6 +53,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout7"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,7 +65,7 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/constraintLayout8"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="25dp"
             android:background="@color/b_primary"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +78,7 @@
             android:id="@+id/constraintLayout10"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/b_primary_100"
+            android:background="@color/b_primary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

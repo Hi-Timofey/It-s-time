@@ -122,7 +122,7 @@ public class TaskListFragment extends ListFragment {
         fm.beginTransaction()
                 .replace(R.id.fragment_container, f, getString(R.string.details_fragment))
                 .addToBackStack(null)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
 }
