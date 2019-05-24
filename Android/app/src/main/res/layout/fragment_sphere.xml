@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".SphereFragment">
 
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:text="@string/future_event"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/b_primary_text"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="more spheres"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/b_secondary_text"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card_all_tasks"
         style="@style/SphereCardView"
@@ -262,6 +288,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
