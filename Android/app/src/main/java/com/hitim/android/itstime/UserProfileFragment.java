@@ -43,7 +43,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     private SelectableRoundedImageView userPictureImageView;
     private DatabaseReference databaseReference;
     private String name, email, uid;
-    private ProgressDialog dialogOnStart, dialogOnGoogleSync;
+    private ProgressDialog dialogOnStart;
 
     public UserProfileFragment() {
     }
@@ -70,13 +70,9 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         userEmailText = v.findViewById(R.id.user_email_textview);
         toolbar = getActivity().findViewById(R.id.tool_bar);
 
-        dialogOnStart = new ProgressDialog(getContext(),R.style.AlertDialogStyle_Light);
+        dialogOnStart = new ProgressDialog(getContext(), R.style.AlertDialogStyle_Light);
         dialogOnStart.setProgressStyle(R.style.Widget_AppCompat_ProgressBar);
         dialogOnStart.setMessage(getString(R.string.fui_progress_dialog_loading));
-
-        dialogOnGoogleSync = new ProgressDialog(getContext(),R.style.AlertDialogStyle_Light);
-        dialogOnGoogleSync.setProgressStyle(R.style.Widget_AppCompat_ProgressBar);
-        dialogOnGoogleSync.setMessage(getString(R.string.synchronization));
         return v;
     }
 
@@ -95,7 +91,6 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                     .addToBackStack(null)
                     .commit();
         });
-        dialogOnStart.show();
         initUserProfileInformation();
     }
 
@@ -117,6 +112,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     }
 
     private void initUserProfileInformation() {
+        dialogOnStart.show();
         if (mUser != null) {
             getUserData();
             Picasso.with(getContext())
@@ -153,16 +149,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.constraintLayout9) {
-            dialogOnGoogleSync.show();
-            AsyncWorker worker = new AsyncWorker();
-            Exception result = worker.syncAllTasks();
-            dialogOnGoogleSync.dismiss();
-            if (result == null){
-                 //Результат положительный
-            } else {
-                Toast.makeText(getContext(),getString(R.string.oops) + result.getMessage(),Toast.LENGTH_LONG).show();
-            }
+        if (v.getId() == R.id.constraintLayout9) {
         }
     }
 }

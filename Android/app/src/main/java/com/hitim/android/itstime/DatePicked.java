@@ -3,6 +3,8 @@ package com.hitim.android.itstime;
 
 import androidx.annotation.NonNull;
 
+import java.util.Calendar;
+
 /** {@link DatePicked} - класс для работы с временем
  * Используется для указания времени дедлайна и ремайндра
  * в классе {@link Task}
@@ -66,6 +68,17 @@ public class DatePicked {
 
     public boolean isNull() {
         return year != -1 && month != -1 && day != -1 && minutes != -1 && hour != -1;
+    }
+
+    public Calendar getCalendarFormat() {
+        Calendar c = Calendar.getInstance();
+        try {
+            c.set(year,month,day,hour,minutes);
+            return c;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public int getYear() {

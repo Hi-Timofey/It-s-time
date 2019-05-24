@@ -158,11 +158,4 @@ class AsyncWorker {
         }
         return null;
     }
-
-
-    public Exception syncAllTasks() {
-
-
-        return null;
-    }
 }

@@ -112,4 +112,10 @@ class Task {
     public void setPriority(int priority) {
         this.priority = priority;
     }
+
+    public String getTaskDescription() {
+        String fullDescription = name + "\n";
+        fullDescription += sphere + "\n" + description + "\n";
+        return fullDescription;
+    }
 }
