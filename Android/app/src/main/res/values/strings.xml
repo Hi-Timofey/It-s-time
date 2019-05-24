@@ -92,4 +92,6 @@
     <string name="needed_time">Start time</string>
     <string name="enter_changes">Enter changes</string>
     <string name="ok">OK</string>
+    <string name="change_password">Change password</string>
+    <string name="password_changed">Password changed!</string>
 </resources>

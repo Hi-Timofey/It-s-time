@@ -14,8 +14,6 @@ import androidx.room.PrimaryKey;
 
 @Entity
 class Task {
-    public static final int RUS_SPHERE = 1;
-    public static final int ENG_SPHERE = 2;
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -54,21 +52,6 @@ class Task {
 
     public String getDescription() {
         return this.description;
-    }
-
-    @NonNull
-    public String getSphere(int languageType) {
-        String result = sphere;
-        if (languageType == 2) {
-            return result;
-        } else {
-            String[] sphereArr = {"Work", "Health", "Routine", "Yourself"};
-            String[] sphereArrRus = {"Работа", "Здоровье", "Рутина", "Личность"};
-            for (int i = 0; i < 3; i++) {
-                if (sphereArr[i].equals(sphere)) result = sphereArrRus[i];
-            }
-            return result;
-        }
     }
 
     @NonNull

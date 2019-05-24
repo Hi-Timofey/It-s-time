@@ -139,9 +139,25 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
 
     private void initTaskDetails() {
         if (task != null) {
+            String sphereOfTask = "";
             taskNameTextView.setText(task.getName());
-            taskSphereTextView.setText(task.getSphere(Task.RUS_SPHERE));
-            taskDescTextView.setText(task.getDescription());
+            switch (task.getSphere()){
+                case "Work":
+                    sphereOfTask = getString(R.string.work);
+                    break;
+                case "Health":
+                    sphereOfTask = getString(R.string.health);
+                    break;
+                case "Routine":
+                    sphereOfTask = getString(R.string.routine);
+                    break;
+                case "Yourself":
+                    sphereOfTask = getString(R.string.yourself);
+                    break;
+            }
+            taskSphereTextView.setText(sphereOfTask);
+            if (task.getDescription().equals("")) taskDescTextView.setText(getString(R.string.emptyString));
+             else taskDescTextView.setText(task.getDescription());
             taskDeadlineTextView.setText(task.getDatePicked().toString());
             taskNeededTimeTextView.setText(task.getNeededTimePicked().toString());
         } else {

@@ -73,4 +73,6 @@
     <string name="needed_time">Начало беспокойства</string>
     <string name="enter_changes">Вводите изменения</string>
     <string name="ok">OK</string>
+    <string name="change_password">Поменять пароль</string>
+    <string name="password_changed">Пароль сменён!</string>
 </resources>

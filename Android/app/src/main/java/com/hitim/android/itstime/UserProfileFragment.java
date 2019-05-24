@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +38,7 @@ import com.squareup.picasso.Picasso;
 public class UserProfileFragment extends Fragment implements View.OnClickListener {
 
     private FloatingActionMenu floatingActionMenu;
-    private ConstraintLayout confirmEmailLayout;
+    private ConstraintLayout confirmEmailLayout, passwordResetLayout;
     private Toolbar toolbar;
     private FirebaseUser mUser;
     private TextView userNameText, userEmailText;
@@ -62,8 +64,11 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         View v = inflater.inflate(R.layout.fragment_user_profile, container, false);
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
         userNameText = v.findViewById(R.id.user_name_textview);
+
         confirmEmailLayout = v.findViewById(R.id.constraintLayout9);
         confirmEmailLayout.setOnClickListener(this);
+        passwordResetLayout = v.findViewById(R.id.consraint_password_reset);
+        passwordResetLayout.setOnClickListener(this::onClick);
         userPictureImageView = v.findViewById(R.id.user_picture_image_view);
         userEmailText = v.findViewById(R.id.user_email_textview);
         emailVerified = v.findViewById(R.id.textView3);
@@ -133,6 +138,20 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             } else {
                 Toast.makeText(getContext(),getString(R.string.confirmed),Toast.LENGTH_SHORT).show();
             }
+        }
+        if (v.getId() == R.id.consraint_password_reset) {
+            AlertDialog.Builder builderForText = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle_Light)
+                    .setCancelable(true);
+            View viewTextEdit = LayoutInflater.from(getContext()).inflate(R.layout.edit_dialog_layout, null);
+            TextInputEditText tiet = viewTextEdit.findViewById(R.id.edit_dialog_edit_text);
+            viewTextEdit.findViewById(R.id.edit_dialog_edit_text);
+            builderForText.setView(viewTextEdit);
+            builderForText.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
+                String newPass = tiet.getText().toString();
+                mUser.updatePassword(newPass);
+                Toast.makeText(getContext(),getString(R.string.password_changed),Toast.LENGTH_LONG).show();
+            });
+            builderForText.create().show();
         }
     }
 
