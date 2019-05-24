@@ -21,7 +21,6 @@ public class DetailsFragment extends Fragment {
 
     private Task task;
     private Toolbar toolbar;
-    private CardView nameTextView;
 
     public DetailsFragment() {
     }
@@ -45,15 +44,12 @@ public class DetailsFragment extends Fragment {
                     .addToBackStack(null)
                     .commit();
         });
-        nameTextView = v.findViewById(R.id.sphere_mini_card_view);
+
         return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        String name = task.getName();
-        TextView tv =nameTextView.findViewById(R.id.mini_card_text);
-        tv.setText(name);
     }
 }

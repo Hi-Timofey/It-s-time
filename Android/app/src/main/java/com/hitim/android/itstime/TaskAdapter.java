@@ -68,31 +68,27 @@ public class TaskAdapter extends BaseAdapter {
         holder.imageView.setImageDrawable(image);
         holder.imageView.setBorderColor(color);
         int resId = 0;
+        int sphereColor = 0;
         switch (task.getSphere()) {
             case "Work":
                 resId = R.string.work;
+                sphereColor = R.color.orange_10;
                 break;
             case "Health":
                 resId = R.string.health;
+                sphereColor = R.color.red_10;
                 break;
             case "Routine":
                 resId = R.string.routine;
+                sphereColor = R.color.teal_10;
                 break;
             case "Yourself":
                 resId = R.string.yourself;
+                sphereColor = R.color.blue_10;
                 break;
         }
         holder.sphere.setText(context.getString(resId));
-        /*holder.imageView.setOnClickListener(v -> {
-            Toast.makeText(context,String.valueOf(task.getId()),Toast.LENGTH_SHORT).show();
-             AsyncWorker worker = new AsyncWorker();
-            if (worker.deleteTask(task)) {
-                Toast.makeText(context,"Удалил",Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(context,"Не удалил",Toast.LENGTH_SHORT).show();
-            }
-
-        });*/
+        holder.sphere.setTextColor(context.getResources().getColor(sphereColor));
         return convertView;
     }
 

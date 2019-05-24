@@ -19,8 +19,6 @@
             android:layout_height="70dp"
             android:minHeight="50dp"
             android:background="?attr/colorPrimary"
-            android:gravity="center"
-            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

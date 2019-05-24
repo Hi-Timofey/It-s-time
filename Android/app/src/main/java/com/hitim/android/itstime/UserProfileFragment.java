@@ -36,13 +36,14 @@ import com.squareup.picasso.Picasso;
 public class UserProfileFragment extends Fragment implements View.OnClickListener {
 
     private FloatingActionMenu floatingActionMenu;
-    private ConstraintLayout googleSyncLayout;
+    private ConstraintLayout confirmEmailLayout;
     private Toolbar toolbar;
     private FirebaseUser mUser;
     private TextView userNameText, userEmailText;
     private SelectableRoundedImageView userPictureImageView;
     private DatabaseReference databaseReference;
-    private String name, email, uid;
+    private String name, email;
+    private TextView emailVerified;
     private ProgressDialog dialogOnStart;
 
     public UserProfileFragment() {
@@ -52,9 +53,6 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
-        uid = mUser.getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference("DataUsers").child("Users").child(mUser.getUid());
 
     }
 
@@ -64,10 +62,11 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         View v = inflater.inflate(R.layout.fragment_user_profile, container, false);
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
         userNameText = v.findViewById(R.id.user_name_textview);
-        googleSyncLayout = v.findViewById(R.id.constraintLayout9);
-        googleSyncLayout.setOnClickListener(this);
+        confirmEmailLayout = v.findViewById(R.id.constraintLayout9);
+        confirmEmailLayout.setOnClickListener(this);
         userPictureImageView = v.findViewById(R.id.user_picture_image_view);
         userEmailText = v.findViewById(R.id.user_email_textview);
+        emailVerified = v.findViewById(R.id.textView3);
         toolbar = getActivity().findViewById(R.id.tool_bar);
 
         dialogOnStart = new ProgressDialog(getContext(), R.style.AlertDialogStyle_Light);
@@ -79,6 +78,8 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     @Override
     public void onStart() {
         super.onStart();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("DataUsers").child("Users").child(mUser.getUid());
         floatingActionMenu.hideMenuButton(true);
         floatingActionMenu.close(true);
         floatingActionMenu.setVisibility(View.INVISIBLE);
@@ -99,17 +100,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         inflater.inflate(R.menu.profile_menu, menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_log_out) {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getContext(), LogInActivity.class));
-            getActivity().finish();
-        } else {
-            super.onOptionsItemSelected(item);
-        }
-        return true;
-    }
+
 
     private void initUserProfileInformation() {
         dialogOnStart.show();
@@ -121,12 +112,30 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                     .placeholder(R.drawable.user_profile_image_placeholder)
                     .error(R.drawable.ic_account)
                     .into(userPictureImageView);
-
+            if(mUser.isEmailVerified()){
+                emailVerified.setText(getString(R.string.confirmed));
+            } else {
+                emailVerified.setText(getString(R.string.confirm_your_email));
+            }
         } else {
             startActivity(new Intent(getContext(), LogInActivity.class));
             getActivity().finish();
         }
     }
+
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.constraintLayout9) {
+            if (!mUser.isEmailVerified()) {
+                mUser.sendEmailVerification();
+                Toast.makeText(getContext(),getString(R.string.after_verified),Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(),getString(R.string.confirmed),Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
     private void getUserData() {
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -139,7 +148,6 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                 userEmailText.setText(email);
                 dialogOnStart.dismiss();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 throw new DatabaseException(databaseError.getMessage());
@@ -148,8 +156,14 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.constraintLayout9) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_log_out) {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getContext(), LogInActivity.class));
+            getActivity().finish();
+        } else {
+            super.onOptionsItemSelected(item);
         }
+        return true;
     }
 }

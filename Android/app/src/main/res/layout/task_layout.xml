@@ -3,121 +3,143 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/constraintLayout16"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="110dp"
     android:maxHeight="110dp"
     android:minHeight="90dp">
 
-    <com.joooonho.SelectableRoundedImageView
-        android:id="@+id/task_layout_image"
-        android:layout_width="68dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/whiteColor"
-        android:minWidth="50dp"
-        android:minHeight="50dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_check"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:sriv_border_color="#008fea"
-        app:sriv_border_width="2dip"
-        app:sriv_left_bottom_corner_radius="16dip"
-        app:sriv_left_top_corner_radius="16dip"
-        app:sriv_oval="true"
-        app:sriv_right_bottom_corner_radius="16dip"
-        app:sriv_right_top_corner_radius="16dip" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout15"
-        android:layout_width="0dp"
+    <androidx.cardview.widget.CardView
+        style="@style/ItsCard"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        app:cardBackgroundColor="@color/whiteColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/task_layout_image"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/task_layout_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="2dp"
-            android:maxLength="18"
-            android:text="Name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/b_primary_text"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/task_layout_sphere"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/task_layout_sphere"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="6dp"
-            android:text="Sphere"
-            android:textColor="@color/b_secondary_text"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/task_layout_deadline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/task_layout_name" />
 
-        <TextView
-            android:id="@+id/task_layout_deadline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="8dp"
-            android:text="15:06:2019 15:45"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@color/b_secondary_text"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/task_layout_sphere" />
+            <com.joooonho.SelectableRoundedImageView
+                android:id="@+id/task_layout_image"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/whiteColor"
+                android:minWidth="50dp"
+                android:minHeight="50dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_check"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:sriv_border_color="#008fea"
+                app:sriv_border_width="2dip"
+                app:sriv_left_bottom_corner_radius="16dip"
+                app:sriv_left_top_corner_radius="16dip"
+                app:sriv_oval="true"
+                app:sriv_right_bottom_corner_radius="16dip"
+                app:sriv_right_top_corner_radius="16dip" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/priority"
-            android:textColor="@color/b_secondary_text"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/priority_number"
-            app:layout_constraintStart_toEndOf="@+id/task_layout_deadline"
-            app:layout_constraintTop_toTopOf="@+id/task_layout_deadline" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout15"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/task_layout_image"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/priority_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="1"
-            android:textColor="@color/b_secondary_text"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView6" />
+                <TextView
+                    android:id="@+id/task_layout_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="2dp"
+                    android:maxLength="18"
+                    android:text="Name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/b_primary_text"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toTopOf="@+id/task_layout_sphere"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/task_layout_sphere"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Sphere"
+                    android:textColor="@color/b_secondary_text"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toTopOf="@+id/task_layout_deadline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/task_layout_name" />
 
+                <TextView
+                    android:id="@+id/task_layout_deadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="15:06:2019 15:45"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/b_secondary_text"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/task_layout_sphere" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/priority"
+                    android:textColor="@color/b_secondary_text"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/priority_number"
+                    app:layout_constraintStart_toEndOf="@+id/task_layout_deadline"
+                    app:layout_constraintTop_toTopOf="@+id/task_layout_deadline" />
+
+                <TextView
+                    android:id="@+id/priority_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="1"
+                    android:textColor="@color/b_secondary_text"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView6" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

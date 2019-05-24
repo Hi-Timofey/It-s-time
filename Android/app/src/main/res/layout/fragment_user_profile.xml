@@ -101,6 +101,7 @@
             android:id="@+id/constraintLayout9"
             android:layout_width="match_parent"
             android:layout_height="75dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -114,7 +115,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_igoogle_calendar"
+                android:src="@drawable/ic_email_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView3"
                 app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +128,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/sync_with_calendar"
                 android:textColor="@color/b_primary_text"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -138,6 +138,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginStart="16dp"
@@ -147,6 +148,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout9" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consraint_password_reset"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3">
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@color/b_secondary_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consraint_password_reset" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

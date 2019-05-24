@@ -243,6 +243,4 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         builder.setNegativeButton(getString(R.string.no), (dialog, which) -> dialog.dismiss());
         alert = builder.create();
     }
-
-
 }

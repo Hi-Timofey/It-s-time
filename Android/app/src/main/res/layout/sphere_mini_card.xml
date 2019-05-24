@@ -7,10 +7,9 @@
     android:layout_height="50dp"
     android:maxHeight="60dp"
     android:layout_gravity="center"
-    android:elevation="@dimen/cardview_default_elevation"
     android:minHeight="40dp"
     card_view:cardBackgroundColor="@color/whiteColor"
-    card_view:cardCornerRadius="8dp" >
+    style="@style/ItsCard">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

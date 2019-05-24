@@ -39,7 +39,7 @@
     <string name="task_name">Название задачи</string>
     <string name="description">Описание</string>
     <string name="dialog_text">Пожалуйста, подождите…</string>
-    <string name="dialog_signing_in">Взод в систему</string>
+    <string name="dialog_signing_in">Вход в систему</string>
     <string name="no">Нет</string>
     <string name="register">Зарегистрироваться!</string>
     <string name="sign_up">Зарегистрироваться!</string>
@@ -61,6 +61,8 @@
     <string name="name">Имя</string>
     <string name="no_plans">Нет никаких планов</string>
     <string name="oops">Упс…</string>
-    <string name="sync_with_calendar">Синхронизация с Google Calendar</string>
+    <string name="confirm_your_email">Подтвердите свой E-mail</string>
     <string name="synchronization">Синхронизация</string>
+    <string name="confirmed">Почта подтверждена!</string>
+    <string name="after_verified">Проверьте свою почту!</string>
 </resources>

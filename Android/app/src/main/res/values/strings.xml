@@ -84,6 +84,8 @@
     <string name="name">Name</string>
     <string name="no_plans">No plans!</string>
     <string name="oops">Oops…</string>
-    <string name="sync_with_calendar">Sync with Google Calendar</string>
+    <string name="confirm_your_email">Confirm your E-mail</string>
+    <string name="confirmed">Your E-mail confirmed!</string>
     <string name="synchronization">Synchronization</string>
+    <string name="after_verified">Check your E-mail!</string>
 </resources>
