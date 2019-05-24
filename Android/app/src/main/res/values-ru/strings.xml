@@ -62,13 +62,15 @@
     <string name="no_plans">Нет никаких планов</string>
     <string name="oops">Упс…</string>
     <string name="confirm_your_email">Подтвердите свой E-mail</string>
-    <string name="synchronization">Синхронизация</string>
+    <string name="synchronization">Синхронизация с Google Calendar</string>
     <string name="confirmed">Почта подтверждена!</string>
     <string name="after_verified">Проверьте свою почту!</string>
     <string name="delete">Удалить</string>
     <string name="sure_want_delete">Уверены что хотите удалить задачу</string>
     <string name="congratulations">Поздравляю! Вы молодец!</string>
     <string name="yeah">Да!</string>
-    <string name="deadline_time">Deadline time</string>
-    <string name="needed_time">Start time</string>
+    <string name="deadline_time">Дэдлайн</string>
+    <string name="needed_time">Начало беспокойства</string>
+    <string name="enter_changes">Вводите изменения</string>
+    <string name="ok">OK</string>
 </resources>

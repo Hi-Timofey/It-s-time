@@ -82,7 +82,7 @@
     <string name="oops">Oops…</string>
     <string name="confirm_your_email">Confirm your E-mail</string>
     <string name="confirmed">Your E-mail confirmed!</string>
-    <string name="synchronization">Synchronization</string>
+    <string name="synchronization">Synchronization via Google Calendar</string>
     <string name="after_verified">Check your E-mail!</string>
     <string name="delete">Delete</string>
     <string name="sure_want_delete">Are you sure you want to delete task</string>
@@ -90,4 +90,6 @@
     <string name="yeah">Yeah!</string>
     <string name="deadline_time">Deadline time</string>
     <string name="needed_time">Start time</string>
+    <string name="enter_changes">Enter changes</string>
+    <string name="ok">OK</string>
 </resources>

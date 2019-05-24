@@ -81,11 +81,11 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
 
     }
 
-    @Override
+    /*@Override
     protected void onRestart() {
         super.onRestart();
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, sphereFragment, getString(R.string.sphere_fragment))
                 .commit();
-    }
+    }*/
 }

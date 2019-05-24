@@ -132,8 +132,9 @@ class Task {
     }
 
     public String getTaskDescription() {
-        String fullDescription = name + "\n";
-        fullDescription += sphere + "\n" + description + "\n";
+        String fullDescription = "Name: " +name + "\n";
+        fullDescription +="Sphere: "+ sphere + "\n";
+        fullDescription += "Description: \n" + description;
         return fullDescription;
     }
 }

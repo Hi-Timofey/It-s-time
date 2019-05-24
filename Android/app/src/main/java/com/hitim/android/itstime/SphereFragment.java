@@ -163,7 +163,7 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
                 break;
         }
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new TaskListFragment(nextSphere), getString(R.string.task_list_fragment))
+                .replace(R.id.fragment_container, new TaskListFragment(nextSphere, getContext()), getString(R.string.task_list_fragment))
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();

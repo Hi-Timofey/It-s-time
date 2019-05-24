@@ -1,6 +1,7 @@
 package com.hitim.android.itstime;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,22 +32,22 @@ public class TaskListFragment extends ListFragment {
     public TaskListFragment() {
     }
 
-    public TaskListFragment(int sphere) {
+    public TaskListFragment(int sphere, Context c) {
         switch (sphere) {
             case R.string.all_tasks:
-                this.sphere = getString(R.string.all_tasks);
+                this.sphere = c.getString(R.string.all_tasks);
                 break;
             case R.string.work:
-                this.sphere = getString(R.string.work);
+                this.sphere = c.getString(R.string.work);
                 break;
             case R.string.health:
-                this.sphere = getString(R.string.health);
+                this.sphere = c.getString(R.string.health);
                 break;
             case R.string.routine:
-                this.sphere = getString(R.string.routine);
+                this.sphere = c.getString(R.string.routine);
                 break;
             case R.string.yourself:
-                this.sphere = getString(R.string.yourself);
+                this.sphere = c.getString(R.string.yourself);
                 break;
         }
     }
