@@ -4,7 +4,7 @@
     <string name="dialog_registration">Регистрация</string>
     <string name="did_you_want_to_quit">Вы хотите выйти?</string>
     <string name="emptyString">Поле не может быть пустым</string>
-    <string name="future_event">Когда нибудь…</string>
+    <string name="future_event">Когда-нибудь…</string>
     <string name="yourself">Личность</string>
     <string name="work">Работа</string>
     <string name="yes">Да</string>
