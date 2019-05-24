@@ -2,6 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
+
+    <!--
     <item
         android:id="@+id/action_search"
         android:enabled="false"
@@ -9,16 +11,18 @@
         android:title="@string/search_task"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:enabled="true"
+        android:title="@string/settings"
+        android:menuCategory="secondary"
+        app:showAsAction="never" /> -->
+
     <item
         android:id="@+id/action_profile"
         android:enabled="true"
         android:icon="@drawable/ic_account"
         android:title="@string/profile"
         app:showAsAction="collapseActionView|ifRoom" />
-    <item
-        android:id="@+id/action_settings"
-        android:enabled="true"
-        android:title="@string/settings"
-        android:menuCategory="secondary"
-        app:showAsAction="never" />
 </menu>

@@ -86,7 +86,7 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
         inflater.inflate(R.menu.sphere_menu, menu);
-        MenuItem mSearch = menu.findItem(R.id.action_search);
+        /*MenuItem mSearch = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = (SearchView) mSearch.getActionView();
         searchView.setQueryHint(getString(R.string.search_text));
@@ -109,7 +109,7 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
         });
         searchView.setOnSearchClickListener(view -> {
             //floatingActionButton.hide(false);
-        });
+        });*/
     }
 
     //Обработка нажатий кнопок на Toolbar'е
@@ -125,14 +125,14 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
                 break;
-            case R.id.action_settings:
+            /*case R.id.action_settings:
                 fragment = new SettingsFragment();
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, fragment, getString(R.string.settings_fragment))
                         .addToBackStack(null)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
-                break;
+                break;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
