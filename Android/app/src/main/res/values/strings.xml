@@ -94,4 +94,9 @@
     <string name="ok">OK</string>
     <string name="change_password">Change password</string>
     <string name="password_changed">Password changed!</string>
+    <string name="all_tasks_db" translatable="false" >All task\'s</string>
+    <string name="work_db" translatable="false" >Work</string>
+    <string name="health_db" translatable="false" >Health</string>
+    <string name="routine_db" translatable="false" >Routine</string>
+    <string name="yourself_db" translatable="false" >Yourself</string>
 </resources>

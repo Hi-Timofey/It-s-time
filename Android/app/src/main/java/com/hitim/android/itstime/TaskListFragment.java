@@ -36,19 +36,19 @@ public class TaskListFragment extends ListFragment {
     public TaskListFragment(int sphere, Context c) {
         switch (sphere) {
             case R.string.all_tasks:
-                this.sphere = c.getString(R.string.all_tasks);
+                this.sphere = c.getString(R.string.all_tasks_db);
                 break;
             case R.string.work:
-                this.sphere = c.getString(R.string.work);
+                this.sphere = c.getString(R.string.work_db);
                 break;
             case R.string.health:
-                this.sphere = c.getString(R.string.health);
+                this.sphere = c.getString(R.string.health_db);
                 break;
             case R.string.routine:
-                this.sphere = c.getString(R.string.routine);
+                this.sphere = c.getString(R.string.routine_db);
                 break;
             case R.string.yourself:
-                this.sphere = c.getString(R.string.yourself);
+                this.sphere = c.getString(R.string.yourself_db);
                 break;
         }
     }
@@ -95,18 +95,21 @@ public class TaskListFragment extends ListFragment {
         TaskAdapter taskAdapter;
         try {
             if (sphere.equals(getString(R.string.all_tasks))) {
+
                 taskArrayList = worker.getAllTasks();
                 if (!taskArrayList.isEmpty()) {
                     taskAdapter = new TaskAdapter(taskArrayList, getContext());
                     taskListview.setAdapter(taskAdapter);
                 } else taskListview.setEmptyView(viewEmpty);
+
             } else {
+
                 taskArrayList = worker.getAllTasksWithSphere(sphere);
-                Toast.makeText(getContext(),String.valueOf(taskArrayList.size()),Toast.LENGTH_LONG).show();
                 if (!taskArrayList.isEmpty()) {
                     taskAdapter = new TaskAdapter(taskArrayList, getContext());
                     taskListview.setAdapter(taskAdapter);
                 } else taskListview.setEmptyView(viewEmpty);
+
             }
         } catch (NullPointerException e) {
             Toast.makeText(getContext(), "Ooops:  " + e.getMessage(), Toast.LENGTH_SHORT).show();

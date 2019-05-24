@@ -141,7 +141,7 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
         if (task != null) {
             String sphereOfTask = "";
             taskNameTextView.setText(task.getName());
-            switch (task.getSphere()){
+            switch (task.getSphere()) {
                 case "Work":
                     sphereOfTask = getString(R.string.work);
                     break;
@@ -156,10 +156,15 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
                     break;
             }
             taskSphereTextView.setText(sphereOfTask);
-            if (task.getDescription().equals("")) taskDescTextView.setText(getString(R.string.emptyString));
-             else taskDescTextView.setText(task.getDescription());
+            if (task.getDescription().equals(""))
+                taskDescTextView.setText(getString(R.string.emptyString));
+            else taskDescTextView.setText(task.getDescription());
             taskDeadlineTextView.setText(task.getDatePicked().toString());
-            taskNeededTimeTextView.setText(task.getNeededTimePicked().toString());
+            try {
+                taskNeededTimeTextView.setText(task.getNeededTimePicked().toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             fm.beginTransaction().replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.task_list_fragment)))
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE).commit();
@@ -217,7 +222,7 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
 
                 break;
             case R.id.details_edit_deadline_time:
-                Toast.makeText(getContext(),"DEADLINE",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "DEADLINE", Toast.LENGTH_SHORT).show();
                 DatePicked deadTime = task.getDatePicked();
                 onTimeSetListener = (view, hourOfDay, minute, second) -> {
                     deadTime.setHour(hourOfDay);

@@ -62,6 +62,7 @@ class AsyncWorker {
                             List<Task> result = taskDao.getAllTasksWithSphere(sphere);
                             return result;
                         } catch (Exception e) {
+                            Log.w("DATABASE", e.getMessage());
                             return null;
                         }
                     }
@@ -76,6 +77,9 @@ class AsyncWorker {
             e.printStackTrace();
         } catch (TimeoutException e) {
             e.printStackTrace();
+        } catch (Exception e ){
+            e.printStackTrace();
+            Log.w("DATABASE", e.getMessage());
         }
         return null;
     }

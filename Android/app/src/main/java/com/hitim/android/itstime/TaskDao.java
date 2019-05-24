@@ -29,8 +29,8 @@ public interface TaskDao {
     Task getByName(String name);
 
     //Получить все задачи с опр. сферы
-    @Query("SELECT * FROM task WHERE sphere LIKE :sphere")
-    List<Task> getAllTasksWithSphere(String sphere);
+    @Query("SELECT * FROM task WHERE sphere LIKE :sphereStr")
+    List<Task> getAllTasksWithSphere(String sphereStr);
 
     //Новая задача
     @Insert
