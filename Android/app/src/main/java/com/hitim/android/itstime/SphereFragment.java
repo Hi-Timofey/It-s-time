@@ -2,8 +2,6 @@ package com.hitim.android.itstime;
 
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -116,16 +113,14 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Fragment fragment;
-        switch (item.getItemId()) {
-            case R.id.action_profile:
-                fragment = new UserProfileFragment();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment, getString(R.string.user_profile_fragment))
-                        .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit();
-                break;
-            /*case R.id.action_settings:
+        if (item.getItemId() == R.id.action_profile) {
+            fragment = new UserProfileFragment();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment, getString(R.string.user_profile_fragment))
+                    .addToBackStack(null)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit();
+                /*case R.id.action_settings:
                 fragment = new SettingsFragment();
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, fragment, getString(R.string.settings_fragment))
@@ -133,8 +128,8 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
                 break;*/
-            default:
-                return super.onOptionsItemSelected(item);
+        } else {
+            return super.onOptionsItemSelected(item);
         }
         return true;
     }

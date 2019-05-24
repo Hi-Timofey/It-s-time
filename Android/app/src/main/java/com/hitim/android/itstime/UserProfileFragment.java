@@ -67,7 +67,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
 
         confirmEmailLayout = v.findViewById(R.id.constraintLayout9);
         confirmEmailLayout.setOnClickListener(this);
-        passwordResetLayout = v.findViewById(R.id.consraint_password_reset);
+        passwordResetLayout = v.findViewById(R.id.constraint_password_reset);
         passwordResetLayout.setOnClickListener(this::onClick);
         userPictureImageView = v.findViewById(R.id.user_picture_image_view);
         userEmailText = v.findViewById(R.id.user_email_textview);
@@ -139,7 +139,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                 Toast.makeText(getContext(),getString(R.string.confirmed),Toast.LENGTH_SHORT).show();
             }
         }
-        if (v.getId() == R.id.consraint_password_reset) {
+        if (v.getId() == R.id.constraint_password_reset) {
             AlertDialog.Builder builderForText = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle_Light)
                     .setCancelable(true);
             View viewTextEdit = LayoutInflater.from(getContext()).inflate(R.layout.edit_dialog_layout, null);

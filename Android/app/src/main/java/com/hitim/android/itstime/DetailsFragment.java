@@ -82,10 +82,10 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
         descImageButton = v.findViewById(R.id.details_edit_description);
         deadlineImageButton = v.findViewById(R.id.details_edit_deadline_time);
         neededTimeImageButton = v.findViewById(R.id.details_edit_needed_time);
-        descImageButton.setOnClickListener(this::onClick);
-        deadlineImageButton.setOnClickListener(this::onClick);
-        googleSyncButton.setOnClickListener(this::onClick);
-        neededTimeImageButton.setOnClickListener(this::onClick);
+        descImageButton.setOnClickListener(this);
+        deadlineImageButton.setOnClickListener(this);
+        googleSyncButton.setOnClickListener(this);
+        neededTimeImageButton.setOnClickListener(this);
 
 
         toolbar = getActivity().findViewById(R.id.tool_bar);
@@ -200,15 +200,14 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
                         .commit();
                 break;
             case R.id.details_edit_description:
-
-                AlertDialog.Builder builderForText = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle_Light)
+                AlertDialog.Builder builderForText = new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle_Light)
                         .setCancelable(false);
                 View viewTextEdit = LayoutInflater.from(getContext()).inflate(R.layout.edit_dialog_layout, null);
-                TextInputEditText tiet = viewTextEdit.findViewById(R.id.edit_dialog_edit_text);
+                TextInputEditText textInputEditText = viewTextEdit.findViewById(R.id.edit_dialog_edit_text);
                 viewTextEdit.findViewById(R.id.edit_dialog_edit_text);
                 builderForText.setView(viewTextEdit);
                 builderForText.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
-                    String newDesc = tiet.getText().toString();
+                    String newDesc = textInputEditText.getText().toString();
                     task.setDescription(newDesc);
                     taskDescTextView.setText(newDesc);
                     new AsyncWorker().updateTask(task);

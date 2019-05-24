@@ -1,6 +1,7 @@
 package com.hitim.android.itstime;
 
 
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -94,21 +95,18 @@ public class TaskListFragment extends ListFragment {
         TaskAdapter taskAdapter;
         try {
             if (sphere.equals(getString(R.string.all_tasks))) {
-
                 taskArrayList = worker.getAllTasks();
                 if (!taskArrayList.isEmpty()) {
                     taskAdapter = new TaskAdapter(taskArrayList, getContext());
                     taskListview.setAdapter(taskAdapter);
                 } else taskListview.setEmptyView(viewEmpty);
-
             } else {
-
                 taskArrayList = worker.getAllTasksWithSphere(sphere);
+                Toast.makeText(getContext(),String.valueOf(taskArrayList.size()),Toast.LENGTH_LONG).show();
                 if (!taskArrayList.isEmpty()) {
                     taskAdapter = new TaskAdapter(taskArrayList, getContext());
                     taskListview.setAdapter(taskAdapter);
                 } else taskListview.setEmptyView(viewEmpty);
-
             }
         } catch (NullPointerException e) {
             Toast.makeText(getContext(), "Ooops:  " + e.getMessage(), Toast.LENGTH_SHORT).show();

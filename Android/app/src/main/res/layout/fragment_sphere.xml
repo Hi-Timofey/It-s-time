@@ -165,7 +165,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/work"
                     android:textColor="@color/whiteColor"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -225,7 +225,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/health"
                     android:textColor="@color/whiteColor"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -273,7 +273,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/yourself"
                     android:textColor="@color/whiteColor"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

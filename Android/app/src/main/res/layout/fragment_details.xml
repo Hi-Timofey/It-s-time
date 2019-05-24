@@ -282,14 +282,14 @@
                             android:layout_height="70dp">
 
                             <ImageButton
-                                android:id="@+id/google_pickture_calendar"
+                                android:id="@+id/google_image_calendar"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:layout_marginStart="32dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="8dp"
                                 android:background="@color/fui_transparent"
-                                android:src="@drawable/ic_igoogle_calendar"
+                                android:src="@drawable/ic_google_calendar"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -306,7 +306,7 @@
                                 android:textSize="14sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/google_pickture_calendar"
+                                app:layout_constraintStart_toEndOf="@id/google_image_calendar"
                                 app:layout_constraintTop_toTopOf="parent" />
 
 
