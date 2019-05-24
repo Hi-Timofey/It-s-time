@@ -69,7 +69,7 @@ public class TaskAdapter extends BaseAdapter {
         holder.imageView.setBorderColor(color);
         int resId = 0;
         int sphereColor = 0;
-        switch (task.getSphere()) {
+        switch (task.getSphere(Task.ENG_SPHERE)) {
             case "Work":
                 resId = R.string.work;
                 sphereColor = R.color.orange_10;

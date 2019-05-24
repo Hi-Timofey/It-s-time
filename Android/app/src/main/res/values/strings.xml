@@ -86,4 +86,8 @@
     <string name="after_verified">Check your E-mail!</string>
     <string name="delete">Delete</string>
     <string name="sure_want_delete">Are you sure you want to delete task</string>
+    <string name="congratulations">Congratulations! You have done well!</string>
+    <string name="yeah">Yeah!</string>
+    <string name="deadline_time">Deadline time</string>
+    <string name="needed_time">Start time</string>
 </resources>

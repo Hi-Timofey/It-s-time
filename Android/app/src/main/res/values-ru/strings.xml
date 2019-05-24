@@ -67,4 +67,8 @@
     <string name="after_verified">Проверьте свою почту!</string>
     <string name="delete">Удалить</string>
     <string name="sure_want_delete">Уверены что хотите удалить задачу</string>
+    <string name="congratulations">Поздравляю! Вы молодец!</string>
+    <string name="yeah">Да!</string>
+    <string name="deadline_time">Deadline time</string>
+    <string name="needed_time">Start time</string>
 </resources>

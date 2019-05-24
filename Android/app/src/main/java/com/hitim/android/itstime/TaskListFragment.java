@@ -27,7 +27,6 @@ public class TaskListFragment extends ListFragment {
     private FragmentManager fm;
     private String sphere = "";
     private View viewEmpty;
-    private String[] sphereArr = {"All Task's", "Work", "Health", "Routine", "Yourself"};
 
     public TaskListFragment() {
     }
@@ -35,19 +34,19 @@ public class TaskListFragment extends ListFragment {
     public TaskListFragment(int sphere) {
         switch (sphere) {
             case R.string.all_tasks:
-                this.sphere = sphereArr[0];
+                this.sphere = getString(R.string.all_tasks);
                 break;
             case R.string.work:
-                this.sphere = sphereArr[1];
+                this.sphere = getString(R.string.work);
                 break;
             case R.string.health:
-                this.sphere = sphereArr[2];
+                this.sphere = getString(R.string.health);
                 break;
             case R.string.routine:
-                this.sphere = sphereArr[3];
+                this.sphere = getString(R.string.routine);
                 break;
             case R.string.yourself:
-                this.sphere = sphereArr[4];
+                this.sphere = getString(R.string.yourself);
                 break;
         }
     }
@@ -93,7 +92,7 @@ public class TaskListFragment extends ListFragment {
         AsyncWorker worker = new AsyncWorker();
         TaskAdapter taskAdapter;
         try {
-            if (sphere.equals(sphereArr[0])) {
+            if (sphere.equals(getString(R.string.all_tasks))) {
 
                 taskArrayList = worker.getAllTasks();
                 if (!taskArrayList.isEmpty()) {

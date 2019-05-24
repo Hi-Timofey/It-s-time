@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -19,19 +20,23 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailsFragment extends Fragment implements DialogInterface.OnClickListener {
+public class DetailsFragment extends Fragment implements DialogInterface.OnClickListener, View.OnClickListener {
 
     private Task task;
     private Toolbar toolbar;
     private FragmentManager fm;
-    private AlertDialog sureToDelete;
-    private TextView taskNameTextView;
+    private AlertDialog sureToDelete, congratulationsDialog;
+    private TextView taskNameTextView, taskSphereTextView, taskDescTextView, taskDeadlineTextView, taskNeededTimeTextView;
+    private ImageButton descImageButton, deadlineImageButton, neededTimeImageButton;
     private AppBarLayout l;
+    private FloatingActionButton taskCompletedButton;
+
 
     public DetailsFragment() {
     }
@@ -50,8 +55,26 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_details, container, false);
+
+
         taskNameTextView = v.findViewById(R.id.details_task_name);
+        taskSphereTextView = v.findViewById(R.id.details_sphere_text);
+        taskDescTextView = v.findViewById(R.id.details_task_description);
+        taskDeadlineTextView = v.findViewById(R.id.details_task_deadline_time);
+        taskNeededTimeTextView = v.findViewById(R.id.details_task_deadline_time);
+
+
+        descImageButton = v.findViewById(R.id.details_edit_description);
+        deadlineImageButton = v.findViewById(R.id.details_edit_deadline_time);
+        neededTimeImageButton = v.findViewById(R.id.details_edit_needed_time);
+        descImageButton.setOnClickListener(this::onClick);
+        deadlineImageButton.setOnClickListener(this::onClick);
+        neededTimeImageButton.setOnClickListener(this::onClick);
+
+
         toolbar = getActivity().findViewById(R.id.tool_bar);
+        taskCompletedButton = v.findViewById(R.id.task_completed_fab);
+        taskCompletedButton.setOnClickListener(this);
         l = getActivity().findViewById(R.id.tool_bar_layout);
         l.setElevation(0);
         toolbar.setTitle("");
@@ -69,6 +92,10 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
         builder.setPositiveButton(R.string.yes, this);
         builder.setNegativeButton(R.string.no, this);
         sureToDelete = builder.create();
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle_Light);
+        builder1.setMessage(getString(R.string.congratulations));
+        builder1.setPositiveButton(R.string.yeah, (dialog, which) -> dialog.dismiss());
+        congratulationsDialog = builder1.create();
         return v;
     }
 
@@ -97,6 +124,10 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
     private void initTaskDetails() {
         if (task != null) {
             taskNameTextView.setText(task.getName());
+            taskSphereTextView.setText(task.getSphere(Task.RUS_SPHERE));
+            taskDescTextView.setText(task.getDescription());
+            taskDeadlineTextView.setText(task.getDatePicked().toString());
+            taskNeededTimeTextView.setText(task.getNeededTimePicked().toString());
         } else {
             fm.beginTransaction().replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.task_list_fragment)))
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE).commit();
@@ -114,6 +145,30 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
                     .commit();
         } else {
             dialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.task_completed_fab:
+                AsyncWorker worker = new AsyncWorker();
+                worker.deleteTask(task);
+                congratulationsDialog.show();
+                fm.beginTransaction()
+                        .replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.task_list_fragment)))
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                        .commit();
+                break;
+            case R.id.details_edit_description:
+
+                break;
+            case R.id.details_edit_deadline_time:
+
+                break;
+            case R.id.details_edit_needed_time:
+
+                break;
         }
     }
 }
