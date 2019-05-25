@@ -63,6 +63,8 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
         floatingActionMenu.setVisibility(View.VISIBLE);
         floatingActionMenu.showMenuButton(true);
         toolbar.setTitle(R.string.sphere);
+        toolbar.setNavigationIcon(null);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.whiteColor));
         toolbar.setFocusable(false);
         toolbar.setElevation(2);
         toolbar.setNavigationIcon(R.drawable.ic_menu);

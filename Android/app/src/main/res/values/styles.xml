@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="BlueApplicationStyle" parent="Theme.AppCompat.NoActionBar">
+    <style name="BlueApplicationStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/b_primary</item>
         <item name="colorAccent">@color/b_accent</item>
         <item name="colorPrimaryDark">@color/b_primary_dark</item>

@@ -64,6 +64,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="2dp"
                 android:text="@string/all_tasks"
+                android:textColor="@color/whiteColor"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:textSize="40sp"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -99,4 +99,5 @@
     <string name="health_db" translatable="false" >Health</string>
     <string name="routine_db" translatable="false" >Routine</string>
     <string name="yourself_db" translatable="false" >Yourself</string>
+    <string name="empty_data">Empty</string>
 </resources>

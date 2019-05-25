@@ -58,7 +58,6 @@ public class RegisterActivity extends AppCompatActivity {
         if (!validate(email, pass, name)) {
             return;
         }
-        dialog.show();
 
         mFirebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
@@ -121,6 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void onRegInWithMail(View view) {
+        dialog.show();
         createAccount(
                 Objects.requireNonNull(edMail.getText()).toString(),
                 Objects.requireNonNull(edPass.getText()).toString(),

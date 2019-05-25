@@ -44,12 +44,8 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
     private Task task;
     private Toolbar toolbar;
     private FragmentManager fm;
-    private ConstraintLayout googleSyncButton;
     private AlertDialog sureToDelete, congratulationsDialog;
     private TextView taskNameTextView, taskSphereTextView, taskDescTextView, taskDeadlineTextView, taskNeededTimeTextView;
-    private ImageButton descImageButton, deadlineImageButton, neededTimeImageButton;
-    private AppBarLayout l;
-    private FloatingActionButton taskCompletedButton;
 
 
     public DetailsFragment() {
@@ -76,12 +72,12 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
         taskDescTextView = v.findViewById(R.id.details_task_description);
         taskDeadlineTextView = v.findViewById(R.id.details_task_deadline_time);
         taskNeededTimeTextView = v.findViewById(R.id.details_task_needed_time);
-        googleSyncButton = v.findViewById(R.id.details_google_sync);
+        ConstraintLayout googleSyncButton = v.findViewById(R.id.details_google_sync);
 
 
-        descImageButton = v.findViewById(R.id.details_edit_description);
-        deadlineImageButton = v.findViewById(R.id.details_edit_deadline_time);
-        neededTimeImageButton = v.findViewById(R.id.details_edit_needed_time);
+        ImageButton descImageButton = v.findViewById(R.id.details_edit_description);
+        ImageButton deadlineImageButton = v.findViewById(R.id.details_edit_deadline_time);
+        ImageButton neededTimeImageButton = v.findViewById(R.id.details_edit_needed_time);
         descImageButton.setOnClickListener(this);
         deadlineImageButton.setOnClickListener(this);
         googleSyncButton.setOnClickListener(this);
@@ -89,9 +85,9 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
 
 
         toolbar = getActivity().findViewById(R.id.tool_bar);
-        taskCompletedButton = v.findViewById(R.id.task_completed_fab);
+        FloatingActionButton taskCompletedButton = v.findViewById(R.id.task_completed_fab);
         taskCompletedButton.setOnClickListener(this);
-        l = getActivity().findViewById(R.id.tool_bar_layout);
+        AppBarLayout l = getActivity().findViewById(R.id.tool_bar_layout);
         l.setElevation(0);
         toolbar.setTitle("");
         toolbar.setElevation(100);
@@ -160,10 +156,11 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
                 taskDescTextView.setText(getString(R.string.emptyString));
             else taskDescTextView.setText(task.getDescription());
             taskDeadlineTextView.setText(task.getDatePicked().toString());
-            try {
+            DatePicked neededTime = task.getNeededTimePicked();
+            if(neededTime.isNull()){
                 taskNeededTimeTextView.setText(task.getNeededTimePicked().toString());
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else {
+                taskNeededTimeTextView.setText(getString(R.string.empty_data));
             }
         } else {
             fm.beginTransaction().replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.task_list_fragment)))
@@ -222,7 +219,6 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
 
                 break;
             case R.id.details_edit_deadline_time:
-                Toast.makeText(getContext(), "DEADLINE", Toast.LENGTH_SHORT).show();
                 DatePicked deadTime = task.getDatePicked();
                 onTimeSetListener = (view, hourOfDay, minute, second) -> {
                     deadTime.setHour(hourOfDay);
@@ -263,7 +259,7 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
                 onTimeSetListener = (view, hourOfDay, minute, second) -> {
                     neededTime.setHour(hourOfDay);
                     neededTime.setMinutes(minute);
-                    task.setDatePicked(neededTime);
+                    task.setNeededTimePicked(neededTime);
                     taskNeededTimeTextView.setText(neededTime.toString());
                     new AsyncWorker().updateTask(task);
                 };
@@ -296,8 +292,8 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
             case R.id.details_google_sync:
                 Intent intent = new Intent(Intent.ACTION_INSERT)
                         .setData(Events.CONTENT_URI)
-                        .putExtra(EXTRA_EVENT_END_TIME, task.getNeededTimePicked().getCalendarFormat().getTimeInMillis())
-                        .putExtra(EXTRA_EVENT_BEGIN_TIME, task.getDatePicked().getCalendarFormat().getTimeInMillis())
+                        .putExtra(EXTRA_EVENT_END_TIME, task.getDatePicked().getCalendarFormat().getTimeInMillis())
+                        .putExtra(EXTRA_EVENT_BEGIN_TIME, task.getNeededTimePicked().getCalendarFormat().getTimeInMillis())
                         .putExtra(Events.TITLE, task.getName())
                         .putExtra(Events.DESCRIPTION, task.getTaskDescription())
                         .putExtra(Events.AVAILABILITY, Events.AVAILABILITY_BUSY);

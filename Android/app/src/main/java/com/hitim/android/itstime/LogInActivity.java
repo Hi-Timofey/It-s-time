@@ -124,8 +124,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
             signInWithGoogle(account);
         } else {
             dialog.dismiss();
-            Log.d("result message", result.getStatus().toString());
-            Toast.makeText(this, "result isn't successful", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, result.getStatus().getStatusMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
