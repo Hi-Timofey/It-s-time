@@ -27,10 +27,11 @@
 
             <ImageView
                 android:id="@+id/reg_welcome_icon"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_marginTop="2dp"
                 android:adjustViewBounds="false"
+                android:contentDescription="@string/icon_of_the_project"
                 android:cropToPadding="true"
                 android:gravity="center"
                 android:maxWidth="512dp"
@@ -44,8 +45,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_conversion_absoluteHeight="60dp"
-                tools:layout_conversion_absoluteWidth="60dp"
-                android:contentDescription="@string/icon_of_the_project" />
+                tools:layout_conversion_absoluteWidth="60dp" />
 
             <TextView
                 android:id="@+id/reg_welcome_text"
@@ -54,7 +54,7 @@
                 android:gravity="center"
                 android:text="@string/register"
                 android:textAlignment="center"
-                android:textSize="40sp"
+                android:textSize="32sp"
 
                 app:fontFamily="sans-serif-medium"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -82,14 +82,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/reg_til_0"
+                style="@style/FirebaseUI.TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:maxHeight="70dp"
-                android:minWidth="50dp"
+                android:layout_height="55dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
                 android:hint="@string/name"
+                android:maxHeight="70dp"
+                android:minWidth="50dp"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/ErrorText"
                 app:hintTextAppearance="@style/HintText_til"
@@ -106,22 +107,25 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:importantForAutofill="no"
-                    android:inputType="textAutoCorrect" />
+                    android:inputType="textAutoCorrect"
+                    android:singleLine="true" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/reg_til_1"
+                style="@style/FirebaseUI.TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:maxHeight="70dp"
-                android:minWidth="50dp"
+                android:layout_height="55dp"
                 android:layout_marginStart="24dp"
+
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
                 android:hint="@string/e_mail"
+                android:maxHeight="70dp"
+                android:minWidth="50dp"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/ErrorText"
                 app:hintTextAppearance="@style/HintText_til"
@@ -140,21 +144,24 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:importantForAutofill="no"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/reg_til_2"
+                style="@style/FirebaseUI.TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:maxHeight="70dp"
-                android:minWidth="50dp"
+                android:layout_height="55dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:hint="@string/password"
+                android:maxHeight="70dp"
+
+                android:minWidth="50dp"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/ErrorText"
                 app:hintTextAppearance="@style/HintText_til"
@@ -173,6 +180,7 @@
                     android:layout_marginEnd="8dp"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
+                    android:singleLine="true"
                     tools:layout_conversion_absoluteHeight="45dp"
                     tools:layout_conversion_absoluteWidth="379dp" />
 

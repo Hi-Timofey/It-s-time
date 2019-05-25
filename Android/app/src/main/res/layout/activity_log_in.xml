@@ -94,6 +94,7 @@
                 android:minHeight="50dp"
                 android:maxHeight="70dp"
                 app:errorEnabled="true"
+                style="@style/FirebaseUI.TextInputLayout.EmailField"
                 app:errorTextAppearance="@style/ErrorText"
                 app:hintTextAppearance="@style/HintText_til"
                 app:layout_constraintBottom_toTopOf="@+id/log_til_2"
@@ -110,6 +111,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
+                    android:singleLine="true"
                     android:importantForAutofill="no"
                     android:inputType="textEmailAddress" />
 
@@ -128,7 +130,7 @@
                 android:maxHeight="70dp"
                 app:errorEnabled="true"
                 app:errorTextAppearance="@style/ErrorText"
-                app:hintTextAppearance="@style/HintText_til"
+                app:hintTextAppearance="@style/FirebaseUI.TextInputLayout.PasswordField"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -139,6 +141,7 @@
                     android:id="@+id/log_edit_pass"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:singleLine="true"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"

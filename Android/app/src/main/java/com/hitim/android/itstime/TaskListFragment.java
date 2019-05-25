@@ -1,7 +1,6 @@
 package com.hitim.android.itstime;
 
 
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -80,7 +79,23 @@ public class TaskListFragment extends ListFragment {
         floatingActionMenu.hideMenuButton(true);
         floatingActionMenu.close(true);
         floatingActionMenu.setVisibility(View.INVISIBLE);
-        toolbar.setTitle(sphere);
+        switch (sphere) {
+            case "All task's":
+                toolbar.setTitle(getString(R.string.all_tasks));
+                break;
+            case "Work":
+                toolbar.setTitle(getString(R.string.all_tasks));
+                break;
+            case "Health":
+                toolbar.setTitle(getString(R.string.all_tasks));
+                break;
+            case "Yourself":
+                toolbar.setTitle(getString(R.string.all_tasks));
+                break;
+            case "Routine":
+                toolbar.setTitle(getString(R.string.all_tasks));
+                break;
+        }
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         toolbar.setNavigationOnClickListener(v1 -> fm.beginTransaction()
                 .replace(R.id.fragment_container, fm.findFragmentByTag(getString(R.string.sphere_fragment)))
@@ -94,8 +109,7 @@ public class TaskListFragment extends ListFragment {
         AsyncWorker worker = new AsyncWorker();
         TaskAdapter taskAdapter;
         try {
-            if (sphere.equals(getString(R.string.all_tasks))) {
-
+            if (sphere.equals(getString(R.string.all_tasks_db))) {
                 taskArrayList = worker.getAllTasks();
                 if (!taskArrayList.isEmpty()) {
                     taskAdapter = new TaskAdapter(taskArrayList, getContext());
