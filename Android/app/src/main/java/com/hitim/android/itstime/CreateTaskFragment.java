@@ -133,6 +133,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 changeSphereDialog();
                 break;
             case R.id.makeToDoFloatingActionButton:
+                Toast.makeText(getContext(),datePicked.toString(),Toast.LENGTH_LONG).show();
                 if (isValid()) {
                     task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked, priority);
                     AsyncWorker worker = new AsyncWorker();
@@ -223,7 +224,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             dpd.setTitle(getString(R.string.pick_date));
             dpd.setMinDate(now);
             dpd.setOnCancelListener(onCancelListener);
-            dpd.show(getFragmentManager(), getString(R.string.date_picker_dialog));
+            dpd.show(getFragmentManager(),"DEADLINE");
         } else {
             deadText.setText(getString(R.string.pick_deadline_date));
             datePicked.resetAll();
@@ -262,7 +263,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 tpd.setTitle(getString(R.string.pick_time));
                 tpd.setVersion(TimePickerDialog.Version.VERSION_2);
                 tpd.setOnCancelListener(onCancelListener);
-                tpd.show(getFragmentManager(), getString(R.string.time_picker_dialog));
+                tpd.show(getFragmentManager(), "TIMELINE");
             };
             dpd = DatePickerDialog.newInstance(
                     onDateSetListener,
