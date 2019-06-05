@@ -6,11 +6,11 @@
 
     <ImageView
         android:id="@+id/imageIcon"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="230dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="125dp"
         android:contentDescription="@string/on_board_icons"
         app:layout_constraintBottom_toTopOf="@+id/textUnderHead"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,12 +37,11 @@
 
     <TextView
         android:id="@+id/textUnderHead"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="24dp"
         android:textAlignment="center"
         android:textSize="25sp"
         android:textStyle="normal"

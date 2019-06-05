@@ -10,9 +10,9 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/slider_page"
         android:layout_width="0dp"
-        android:layout_height="526dp"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintBottom_toTopOf="@+id/dots_manager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,11 +23,13 @@
     <LinearLayout
         android:id="@+id/dots_manager"
         android:layout_width="100dp"
-        android:layout_height="35dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="4dp"
         android:gravity="center_horizontal"
+        android:maxHeight="35dp"
+        android:minHeight="20dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/startButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,14 +38,15 @@
     </LinearLayout>
 
 
-
     <Button
         android:id="@+id/startButton"
         android:layout_width="0dp"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
+        android:minHeight="30dp"
+        android:maxHeight="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/btn_background"
         android:onClick="onStartBtn"
         android:text="@string/start_now"
