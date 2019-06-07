@@ -1,6 +1,7 @@
 package com.hitim.android.itstime;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,21 +15,26 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.clans.fab.FloatingActionMenu;
 
-public class SphereFragment extends Fragment implements View.OnClickListener {
+import java.util.List;
+
+public class SphereFragment extends Fragment implements ItemClickListener {
 
     private Toolbar toolbar;
     private FragmentManager fragmentManager;
     private final Activity activity = getActivity();
     private FloatingActionMenu floatingActionMenu;
-    private CardView allCard, workCard, healthCard, routineCard, youCard;
-
+    //For Recycler View
+    private RecyclerView rv;
+    private LinearLayoutManager linLayManager;
+    private List<Sphere> spheres;
     private int nextSphere;
 
     @Override
@@ -43,20 +49,11 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_sphere, container, false);
         toolbar = getActivity().findViewById(R.id.tool_bar);
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
-        allCard = v.findViewById(R.id.card_all_tasks);
-        allCard.setOnClickListener(this);
-        healthCard = v.findViewById(R.id.card_health);
-        healthCard.setOnClickListener(this);
-        routineCard = v.findViewById(R.id.card_routine);
-        routineCard.setOnClickListener(this);
-        workCard = v.findViewById(R.id.card_work);
-        workCard.setOnClickListener(this);
-        youCard = v.findViewById(R.id.card_yourself);
-        youCard.setOnClickListener(this);
-
+        rv = v.findViewById(R.id.sphere_fragment_recycler_view);
         return v;
     }
 
+    @SuppressLint("Assert")
     @Override
     public void onStart() {
         super.onStart();
@@ -69,6 +66,15 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
         toolbar.setElevation(2);
         toolbar.setNavigationIcon(R.drawable.ic_menu);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        //For recycler view
+        linLayManager = new LinearLayoutManager(getContext());
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(linLayManager);
+        Sphere.initDefaultSpheres(getContext());
+        spheres = Sphere.getDefaultSpheres();
+        RVAdapter adapter = new RVAdapter(spheres, getContext());
+        adapter.setClickListener(this);
+        rv.setAdapter(adapter);
     }
 
     @Override
@@ -137,22 +143,25 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.card_all_tasks:
+    public void onClick(View view, int position) {
+        final Sphere sphere = spheres.get(position);
+        String name = sphere.getName();
+        Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
+        /*switch (sphere.getName()) {
+            case "All task\\'s":
                 nextSphere = R.string.all_tasks;
                 break;
-            case R.id.card_health:
-                nextSphere = R.string.health;
-                break;
-            case R.id.card_work:
+            case "Work":
                 nextSphere = R.string.work;
                 break;
-            case R.id.card_routine:
+            case "Routine":
                 nextSphere = R.string.routine;
                 break;
-            case R.id.card_yourself:
+            case "Yourself":
                 nextSphere = R.string.yourself;
+                break;
+            case "Health":
+                nextSphere = R.string.health;
                 break;
             default:
                 Toast.makeText(getContext(), getString(R.string.oops), Toast.LENGTH_SHORT).show();
@@ -163,6 +172,6 @@ public class SphereFragment extends Fragment implements View.OnClickListener {
                 .replace(R.id.fragment_container, new TaskListFragment(nextSphere, getContext()), getString(R.string.task_list_fragment))
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit();
+                .commit();*/
     }
 }
