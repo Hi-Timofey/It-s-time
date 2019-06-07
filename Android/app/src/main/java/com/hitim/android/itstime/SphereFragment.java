@@ -146,32 +146,10 @@ public class SphereFragment extends Fragment implements ItemClickListener {
     public void onClick(View view, int position) {
         final Sphere sphere = spheres.get(position);
         String name = sphere.getName();
-        Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
-        /*switch (sphere.getName()) {
-            case "All task\\'s":
-                nextSphere = R.string.all_tasks;
-                break;
-            case "Work":
-                nextSphere = R.string.work;
-                break;
-            case "Routine":
-                nextSphere = R.string.routine;
-                break;
-            case "Yourself":
-                nextSphere = R.string.yourself;
-                break;
-            case "Health":
-                nextSphere = R.string.health;
-                break;
-            default:
-                Toast.makeText(getContext(), getString(R.string.oops), Toast.LENGTH_SHORT).show();
-                nextSphere = -1;
-                break;
-        }
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new TaskListFragment(nextSphere, getContext()), getString(R.string.task_list_fragment))
+                .replace(R.id.fragment_container, new TaskListFragment(name, getContext()), getString(R.string.task_list_fragment))
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit();*/
+                .commit();
     }
 }

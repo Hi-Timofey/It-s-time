@@ -31,7 +31,7 @@ public class Sphere {
 
     public static void initDefaultSpheres(Context context) {
         defaultSpheres = new ArrayList<>();
-        defaultSpheres.add(new Sphere(context.getString(R.string.all_tasks_db), R.drawable.btn_background, R.drawable.arrow_up));
+        defaultSpheres.add(new Sphere(context.getString(R.string.all_tasks_db), R.drawable.all_tasks_background, R.drawable.ic_arrow_forward));
         defaultSpheres.add(new Sphere(context.getString(R.string.work_db), R.drawable.work_background, R.drawable.ic_work));
         defaultSpheres.add(new Sphere(context.getString(R.string.health_db), R.drawable.health_background, R.drawable.ic_heart));
         defaultSpheres.add(new Sphere(context.getString(R.string.routine_db), R.drawable.routine_background, R.drawable.ic_routine));
