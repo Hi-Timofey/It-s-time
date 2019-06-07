@@ -32,24 +32,8 @@ public class TaskListFragment extends ListFragment {
     public TaskListFragment() {
     }
 
-    public TaskListFragment(int sphere, Context c) {
-        switch (sphere) {
-            case R.string.all_tasks:
-                this.sphere = c.getString(R.string.all_tasks_db);
-                break;
-            case R.string.work:
-                this.sphere = c.getString(R.string.work_db);
-                break;
-            case R.string.health:
-                this.sphere = c.getString(R.string.health_db);
-                break;
-            case R.string.routine:
-                this.sphere = c.getString(R.string.routine_db);
-                break;
-            case R.string.yourself:
-                this.sphere = c.getString(R.string.yourself_db);
-                break;
-        }
+    public TaskListFragment(String sphere, Context c) {
+        this.sphere = sphere;
     }
 
     @Override
@@ -79,21 +63,22 @@ public class TaskListFragment extends ListFragment {
         floatingActionMenu.hideMenuButton(true);
         floatingActionMenu.close(true);
         floatingActionMenu.setVisibility(View.INVISIBLE);
+        Toast.makeText(getContext(),sphere,Toast.LENGTH_SHORT).show();
         switch (sphere) {
             case "All task's":
                 toolbar.setTitle(getString(R.string.all_tasks));
                 break;
             case "Work":
-                toolbar.setTitle(getString(R.string.all_tasks));
+                toolbar.setTitle(getString(R.string.work));
                 break;
             case "Health":
-                toolbar.setTitle(getString(R.string.all_tasks));
+                toolbar.setTitle(getString(R.string.health));
                 break;
             case "Yourself":
-                toolbar.setTitle(getString(R.string.all_tasks));
+                toolbar.setTitle(getString(R.string.yourself));
                 break;
             case "Routine":
-                toolbar.setTitle(getString(R.string.all_tasks));
+                toolbar.setTitle(getString(R.string.routine));
                 break;
         }
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
