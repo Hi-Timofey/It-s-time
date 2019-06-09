@@ -5,7 +5,8 @@ import androidx.annotation.NonNull;
 
 import java.util.Calendar;
 
-/** {@link DatePicked} - класс для работы с временем
+/**
+ * {@link DatePicked} - класс для работы с временем
  * Используется для указания времени дедлайна и ремайндра
  * в классе {@link Task}
  */
@@ -21,6 +22,8 @@ public class DatePicked {
     private int hour;
     private int minutes;
     private int type;
+    private static final int sec = 0;
+
 
     @NonNull
     @Override
@@ -73,7 +76,7 @@ public class DatePicked {
     public Calendar getCalendarFormat() {
         Calendar c = Calendar.getInstance();
         try {
-            c.set(year,month,day,hour,minutes);
+            c.set(year, month, day, hour, minutes, sec);
             return c;
         } catch (Exception e) {
             e.printStackTrace();
