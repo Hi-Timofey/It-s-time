@@ -5,6 +5,8 @@
         <item name="colorAccent">@color/b_accent</item>
         <item name="colorPrimaryDark">@color/b_primary_dark</item>
         <item name="android:windowBackground">@color/whiteColor</item>
+        <item name="actionBarStyle">@style/ToolBar.Light</item>
+        <item name="searchViewStyle">@style/MySearchViewStyle.Light</item>
     </style>
 
     <style name="BlueApplicationStyle.LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -72,5 +74,11 @@
     <style name="ItsCard">
         <item name="cardElevation">3dp</item>
         <item name="cardCornerRadius">10dp</item>
+    </style>
+
+    <style name="MySearchViewStyle.Light" parent="Widget.AppCompat.SearchView">
+        <item name="closeIcon">@drawable/ic_close_white_24dp</item>
+        <item name="android:closeIcon">@drawable/ic_arrow_back</item>
+        <item name="searchHintIcon">@drawable/ic_search</item>
     </style>
 </resources>

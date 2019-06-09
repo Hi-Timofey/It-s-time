@@ -143,7 +143,7 @@ public class TaskListFragment extends ListFragment {
         searchEditText.setTextColor(getResources().getColor(R.color.whiteColor));
         searchEditText.setHintTextColor(getResources().getColor(R.color.whiteColor));
         searchView.setQueryHint(getString(R.string.search_text));
-        searchView.setIconifiedByDefault(false);
+        searchView.setIconifiedByDefault(true);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -153,7 +153,7 @@ public class TaskListFragment extends ListFragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                taskAdapter.getFilter().filter(newText);
+                if (taskAdapter != null) taskAdapter.getFilter().filter(newText);
                 return true;
             }
         });
