@@ -114,8 +114,8 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             Picasso.with(getContext())
                     .load(mUser.getPhotoUrl())
                     .fit().centerCrop()
-                    .placeholder(R.drawable.user_profile_image_placeholder)
-                    .error(R.mipmap.ic_launcher)
+                    .placeholder(R.drawable.ic_ghost_only)
+                    .error(R.drawable.ic_account)
                     .into(userPictureImageView);
             if(mUser.isEmailVerified()){
                 emailVerified.setText(getString(R.string.confirmed));

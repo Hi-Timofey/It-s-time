@@ -84,7 +84,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/log_til_1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
@@ -106,7 +106,6 @@
                     android:id="@+id/log_edit_log"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="8dp"
                     android:importantForAutofill="no"
                     android:inputType="textEmailAddress"
                     android:minHeight="30dp"
@@ -119,7 +118,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/log_til_2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
@@ -140,11 +139,10 @@
                     android:id="@+id/log_edit_pass"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:padding="10dp"
                     android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:minHeight="30dp"
+                    android:padding="10dp"
                     tools:layout_conversion_absoluteHeight="45dp"
                     tools:layout_conversion_absoluteWidth="379dp" />
 
