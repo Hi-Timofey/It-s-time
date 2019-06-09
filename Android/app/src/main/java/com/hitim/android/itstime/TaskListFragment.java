@@ -140,10 +140,8 @@ public class TaskListFragment extends ListFragment {
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = (SearchView) mSearch.getActionView();
         searchView.setQueryHint(getString(R.string.search_text));
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setIconifiedByDefault(true);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
             @Override
             public boolean onQueryTextSubmit(String query) {
 
@@ -152,9 +150,8 @@ public class TaskListFragment extends ListFragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                String text = newText;
-                taskAdapter.filter(text);
-                return false;
+                taskAdapter.getFilter().filter(newText);
+                return true;
             }
         });
     }

@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import com.joooonho.SelectableRoundedImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +21,7 @@ import java.util.List;
  * на экран, чем в обычном списке
  */
 
-public class TaskAdapter extends BaseAdapter {
+public class TaskAdapter extends BaseAdapter implements android.widget.Filterable {
 
     private List<Task> taskArrayList;
     private Context context;
@@ -90,6 +92,49 @@ public class TaskAdapter extends BaseAdapter {
         holder.sphere.setText(context.getString(resId));
         holder.sphere.setTextColor(context.getResources().getColor(sphereColor));
         return convertView;
+    }
+
+    public void filter(String newText) {
+        /*newText = newText.toLowerCase(Locale.getDefault());
+        TaskListFragment.taskArrayList.clear();
+        if (newText.length() == 0) {
+            TaskListFragment.taskArrayList.addAll(taskArrayList);
+        } else {
+            for (Task wp : taskArrayList) {
+                if (wp.getName().toLowerCase(Locale.getDefault()).contains(newText)) {
+                    TaskListFragment.taskArrayList.add(wp);
+                }
+            }
+        }
+        notifyDataSetChanged();*/
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults result = new FilterResults();
+                if(constraint == null || constraint.length() == 0){
+                    result.values = taskArrayList;
+                    result.count = taskArrayList.size();
+                }else{
+                    List<Task> newTasks = new ArrayList<>();
+                    for(Task task: taskArrayList){
+                        if(task.getName().toLowerCase().contains(constraint))
+                            newTasks.add(task);
+                    }
+                    result.values = newTasks;
+                    result.count = newTasks.size();
+                }
+                return result;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                notifyDataSetChanged();
+            }
+        };
     }
 
     private static class ViewHolder {
