@@ -25,7 +25,7 @@
         <activity android:name=".OnBoardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" /><!--Для отключения бага по индексации гугла -->
+                <action android:name="android.intent.action.VIEW" /><!--Для отключения индексации гугла -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -148,8 +148,13 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             builderForText.setView(viewTextEdit);
             builderForText.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
                 String newPass = tiet.getText().toString();
-                mUser.updatePassword(newPass);
-                Toast.makeText(getContext(),getString(R.string.password_changed),Toast.LENGTH_LONG).show();
+                String tmp = newPass;
+                if(!tmp.trim().equals("") && tmp.length() >= 8){
+                    mUser.updatePassword(newPass);
+                    Toast.makeText(getContext(),getString(R.string.password_changed),Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(),getString(R.string.incorrect_pass),Toast.LENGTH_LONG).show();
+                }
             });
             builderForText.create().show();
         }

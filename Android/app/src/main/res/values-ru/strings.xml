@@ -76,4 +76,5 @@
     <string name="change_password">Поменять пароль</string>
     <string name="password_changed">Пароль сменён!</string>
     <string name="empty_data">Ничего</string>
+    <string name="incorrect_pass">Некорректный пароль</string>
 </resources>
