@@ -3,6 +3,7 @@ package com.hitim.android.itstime;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +25,13 @@ import java.util.List;
 public class TaskAdapter extends BaseAdapter implements android.widget.Filterable {
 
     private List<Task> taskArrayList;
+    private List<Task> copyOfArrayList;
     private Context context;
 
     public TaskAdapter(List<Task> list, Context cont) {
         this.taskArrayList = list;
         this.context = cont;
+        this.copyOfArrayList = list;
     }
 
     @Override
@@ -94,44 +97,36 @@ public class TaskAdapter extends BaseAdapter implements android.widget.Filterabl
         return convertView;
     }
 
-    public void filter(String newText) {
-        /*newText = newText.toLowerCase(Locale.getDefault());
-        TaskListFragment.taskArrayList.clear();
-        if (newText.length() == 0) {
-            TaskListFragment.taskArrayList.addAll(taskArrayList);
-        } else {
-            for (Task wp : taskArrayList) {
-                if (wp.getName().toLowerCase(Locale.getDefault()).contains(newText)) {
-                    TaskListFragment.taskArrayList.add(wp);
-                }
-            }
-        }
-        notifyDataSetChanged();*/
-    }
 
     @Override
     public Filter getFilter() {
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString().toLowerCase();
+                Log.i("SEARCH_ENGINE",charString);
+                ArrayList<Task> taskListFiltered = new ArrayList<>(taskArrayList);
+                taskListFiltered.clear();
                 FilterResults result = new FilterResults();
-                if(constraint == null || constraint.length() == 0){
-                    result.values = taskArrayList;
-                    result.count = taskArrayList.size();
+                if(charString.length() == 0){
+                    result.values = copyOfArrayList;
+                    result.count = copyOfArrayList.size();
                 }else{
-                    List<Task> newTasks = new ArrayList<>();
                     for(Task task: taskArrayList){
-                        if(task.getName().toLowerCase().contains(constraint))
-                            newTasks.add(task);
+                        if(task.getName().toLowerCase().contains(charString) || task.getSphere().contains(charString))
+                            taskListFiltered.add(task);
                     }
-                    result.values = newTasks;
-                    result.count = newTasks.size();
+                    result.values = taskListFiltered;
+                    result.count = taskListFiltered.size();
                 }
                 return result;
             }
 
+
+
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
+                taskArrayList = (ArrayList<Task>) results.values;
                 notifyDataSetChanged();
             }
         };

@@ -17,7 +17,7 @@ import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
 
 public class SphereActivity extends AppCompatActivity implements ColorPickerDialogListener {
 
-    private SphereFragment sphereFragment = new SphereFragment();
+    private SphereFragment sphereFragment;
     private FragmentManager fragmentManager;
     private FirebaseAuth mFirebaseAuth;
 
@@ -43,8 +43,9 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
             startActivity(i);
             finish();
         }
+        sphereFragment = new SphereFragment();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, sphereFragment, getString(R.string.sphere_fragment))
+                .add(R.id.fragment_container, sphereFragment, getString(R.string.sphere_fragment))
                 .commit();
     }
 
