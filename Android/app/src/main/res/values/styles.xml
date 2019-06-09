@@ -78,7 +78,5 @@
 
     <style name="MySearchViewStyle.Light" parent="Widget.AppCompat.SearchView">
         <item name="closeIcon">@drawable/ic_close_white_24dp</item>
-        <item name="android:closeIcon">@drawable/ic_arrow_back</item>
-        <item name="searchHintIcon">@drawable/ic_search</item>
     </style>
 </resources>

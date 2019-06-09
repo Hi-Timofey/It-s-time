@@ -133,7 +133,6 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 changeSphereDialog();
                 break;
             case R.id.makeToDoFloatingActionButton:
-                Toast.makeText(getContext(),datePicked.toString(),Toast.LENGTH_LONG).show();
                 if (isValid()) {
                     task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked, priority);
                     AsyncWorker worker = new AsyncWorker();
