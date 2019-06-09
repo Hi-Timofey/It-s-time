@@ -99,15 +99,31 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
                     .addToBackStack(null)
                     .commit();
         });
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle_Light);
-        builder.setMessage(getString(R.string.sure_want_delete) + " " + task.getName() + "?");
-        builder.setPositiveButton(R.string.yes, this);
-        builder.setNegativeButton(R.string.no, this);
-        sureToDelete = builder.create();
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle_Light);
-        builder1.setMessage(getString(R.string.congratulations));
-        builder1.setPositiveButton(R.string.yeah, (dialog, which) -> dialog.dismiss());
-        congratulationsDialog = builder1.create();
+        if (task != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle_Light);
+            builder.setMessage(getString(R.string.sure_want_delete) + " " + task.getName() + "?");
+            builder.setPositiveButton(R.string.yes, this);
+            builder.setNegativeButton(R.string.no, this);
+            sureToDelete = builder.create();
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle_Light);
+            builder1.setMessage(getString(R.string.congratulations));
+            builder1.setPositiveButton(R.string.yeah, (dialog, which) -> dialog.dismiss());
+            congratulationsDialog = builder1.create();
+        } else {
+            String tag = getString(R.string.sphere_fragment);
+            SphereFragment sf = (SphereFragment) getFragmentManager().findFragmentByTag(tag);
+            if (sf != null) {
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, sf, tag)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+            } else {
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new SphereFragment(), tag)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+            }
+        }
         return v;
     }
 
@@ -157,7 +173,7 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
             else taskDescTextView.setText(task.getDescription());
             taskDeadlineTextView.setText(task.getDatePicked().toString());
             DatePicked neededTime = task.getNeededTimePicked();
-            if(neededTime.isNull()){
+            if (neededTime.isNull()) {
                 taskNeededTimeTextView.setText(task.getNeededTimePicked().toString());
             } else {
                 taskNeededTimeTextView.setText(getString(R.string.empty_data));

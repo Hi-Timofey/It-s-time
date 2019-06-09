@@ -57,7 +57,7 @@
             fab:fab_label="@string/create_task"
             fab:fab_size="mini" />
 
-        <com.github.clans.fab.FloatingActionButton
+        <!--<com.github.clans.fab.FloatingActionButton
             android:id="@+id/create_sphere_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             app:fab_colorPressed="@color/b_accent_light"
             app:fab_colorRipple="@color/b_accent_light"
             fab:fab_label="@string/create_sphere"
-            fab:fab_size="mini" />
+            fab:fab_size="mini" />-->
 
     </com.github.clans.fab.FloatingActionMenu>
 

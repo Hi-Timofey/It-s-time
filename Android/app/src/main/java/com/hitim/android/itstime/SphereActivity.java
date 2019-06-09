@@ -3,7 +3,6 @@ package com.hitim.android.itstime;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,11 +17,9 @@ import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
 
 public class SphereActivity extends AppCompatActivity implements ColorPickerDialogListener {
 
-    private Toolbar toolbar;
     private SphereFragment sphereFragment = new SphereFragment();
     private FragmentManager fragmentManager;
     private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFireUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +27,7 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
         setContentView(R.layout.activity_sphere);
         FirebaseApp.initializeApp(SphereActivity.this);
         mFirebaseAuth = FirebaseAuth.getInstance();
-        toolbar = findViewById(R.id.tool_bar);
+        Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         fragmentManager = getSupportFragmentManager();
     }
@@ -38,7 +35,7 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
     @Override
     protected void onStart() {
         super.onStart();
-        mFireUser = mFirebaseAuth.getCurrentUser();
+        FirebaseUser mFireUser = mFirebaseAuth.getCurrentUser();
         if (mFireUser == null) {
             mFirebaseAuth.signOut();
             //TODO: Обработать вылет юзера из сети
@@ -51,21 +48,16 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
                 .commit();
     }
 
+    //Обработка кнопок создания задачи и создания сферы
     public void OnFabClick(View view) {
         Fragment fragment;
-        switch (view.getId()) {
-            case R.id.create_sphere_fab:
-                Toast.makeText(this,"Someday...",Toast.LENGTH_SHORT).show();
-                view.setClickable(false);
-                break;
-            case R.id.create_task_fab:
-                fragment = new CreateTaskFragment();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment, getString(R.string.create_task_fragment))
-                        .addToBackStack(null)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit();
-                break;
+        if (view.getId() == R.id.create_task_fab) {
+            fragment = new CreateTaskFragment();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment, getString(R.string.create_task_fragment))
+                    .addToBackStack(null)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit();
         }
     }
 
@@ -73,6 +65,7 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
     @Override
     public void onColorSelected(int dialogId, int color) {
         CreateTaskFragment f = (CreateTaskFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.create_task_fragment));
+        assert f != null;
         f.setTaskColor(color);
     }
 
@@ -81,11 +74,9 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
 
     }
 
-    /*@Override
+    @Override
     protected void onRestart() {
         super.onRestart();
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, sphereFragment, getString(R.string.sphere_fragment))
-                .commit();
-    }*/
+
+    }
 }

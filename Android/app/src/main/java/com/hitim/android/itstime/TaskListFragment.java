@@ -63,7 +63,6 @@ public class TaskListFragment extends ListFragment {
         floatingActionMenu.hideMenuButton(true);
         floatingActionMenu.close(true);
         floatingActionMenu.setVisibility(View.INVISIBLE);
-        Toast.makeText(getContext(),sphere,Toast.LENGTH_SHORT).show();
         switch (sphere) {
             case "All task's":
                 toolbar.setTitle(getString(R.string.all_tasks));
