@@ -115,7 +115,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                     .load(mUser.getPhotoUrl())
                     .fit().centerCrop()
                     .placeholder(R.drawable.user_profile_image_placeholder)
-                    .error(R.drawable.ic_account)
+                    .error(R.mipmap.ic_launcher)
                     .into(userPictureImageView);
             if(mUser.isEmailVerified()){
                 emailVerified.setText(getString(R.string.confirmed));

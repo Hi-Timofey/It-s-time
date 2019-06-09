@@ -4,6 +4,8 @@ import android.app.Application;
 
 import androidx.room.Room;
 
+import com.crashlytics.android.Crashlytics;
+
 /**
  * {@link App} создан для работы с {@link TaskDataBase}
  * в стиле SINGLETON: один экземпляр класса на всю программу
