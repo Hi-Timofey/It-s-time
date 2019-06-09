@@ -104,7 +104,6 @@ public class TaskAdapter extends BaseAdapter implements android.widget.Filterabl
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 String charString = constraint.toString().toLowerCase();
-                Log.i("SEARCH_ENGINE",charString);
                 ArrayList<Task> taskListFiltered = new ArrayList<>(taskArrayList);
                 taskListFiltered.clear();
                 FilterResults result = new FilterResults();
@@ -113,7 +112,7 @@ public class TaskAdapter extends BaseAdapter implements android.widget.Filterabl
                     result.count = copyOfArrayList.size();
                 }else{
                     for(Task task: taskArrayList){
-                        if(task.getName().toLowerCase().contains(charString) || task.getSphere().contains(charString))
+                        if(task.getName().toLowerCase().contains(charString) || task.getSphere().toLowerCase().contains(charString))
                             taskListFiltered.add(task);
                     }
                     result.values = taskListFiltered;

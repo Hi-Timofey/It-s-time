@@ -143,7 +143,7 @@ public class TaskListFragment extends ListFragment {
         searchEditText.setTextColor(getResources().getColor(R.color.whiteColor));
         searchEditText.setHintTextColor(getResources().getColor(R.color.whiteColor));
         searchView.setQueryHint(getString(R.string.search_text));
-        searchView.setIconifiedByDefault(true);
+        searchView.setIconifiedByDefault(false);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
