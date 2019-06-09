@@ -64,7 +64,7 @@ public class SphereFragment extends Fragment implements ItemClickListener {
         toolbar.setTitleTextColor(getResources().getColor(R.color.whiteColor));
         toolbar.setFocusable(false);
         toolbar.setElevation(2);
-        toolbar.setNavigationIcon(R.drawable.ic_menu);
+        //toolbar.setNavigationIcon(R.drawable.ic_menu);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         //For recycler view
         linLayManager = new LinearLayoutManager(getContext());

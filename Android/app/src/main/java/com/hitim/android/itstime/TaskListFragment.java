@@ -1,15 +1,21 @@
 package com.hitim.android.itstime;
 
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,10 +30,11 @@ public class TaskListFragment extends ListFragment {
     private FloatingActionMenu floatingActionMenu;
     private Toolbar toolbar;
     private ListView taskListview;
-    private List<Task> taskArrayList;
+    public static List<Task> taskArrayList;
     private FragmentManager fm;
     private String sphere = "";
     private View viewEmpty;
+    private TaskAdapter taskAdapter;
 
     public TaskListFragment() {
     }
@@ -60,10 +67,10 @@ public class TaskListFragment extends ListFragment {
     @Override
     public void onStart() {
         super.onStart();
+        setHasOptionsMenu(true);
         floatingActionMenu.hideMenuButton(true);
         floatingActionMenu.close(true);
         floatingActionMenu.setVisibility(View.INVISIBLE);
-        Toast.makeText(getContext(),sphere,Toast.LENGTH_SHORT).show();
         switch (sphere) {
             case "All task's":
                 toolbar.setTitle(getString(R.string.all_tasks));
@@ -92,7 +99,6 @@ public class TaskListFragment extends ListFragment {
 
     public void fillListView() {
         AsyncWorker worker = new AsyncWorker();
-        TaskAdapter taskAdapter;
         try {
             if (sphere.equals(getString(R.string.all_tasks_db))) {
                 taskArrayList = worker.getAllTasks();
@@ -124,5 +130,32 @@ public class TaskListFragment extends ListFragment {
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.task_list_menu, menu);
+        MenuItem mSearch = menu.findItem(R.id.action_search);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        final SearchView searchView = (SearchView) mSearch.getActionView();
+        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        searchEditText.setTextColor(getResources().getColor(R.color.whiteColor));
+        searchEditText.setHintTextColor(getResources().getColor(R.color.whiteColor));
+        searchView.setQueryHint(getString(R.string.search_text));
+        searchView.setIconifiedByDefault(true);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (taskAdapter != null) taskAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
     }
 }

@@ -3,14 +3,17 @@ package com.hitim.android.itstime;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import com.joooonho.SelectableRoundedImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,14 +22,16 @@ import java.util.List;
  * на экран, чем в обычном списке
  */
 
-public class TaskAdapter extends BaseAdapter {
+public class TaskAdapter extends BaseAdapter implements android.widget.Filterable {
 
     private List<Task> taskArrayList;
+    private List<Task> copyOfArrayList;
     private Context context;
 
     public TaskAdapter(List<Task> list, Context cont) {
         this.taskArrayList = list;
         this.context = cont;
+        this.copyOfArrayList = list;
     }
 
     @Override
@@ -90,6 +95,40 @@ public class TaskAdapter extends BaseAdapter {
         holder.sphere.setText(context.getString(resId));
         holder.sphere.setTextColor(context.getResources().getColor(sphereColor));
         return convertView;
+    }
+
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString().toLowerCase();
+                ArrayList<Task> taskListFiltered = new ArrayList<>(taskArrayList);
+                taskListFiltered.clear();
+                FilterResults result = new FilterResults();
+                if(charString.length() == 0){
+                    result.values = copyOfArrayList;
+                    result.count = copyOfArrayList.size();
+                }else{
+                    for(Task task: taskArrayList){
+                        if(task.getName().toLowerCase().contains(charString) || task.getSphere().toLowerCase().contains(charString))
+                            taskListFiltered.add(task);
+                    }
+                    result.values = taskListFiltered;
+                    result.count = taskListFiltered.size();
+                }
+                return result;
+            }
+
+
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                taskArrayList = (ArrayList<Task>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     private static class ViewHolder {

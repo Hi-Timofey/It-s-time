@@ -35,7 +35,7 @@
     <string name="pick_time">Выберите время</string>
     <string name="register_failed">Регистрация не удалась!</string>
     <string name="register_complete">Регистрация удалась!</string>
-    <string name="search_text">Поиск задач, тэгов и т. д. …</string>
+    <string name="search_text">Поиск задач…</string>
     <string name="task_name">Название задачи</string>
     <string name="description">Описание</string>
     <string name="dialog_text">Пожалуйста, подождите…</string>
@@ -76,4 +76,5 @@
     <string name="change_password">Поменять пароль</string>
     <string name="password_changed">Пароль сменён!</string>
     <string name="empty_data">Ничего</string>
+    <string name="incorrect_pass">Некорректный пароль</string>
 </resources>

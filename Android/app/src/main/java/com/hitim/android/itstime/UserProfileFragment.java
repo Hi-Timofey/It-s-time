@@ -114,7 +114,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             Picasso.with(getContext())
                     .load(mUser.getPhotoUrl())
                     .fit().centerCrop()
-                    .placeholder(R.drawable.user_profile_image_placeholder)
+                    .placeholder(R.drawable.ic_ghost_only)
                     .error(R.drawable.ic_account)
                     .into(userPictureImageView);
             if(mUser.isEmailVerified()){
@@ -148,8 +148,13 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             builderForText.setView(viewTextEdit);
             builderForText.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
                 String newPass = tiet.getText().toString();
-                mUser.updatePassword(newPass);
-                Toast.makeText(getContext(),getString(R.string.password_changed),Toast.LENGTH_LONG).show();
+                String tmp = newPass;
+                if(!tmp.trim().equals("") && tmp.length() >= 8){
+                    mUser.updatePassword(newPass);
+                    Toast.makeText(getContext(),getString(R.string.password_changed),Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(),getString(R.string.incorrect_pass),Toast.LENGTH_LONG).show();
+                }
             });
             builderForText.create().show();
         }
