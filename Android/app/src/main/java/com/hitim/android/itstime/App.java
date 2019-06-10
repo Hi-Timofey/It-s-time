@@ -20,6 +20,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Crashlytics.getInstance();
         instance = this;
         setTheme(R.style.BlueApplicationStyle_LightTheme);
         dataBase = Room.databaseBuilder(this, TaskDataBase.class, getString(R.string.database_name))

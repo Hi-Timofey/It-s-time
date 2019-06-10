@@ -5,7 +5,7 @@ apply plugin: 'io.fabric'
 android {
     compileSdkVersion 28
     defaultConfig {
-        project.ext.set("archivesBaseName", "ItsTime-" + defaultConfig.versionName)
+        project.ext.set("archivesBaseName", "ItsTime-" + versionName)
         resConfigs "en", "ru"
         applicationId "com.hitim.android.itstime"
         minSdkVersion 21

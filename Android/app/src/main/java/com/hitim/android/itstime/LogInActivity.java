@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -103,6 +104,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
+                Crashlytics.logException(task.getException());
                 dialog.hide();
             }
         });
@@ -125,6 +127,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         } else {
             dialog.dismiss();
             Toast.makeText(this, result.getStatus().getStatusMessage(), Toast.LENGTH_LONG).show();
+            Crashlytics.log(result.getStatus().getStatusMessage());
         }
     }
 
@@ -141,6 +144,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
 
                     } else {
                         Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
+                        Crashlytics.logException(task.getException());
                     }
                 });
     }

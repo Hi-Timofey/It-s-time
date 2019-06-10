@@ -107,7 +107,7 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
             sureToDelete = builder.create();
             AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle_Light);
             builder1.setMessage(getString(R.string.congratulations));
-            builder1.setPositiveButton(R.string.yeah, (dialog, which) -> dialog.dismiss());
+            builder1.setPositiveButton(R.string.yeah, (dialog, which) -> dialog.cancel());
             congratulationsDialog = builder1.create();
         } else {
             String tag = getString(R.string.sphere_fragment);
