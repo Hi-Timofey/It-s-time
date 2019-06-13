@@ -38,7 +38,6 @@ import com.squareup.picasso.Picasso;
 public class UserProfileFragment extends Fragment implements View.OnClickListener {
 
     private FloatingActionMenu floatingActionMenu;
-    private ConstraintLayout confirmEmailLayout, passwordResetLayout;
     private Toolbar toolbar;
     private FirebaseUser mUser;
     private TextView userNameText, userEmailText;
@@ -59,16 +58,16 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_user_profile, container, false);
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
         userNameText = v.findViewById(R.id.user_name_textview);
 
-        confirmEmailLayout = v.findViewById(R.id.constraintLayout9);
+        ConstraintLayout confirmEmailLayout = v.findViewById(R.id.constraintLayout9);
         confirmEmailLayout.setOnClickListener(this);
-        passwordResetLayout = v.findViewById(R.id.constraint_password_reset);
-        passwordResetLayout.setOnClickListener(this::onClick);
+        ConstraintLayout passwordResetLayout = v.findViewById(R.id.constraint_password_reset);
+        passwordResetLayout.setOnClickListener(this);
         userPictureImageView = v.findViewById(R.id.user_picture_image_view);
         userEmailText = v.findViewById(R.id.user_email_textview);
         emailVerified = v.findViewById(R.id.textView3);
@@ -106,7 +105,6 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
     }
 
 
-
     private void initUserProfileInformation() {
         dialogOnStart.show();
         if (mUser != null) {
@@ -117,7 +115,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                     .placeholder(R.drawable.ic_ghost_only)
                     .error(R.drawable.ic_account)
                     .into(userPictureImageView);
-            if(mUser.isEmailVerified()){
+            if (mUser.isEmailVerified()) {
                 emailVerified.setText(getString(R.string.confirmed));
             } else {
                 emailVerified.setText(getString(R.string.confirm_your_email));
@@ -134,9 +132,9 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
         if (v.getId() == R.id.constraintLayout9) {
             if (!mUser.isEmailVerified()) {
                 mUser.sendEmailVerification();
-                Toast.makeText(getContext(),getString(R.string.after_verified),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.after_verified), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getContext(),getString(R.string.confirmed),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.confirmed), Toast.LENGTH_SHORT).show();
             }
         }
         if (v.getId() == R.id.constraint_password_reset) {
@@ -147,13 +145,17 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             viewTextEdit.findViewById(R.id.edit_dialog_edit_text);
             builderForText.setView(viewTextEdit);
             builderForText.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
-                String newPass = textEditViewById.getText().toString();
-                String tmp = newPass;
-                if(!tmp.trim().equals("") && tmp.length() >= 8){
-                    mUser.updatePassword(newPass);
-                    Toast.makeText(getContext(),getString(R.string.password_changed),Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getContext(),getString(R.string.incorrect_pass),Toast.LENGTH_LONG).show();
+                try {
+                    String newPass = textEditViewById.getText().toString();
+                    String tmp = newPass;
+                    if (!tmp.trim().equals("") && tmp.length() >= 8) {
+                        mUser.updatePassword(newPass);
+                        Toast.makeText(getContext(), getString(R.string.password_changed), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getContext(), getString(R.string.incorrect_pass), Toast.LENGTH_LONG).show();
+                    }
+                } catch (NullPointerException e){
+                    Toast.makeText(getContext(),R.string.emptyString,Toast.LENGTH_SHORT).show();
                 }
             });
             builderForText.create().show();
@@ -172,6 +174,7 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                 userEmailText.setText(email);
                 dialogOnStart.dismiss();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 throw new DatabaseException(databaseError.getMessage());

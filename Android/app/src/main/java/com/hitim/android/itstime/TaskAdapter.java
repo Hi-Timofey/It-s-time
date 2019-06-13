@@ -133,11 +133,11 @@ public class TaskAdapter extends BaseAdapter implements android.widget.Filterabl
     private static class ViewHolder {
         public TextView name;
         public TextView sphere;
-        public TextView deadline;
-        public SelectableRoundedImageView imageView;
-        public TextView priority;
+        TextView deadline;
+        SelectableRoundedImageView imageView;
+        TextView priority;
 
-        public ViewHolder(View v) {
+        ViewHolder(View v) {
 
             this.name = v.findViewById(R.id.task_layout_name);
             this.sphere = v.findViewById(R.id.task_layout_sphere);

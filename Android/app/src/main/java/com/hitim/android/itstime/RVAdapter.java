@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,20 +34,21 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.SphereViewHolder> 
 
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 
 
+    @NonNull
     @Override
-    public SphereViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public SphereViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.sphere_items_card, viewGroup, false);
         return new SphereViewHolder(v);
     }
 
 
     @Override
-    public void onBindViewHolder(SphereViewHolder sphereViewHolder, int i) {
+    public void onBindViewHolder(@NonNull SphereViewHolder sphereViewHolder, int i) {
         sphereViewHolder.cl.setBackground(context.getDrawable(spheres.get(i).getDrawableId()));
         sphereViewHolder.sphereIcon.setImageResource(spheres.get(i).getIconId());
         switch (spheres.get(i).getName()) {

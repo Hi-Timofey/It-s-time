@@ -59,8 +59,7 @@ class AsyncWorker {
                     @Override
                     protected List<Task> doInBackground(Void... voids) {
                         try {
-                            List<Task> result = taskDao.getAllTasksWithSphere(sphere);
-                            return result;
+                            return taskDao.getAllTasksWithSphere(sphere);
                         } catch (Exception e) {
                             Log.w("DATABASE", e.getMessage());
                             return null;

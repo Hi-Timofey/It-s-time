@@ -75,9 +75,4 @@ public class SphereActivity extends AppCompatActivity implements ColorPickerDial
 
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-
-    }
 }

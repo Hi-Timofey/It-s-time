@@ -14,7 +14,6 @@ public class SphereTest {
     private Integer drawableId;
     private Integer iconId;
     private Sphere defaultSphereWork;
-    private ArrayList<Sphere> defaultSpheres;
 
     @Before
     public void init() throws Exception {
@@ -24,7 +23,7 @@ public class SphereTest {
         iconId = R.drawable.ic_work;
         defaultSphereWork = new Sphere(name, drawableId, iconId);
 
-        defaultSpheres = new ArrayList<>();
+        ArrayList<Sphere> defaultSpheres = new ArrayList<>();
         defaultSpheres.add(new Sphere("All task's", R.drawable.all_tasks_background, R.drawable.ic_arrow_forward));
         defaultSpheres.add(new Sphere("Work", R.drawable.work_background, R.drawable.ic_work));
         defaultSpheres.add(new Sphere("Health", R.drawable.health_background, R.drawable.ic_heart));
