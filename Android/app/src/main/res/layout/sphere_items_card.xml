@@ -39,6 +39,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
+            android:src="@drawable/ic_not_found"
             android:id="@+id/sphere_fragment_image_view"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"

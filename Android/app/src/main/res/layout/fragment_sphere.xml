@@ -10,6 +10,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sphere_fragment_recycler_view"
         android:layout_width="match_parent"
+        tools:orientation="horizontal"
+        tools:listitem="@layout/sphere_items_card"
+        tools:scrollbars="horizontal"
+        tools:itemCount="5"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
