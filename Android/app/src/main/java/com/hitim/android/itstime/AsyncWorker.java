@@ -20,11 +20,11 @@ class AsyncWorker {
     private TaskDao taskDao;
 
 
-    public AsyncWorker() {
+    AsyncWorker() {
         taskDao = App.getInstance().getDataBase().getTaskDao();
     }
 
-    public List<Task> getAllTasks() {
+    List<Task> getAllTasks() {
 
         @SuppressLint("StaticFieldLeak") AsyncTask<Void, Void, List<Task>> asyncTask =
                 new AsyncTask<Void, Void, List<Task>>() {
@@ -52,7 +52,7 @@ class AsyncWorker {
         return null;
     }
 
-    public List<Task> getAllTasksWithSphere(String sphere) {
+    List<Task> getAllTasksWithSphere(String sphere) {
         @SuppressLint("StaticFieldLeak") AsyncTask<Void, Void, List<Task>> asyncTask =
                 new AsyncTask<Void, Void, List<Task>>() {
 
@@ -85,7 +85,7 @@ class AsyncWorker {
     }
 
 
-    public boolean insertTask(Task task) {
+    boolean insertTask(Task task) {
         @SuppressLint("StaticFieldLeak") AsyncTask<Task, Void, Boolean> asyncTask = new AsyncTask<Task, Void, Boolean>() {
             @Override
             protected Boolean doInBackground(Task... tasks) {
@@ -125,37 +125,7 @@ class AsyncWorker {
         asyncTask.execute();
     }
 
-    public synchronized Task getTaskByName(OnPostExecuteTask executedTask) {
-        @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, Task> asyncTask = new AsyncTask<String, Void, Task>() {
-            @Override
-            protected Task doInBackground(String... strings) {
-                try {
-                    return taskDao.getByName(strings[0]);
-                } catch (Exception e) {
-                    return null;
-                }
-            }
-
-            @Override
-            protected void onPostExecute(Task task) {
-                if (executedTask != null) executedTask.run(task);
-                super.onPostExecute(task);
-            }
-        };
-        asyncTask.execute();
-        try {
-            return asyncTask.get(4, TimeUnit.SECONDS);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public void updateTask(Task task) {
+    void updateTask(Task task) {
         @SuppressLint("StaticFieldLeak") AsyncTask<Void, Void, Boolean> asyncTask = new AsyncTask<Void, Void, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... voids) {

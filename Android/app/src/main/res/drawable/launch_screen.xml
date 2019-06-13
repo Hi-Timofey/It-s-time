@@ -4,9 +4,7 @@
     <!-- Цвет фона, предпочтительно как в главной теме -->
     <item android:drawable="@color/whiteColor" />
     <!-- Лого приложения - 144dp версия иконки приложения -->
-    <item android:gravity="center">
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/ic_ghost_only"/>
-    </item>
+    <item
+        android:drawable="@drawable/ic_ghost_only"
+        android:gravity="center" />
 </layer-list>

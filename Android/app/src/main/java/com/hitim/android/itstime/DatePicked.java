@@ -12,10 +12,10 @@ import java.util.Calendar;
  */
 
 public class DatePicked {
-    public final static int DATE_ONLY = 0;
-    public final static int TIME_ONLY = 1;
-    public final static int TIME_DATE = 2;
-    public final static int NULL_TIME = 3;
+    final static int DATE_ONLY = 0;
+    final static int TIME_ONLY = 1;
+    final static int TIME_DATE = 2;
+    final static int NULL_TIME = 3;
     private int year;
     private int month;
     private int day;
