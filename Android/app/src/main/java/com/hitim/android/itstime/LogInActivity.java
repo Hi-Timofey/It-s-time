@@ -36,8 +36,6 @@ import java.util.regex.Pattern;
 public class LogInActivity extends AppCompatActivity implements View.OnTouchListener, GoogleApiClient.OnConnectionFailedListener {
 
     private final int GOOGLE_INTENT = 4003;
-    //Ветка на FirebaseDatabase
-    private final String DATA_USERS = "DataUsers";
 
     private TextInputLayout mailLayout, passLayout;
     private TextInputEditText edLogin, edPass;
@@ -151,6 +149,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
     private void addUserInfoInDataBase() {
         FirebaseUser fire_user = FirebaseAuth.getInstance().getCurrentUser();
         User user = new User(fire_user.getEmail(), fire_user.getDisplayName());
+        //Ветка на FirebaseDatabase
+        String DATA_USERS = "DataUsers";
         FirebaseDatabase.getInstance().getReference(DATA_USERS)
                 .child("Users")
                 .child(fire_user.getUid())

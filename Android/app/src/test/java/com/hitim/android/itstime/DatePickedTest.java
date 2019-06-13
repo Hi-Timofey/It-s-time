@@ -16,7 +16,7 @@ public class DatePickedTest {
     private DatePicked onlyDate;
 
     @Before
-    public void init() throws Exception {
+    public void init() {
         hour = 6;
         minutes = 45;
         year = 2019;
@@ -31,7 +31,7 @@ public class DatePickedTest {
     }
 
     @Test
-    public void testDatePickedClass() throws Exception{
+    public void testDatePickedClass() {
         assertEquals("Exception in Date class (HOUR)",hour,defaultDatePicked.getHour());
         assertEquals("Exception in Date class (MINUTES)",minutes,defaultDatePicked.getMinutes());
         assertEquals("Exception in Date class (YEAR)",year,defaultDatePicked.getYear());
@@ -40,7 +40,7 @@ public class DatePickedTest {
     }
 
     @Test
-    public void testDateType() throws Exception{
+    public void testDateType() {
         assertEquals("Date type exception",DatePicked.TIME_DATE,defaultDatePicked.getType());
         assertEquals("Date type exception",DatePicked.DATE_ONLY,onlyDate.getType());
         assertEquals("Date type exception",DatePicked.TIME_ONLY,onlyTime.getType());

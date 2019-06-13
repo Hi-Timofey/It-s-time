@@ -18,14 +18,13 @@ public class OnBoardActivity extends AppCompatActivity {
     private ViewPager vPager;
     private LinearLayout mDotsLayout;
     private SharedPreferences.Editor editor;
-    private String APP_PREFERENCES = "its_settings";
-    private String APP_FIRST_OPEN = "first_open";
     private   SharedPreferences itsSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.BlueApplicationStyle_LightTheme);
         super.onCreate(savedInstanceState);
+        String APP_PREFERENCES = "its_settings";
         itsSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         createSharedPref();
     }
@@ -33,6 +32,7 @@ public class OnBoardActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        String APP_FIRST_OPEN = "first_open";
         if (!itsSettings.getBoolean(APP_FIRST_OPEN,true)) {
             Intent i = new Intent(this, LogInActivity.class);
             startActivity(i);

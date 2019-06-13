@@ -58,8 +58,6 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             "Routine",
             "Yourself"
     };
-    //Task arguments
-    private Task task;
     private String taskName = "", taskDecsription = "", sphere = "";
     private DatePicked datePicked = new DatePicked();
     private DatePicked neededTimePicked = new DatePicked();
@@ -135,7 +133,8 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 break;
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
-                    task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked, priority);
+                    //Task arguments
+                    Task task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked, priority);
                     AsyncWorker worker = new AsyncWorker();
                     if (worker.insertTask(task)) {
                         Toast.makeText(getContext(), "Successful", Toast.LENGTH_SHORT).show();

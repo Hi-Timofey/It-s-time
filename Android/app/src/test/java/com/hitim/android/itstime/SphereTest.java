@@ -16,7 +16,7 @@ public class SphereTest {
     private Sphere defaultSphereWork;
 
     @Before
-    public void init() throws Exception {
+    public void init() {
 
         name = "Work";
         drawableId = R.drawable.work_background;
@@ -32,7 +32,7 @@ public class SphereTest {
     }
 
     @Test
-    public void testSphereClass() throws Exception {
+    public void testSphereClass() {
         assertEquals("Sphere name exception", name, defaultSphereWork.getName());
         assertEquals("Sphere drawable exception", drawableId, defaultSphereWork.getDrawableId());
         assertEquals("Sphere icon exception", iconId, defaultSphereWork.getIconId());

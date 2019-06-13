@@ -33,7 +33,6 @@ public class SphereFragment extends Fragment implements ItemClickListener {
     private FloatingActionMenu floatingActionMenu;
     //For Recycler View
     private RecyclerView rv;
-    private LinearLayoutManager linLayManager;
     private List<Sphere> spheres;
     private int nextSphere;
 
@@ -67,7 +66,7 @@ public class SphereFragment extends Fragment implements ItemClickListener {
         //toolbar.setNavigationIcon(R.drawable.ic_menu);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         //For recycler view
-        linLayManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linLayManager = new LinearLayoutManager(getContext());
         rv.setHasFixedSize(true);
         rv.setLayoutManager(linLayManager);
         Sphere.initDefaultSpheres(getContext());
