@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
@@ -39,10 +40,9 @@ import static android.provider.CalendarContract.Events;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailsFragment extends Fragment implements DialogInterface.OnClickListener, View.OnClickListener {
+class DetailsFragment extends Fragment implements DialogInterface.OnClickListener, View.OnClickListener {
 
     private Task task;
-    private Toolbar toolbar;
     private FragmentManager fm;
     private AlertDialog sureToDelete, congratulationsDialog;
     private TextView taskNameTextView, taskSphereTextView, taskDescTextView, taskDeadlineTextView, taskNeededTimeTextView;
@@ -51,7 +51,7 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
     public DetailsFragment() {
     }
 
-    public DetailsFragment(Task task) {
+    DetailsFragment(Task task) {
         this.task = task;
     }
 
@@ -62,7 +62,7 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_details, container, false);
 
@@ -84,7 +84,7 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
         neededTimeImageButton.setOnClickListener(this);
 
 
-        toolbar = getActivity().findViewById(R.id.tool_bar);
+        Toolbar toolbar = getActivity().findViewById(R.id.tool_bar);
         FloatingActionButton taskCompletedButton = v.findViewById(R.id.task_completed_fab);
         taskCompletedButton.setOnClickListener(this);
         AppBarLayout l = getActivity().findViewById(R.id.tool_bar_layout);
@@ -107,7 +107,7 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
             sureToDelete = builder.create();
             AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle_Light);
             builder1.setMessage(getString(R.string.congratulations));
-            builder1.setPositiveButton(R.string.yeah, (dialog, which) -> dialog.dismiss());
+            builder1.setPositiveButton(R.string.yeah, (dialog, which) -> dialog.cancel());
             congratulationsDialog = builder1.create();
         } else {
             String tag = getString(R.string.sphere_fragment);
@@ -204,7 +204,7 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
         TimePickerDialog.OnTimeSetListener onTimeSetListener;
         DatePickerDialog.OnDateSetListener onDateSetListener;
         DatePickerDialog dpd;
-        onCancelListener = dialog -> dialog.dismiss();
+        onCancelListener = DialogInterface::dismiss;
         Calendar now = Calendar.getInstance();
 
         switch (v.getId()) {
@@ -225,11 +225,16 @@ public class DetailsFragment extends Fragment implements DialogInterface.OnClick
                 viewTextEdit.findViewById(R.id.edit_dialog_edit_text);
                 builderForText.setView(viewTextEdit);
                 builderForText.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
-                    String newDesc = textInputEditText.getText().toString();
-                    task.setDescription(newDesc);
-                    taskDescTextView.setText(newDesc);
-                    new AsyncWorker().updateTask(task);
-                    dialog.dismiss();
+                    try {
+                        String newDesc = textInputEditText.getText().toString();
+                        task.setDescription(newDesc);
+                        taskDescTextView.setText(newDesc);
+                        new AsyncWorker().updateTask(task);
+                        dialog.dismiss();
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                        Toast.makeText(getContext(),R.string.emptyString,Toast.LENGTH_SHORT).show();
+                    }
                 });
                 builderForText.create().show();
 

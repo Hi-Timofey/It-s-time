@@ -30,7 +30,6 @@
         tools:layout_editor_absoluteY="258dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint_into_card_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -69,7 +68,6 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout7"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -160,6 +158,7 @@
                                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
                             <ImageButton
+                                android:contentDescription="@string/button_icon"
                                 android:id="@+id/details_edit_description"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
@@ -198,7 +197,6 @@
                                 android:layout_marginStart="32dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="32dp"
-                                android:text="11:07:2019 13:57"
                                 android:textColor="@color/b_secondary_text"
                                 android:textSize="17sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -210,6 +208,7 @@
                                 android:id="@+id/details_edit_deadline_time"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
+                                android:contentDescription="@string/button_icon"
                                 android:layout_marginEnd="24dp"
                                 android:background="@color/fui_transparent"
                                 android:src="@drawable/ic_edit"
@@ -246,7 +245,6 @@
                                 android:layout_marginStart="32dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="32dp"
-                                android:text="11:07:2019 13:57"
                                 android:textColor="@color/b_secondary_text"
                                 android:textSize="17sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -259,6 +257,7 @@
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:layout_marginEnd="24dp"
+                                android:contentDescription="@string/button_icon"
                                 android:background="@color/fui_transparent"
                                 android:src="@drawable/ic_edit"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -270,6 +269,7 @@
                             android:id="@+id/imageView3"
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
+                            android:contentDescription="@string/divider"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="6dp"
                             android:layout_marginEnd="20dp"
@@ -289,6 +289,7 @@
                                 android:layout_height="48dp"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginTop="8dp"
+                                android:contentDescription="@string/button_icon"
                                 android:layout_marginBottom="8dp"
                                 android:background="@color/fui_transparent"
                                 android:src="@drawable/ic_google_calendar"

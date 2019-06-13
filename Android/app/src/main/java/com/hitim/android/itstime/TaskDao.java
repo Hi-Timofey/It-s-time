@@ -21,13 +21,6 @@ public interface TaskDao {
     @Query("SELECT * FROM task")
     List<Task> getAllTasks();
 
-    //Находит задачу по id
-    @Query("SELECT * FROM task WHERE id = :id")
-    Task getById(int id);
-    //Поиск по имени
-    @Query("SELECT * FROM task WHERE name LIKE :name")
-    Task getByName(String name);
-
     //Получить все задачи с опр. сферы
     @Query("SELECT * FROM task WHERE sphere LIKE :sphereStr")
     List<Task> getAllTasksWithSphere(String sphereStr);

@@ -103,7 +103,6 @@
                     android:id="@+id/reg_edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:importantForAutofill="no"
                     android:inputType="textAutoCorrect"
                     android:padding="10dp"
                     android:singleLine="true"
@@ -139,7 +138,6 @@
                     android:id="@+id/reg_edit_log"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:importantForAutofill="no"
                     android:inputType="textEmailAddress"
                     android:padding="10dp" />
 
@@ -172,7 +170,6 @@
                     android:id="@+id/reg_edit_pass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:padding="10dp"
                     android:singleLine="true"

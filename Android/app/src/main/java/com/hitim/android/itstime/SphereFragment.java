@@ -2,7 +2,6 @@ package com.hitim.android.itstime;
 
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,8 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,13 +28,13 @@ public class SphereFragment extends Fragment implements ItemClickListener {
 
     private Toolbar toolbar;
     private FragmentManager fragmentManager;
-    private final Activity activity = getActivity();
     private FloatingActionMenu floatingActionMenu;
     //For Recycler View
     private RecyclerView rv;
-    private LinearLayoutManager linLayManager;
     private List<Sphere> spheres;
-    private int nextSphere;
+
+    public SphereFragment() {
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class SphereFragment extends Fragment implements ItemClickListener {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_sphere, container, false);
         toolbar = getActivity().findViewById(R.id.tool_bar);
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
@@ -67,7 +66,7 @@ public class SphereFragment extends Fragment implements ItemClickListener {
         //toolbar.setNavigationIcon(R.drawable.ic_menu);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         //For recycler view
-        linLayManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linLayManager = new LinearLayoutManager(getContext());
         rv.setHasFixedSize(true);
         rv.setLayoutManager(linLayManager);
         Sphere.initDefaultSpheres(getContext());

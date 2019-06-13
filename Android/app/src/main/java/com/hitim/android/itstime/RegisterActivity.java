@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
@@ -75,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
             } else {
                 String st = task.getException().getMessage();
                 Toast.makeText(getApplicationContext(), getString(R.string.register_failed) + "\n"+ st, Toast.LENGTH_SHORT).show();
+                Crashlytics.logException(task.getException());
                 dialog.hide();
             }
         });

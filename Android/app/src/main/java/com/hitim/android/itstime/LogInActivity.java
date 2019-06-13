@@ -1,9 +1,9 @@
 package com.hitim.android.itstime;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -36,8 +37,6 @@ import java.util.regex.Pattern;
 public class LogInActivity extends AppCompatActivity implements View.OnTouchListener, GoogleApiClient.OnConnectionFailedListener {
 
     private final int GOOGLE_INTENT = 4003;
-    //Ветка на FirebaseDatabase
-    private final String DATA_USERS = "DataUsers";
 
     private TextInputLayout mailLayout, passLayout;
     private TextInputEditText edLogin, edPass;
@@ -52,8 +51,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setTheme(R.style.BlueApplicationStyle_LightTheme);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         initViews();
         initGoogle();
@@ -81,6 +80,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         signIn(Objects.requireNonNull(edLogin.getText()).toString(), Objects.requireNonNull(edPass.getText()).toString());
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -103,6 +103,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
                 finish();
             } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
+                Crashlytics.logException(task.getException());
                 dialog.hide();
             }
         });
@@ -121,10 +122,12 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         dialog.show();
         if (result.isSuccess()) {
             GoogleSignInAccount account = result.getSignInAccount();
+            assert account != null;
             signInWithGoogle(account);
         } else {
             dialog.dismiss();
             Toast.makeText(this, result.getStatus().getStatusMessage(), Toast.LENGTH_LONG).show();
+            Crashlytics.log(result.getStatus().getStatusMessage());
         }
     }
 
@@ -141,13 +144,17 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
 
                     } else {
                         Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
+                        Crashlytics.logException(task.getException());
                     }
                 });
     }
 
     private void addUserInfoInDataBase() {
         FirebaseUser fire_user = FirebaseAuth.getInstance().getCurrentUser();
+        assert fire_user != null;
         User user = new User(fire_user.getEmail(), fire_user.getDisplayName());
+        //Ветка на FirebaseDatabase
+        String DATA_USERS = "DataUsers";
         FirebaseDatabase.getInstance().getReference(DATA_USERS)
                 .child("Users")
                 .child(fire_user.getUid())
@@ -227,6 +234,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         return valid;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void dialogsBuilder() {
         dialog = new ProgressDialog(LogInActivity.this);
         dialog.setTitle(R.string.dialog_signing_in);

@@ -5,31 +5,27 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sphere {
-    private String name;
-    private Integer drawableId;
-    private Integer iconId;
+class Sphere {
+    private final String name;
+    private final Integer drawableId;
+    private final Integer iconId;
     private static List<Sphere> defaultSpheres;
 
-    public Sphere(String name, Integer drawableId, Integer iconId) {
+    Sphere(String name, Integer drawableId, Integer iconId) {
         this.name = name;
         this.drawableId = drawableId;
         this.iconId = iconId;
     }
 
-    public Integer getIconId() {
+    Integer getIconId() {
         return iconId;
     }
 
-    public void setIconId(Integer iconId) {
-        this.iconId = iconId;
-    }
-
-    public static List<Sphere> getDefaultSpheres() {
+    static List<Sphere> getDefaultSpheres() {
         return defaultSpheres;
     }
 
-    public static void initDefaultSpheres(Context context) {
+    static void initDefaultSpheres(Context context) {
         defaultSpheres = new ArrayList<>();
         defaultSpheres.add(new Sphere(context.getString(R.string.all_tasks_db), R.drawable.all_tasks_background, R.drawable.ic_arrow_forward));
         defaultSpheres.add(new Sphere(context.getString(R.string.work_db), R.drawable.work_background, R.drawable.ic_work));
@@ -42,17 +38,8 @@ public class Sphere {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getDrawableId() {
+    Integer getDrawableId() {
         return drawableId;
     }
-
-    public void setDrawableId(Integer drawableId) {
-        this.drawableId = drawableId;
-    }
-
 
 }

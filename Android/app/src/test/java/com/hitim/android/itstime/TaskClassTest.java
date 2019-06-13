@@ -29,7 +29,7 @@ public class TaskClassTest {
     private ArrayList<Task> taskArrayList;
 
     @Before
-    public void init() throws Exception{
+    public void init() {
         name = "Test yourself";
         description = "Description";
         datePicked = new DatePicked(6, 45, 2019, 6, 1);
@@ -52,7 +52,7 @@ public class TaskClassTest {
 
 
     @Test
-    public void testTaskClass() throws Exception{
+    public void testTaskClass() {
         assertEquals("Task name exception", name, tsk.getName());
         assertEquals("Task description exception", description, tsk.getDescription());
         assertEquals("Task date(deadline) exception", datePicked, tsk.getDatePicked());
@@ -62,7 +62,7 @@ public class TaskClassTest {
     }
 
     @Test
-    public void testTaskDate() throws Exception{
+    public void testTaskDate() {
         Calendar ndTm = neededTime.getCalendarFormat();
         Calendar dtTm = datePicked.getCalendarFormat();
         assertEquals("Task date(start) exception  with Calendar format",
@@ -76,7 +76,7 @@ public class TaskClassTest {
     }
 
     @Test
-    public void testTaskSphere() throws Exception{
+    public void testTaskSphere() {
 
         for (int i = 0; i < 4; i++) {
             boolean correct = false;
@@ -84,7 +84,6 @@ public class TaskClassTest {
                 String tmp = taskArrayList.get(i).getSphere();
                 correct = tmp.equals(spheres[j]);
                 if (correct) break;
-                else continue;
             }
             assertTrue("Task spheres exception", correct);
         }

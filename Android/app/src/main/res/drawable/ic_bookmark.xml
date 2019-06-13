@@ -1,8 +1,11 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:width="24dp"
     android:height="24dp"
     android:viewportWidth="192"
-    android:viewportHeight="192">
+    android:viewportHeight="192"
+    tools:keep="@drawable/ic_bookmark"
+    tools:ignore="VectorRaster">
   <path
       android:pathData="M48,16c-8.84,0 -16,7.16 -16,16v120c0,13.16 10.84,24 24,24h104v-16h-104c-4.52,0 -8,-3.48 -8,-8c0,-4.52 3.48,-8 8,-8h104v-8v-8v-112h-32v80l-24,-16l-24,16v-80z"
       android:strokeAlpha="0"

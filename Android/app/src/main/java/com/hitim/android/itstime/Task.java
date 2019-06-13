@@ -25,14 +25,13 @@ class Task {
     private DatePicked datePicked;
     @Embedded(prefix = "needed_time")
     private DatePicked neededTimePicked;
-    @NonNull
     private int priority;
     private int color;
     //private ArrayList<String> tags;
     @NonNull
     private String sphere;
 
-    public Task(@NonNull String name, String description, @NonNull DatePicked datePicked, @NonNull String sphere, @NonNull int color, DatePicked neededTimePicked, @NonNull int priority) {
+    public Task(@NonNull String name, String description, @NonNull DatePicked datePicked, @NonNull String sphere, int color, DatePicked neededTimePicked, int priority) {
         this.name = name;
         this.description = description;
         this.sphere = sphere;
@@ -60,7 +59,6 @@ class Task {
     }
 
 
-    @NonNull
     public void setName(@NonNull String name) {
         this.name = name;
     }

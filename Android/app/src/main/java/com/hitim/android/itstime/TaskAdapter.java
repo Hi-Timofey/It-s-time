@@ -3,7 +3,6 @@ package com.hitim.android.itstime;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +21,11 @@ import java.util.List;
  * на экран, чем в обычном списке
  */
 
-public class TaskAdapter extends BaseAdapter implements android.widget.Filterable {
+class TaskAdapter extends BaseAdapter implements android.widget.Filterable {
 
     private List<Task> taskArrayList;
-    private List<Task> copyOfArrayList;
-    private Context context;
+    private final List<Task> copyOfArrayList;
+    private final Context context;
 
     public TaskAdapter(List<Task> list, Context cont) {
         this.taskArrayList = list;
@@ -55,7 +54,7 @@ public class TaskAdapter extends BaseAdapter implements android.widget.Filterabl
 
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inf.inflate(R.layout.task_layout, null);
+            convertView = inf.inflate(R.layout.task_layout, parent, false);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         } else {
@@ -132,13 +131,13 @@ public class TaskAdapter extends BaseAdapter implements android.widget.Filterabl
     }
 
     private static class ViewHolder {
-        public TextView name;
-        public TextView sphere;
-        public TextView deadline;
-        public SelectableRoundedImageView imageView;
-        public TextView priority;
+        final TextView name;
+        final TextView sphere;
+        final TextView deadline;
+        final SelectableRoundedImageView imageView;
+        final TextView priority;
 
-        public ViewHolder(View v) {
+        ViewHolder(View v) {
 
             this.name = v.findViewById(R.id.task_layout_name);
             this.sphere = v.findViewById(R.id.task_layout_sphere);

@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
@@ -27,7 +28,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.appbar.AppBarLayout;
-import com.jaredrummler.android.colorpicker.ColorPickerDialog;
 import com.joooonho.SelectableRoundedImageView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -38,7 +38,7 @@ import nl.dionsegijn.steppertouch.StepperTouch;
 
 import static com.jaredrummler.android.colorpicker.ColorPickerDialog.newBuilder;
 
-public class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     private FloatingActionMenu floatingActionMenu;
     private FloatingActionButton createTaskButton;
@@ -57,11 +57,9 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             "Routine",
             "Yourself"
     };
-    //Task arguments
-    private Task task;
     private String taskName = "", taskDecsription = "", sphere = "";
-    private DatePicked datePicked = new DatePicked();
-    private DatePicked neededTimePicked = new DatePicked();
+    private final DatePicked datePicked = new DatePicked();
+    private final DatePicked neededTimePicked = new DatePicked();
     private int taskColor = -1;
     private int priority = -1;
 
@@ -72,7 +70,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_create_task, container, false);
         getAllViews(v);
@@ -134,7 +132,8 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 break;
             case R.id.makeToDoFloatingActionButton:
                 if (isValid()) {
-                    task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked, priority);
+                    //Task arguments
+                    Task task = new Task(taskName, taskDecsription, datePicked, sphere, taskColor, neededTimePicked, priority);
                     AsyncWorker worker = new AsyncWorker();
                     if (worker.insertTask(task)) {
                         Toast.makeText(getContext(), "Successful", Toast.LENGTH_SHORT).show();
@@ -223,7 +222,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             dpd.setTitle(getString(R.string.pick_date));
             dpd.setMinDate(now);
             dpd.setOnCancelListener(onCancelListener);
-            dpd.show(getFragmentManager(), getString(R.string.date_picker_dialog));
+            dpd.show(getFragmentManager(),"DEADLINE");
         } else {
             deadText.setText(getString(R.string.pick_deadline_date));
             datePicked.resetAll();
@@ -262,7 +261,7 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
                 tpd.setTitle(getString(R.string.pick_time));
                 tpd.setVersion(TimePickerDialog.Version.VERSION_2);
                 tpd.setOnCancelListener(onCancelListener);
-                tpd.show(getFragmentManager(), getString(R.string.time_picker_dialog));
+                tpd.show(getFragmentManager(), "TIMELINE");
             };
             dpd = DatePickerDialog.newInstance(
                     onDateSetListener,
@@ -318,7 +317,6 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
 
     //Диалог для выбора цвета
     private void changeIconAndColor() {
-        ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
         newBuilder().setColor(getResources().getColor(R.color.whiteColor)).show(getActivity());
     }
 
