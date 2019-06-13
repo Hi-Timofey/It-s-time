@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+    <!-- Цвет фона, предпочтительно как в главной теме -->
+    <item android:drawable="@color/whiteColor" />
+    <!-- Лого приложения - 144dp версия иконки приложения -->
+    <item android:gravity="center">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ic_ghost_only"/>
+    </item>
+</layer-list>

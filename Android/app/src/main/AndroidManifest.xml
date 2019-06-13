@@ -21,8 +21,10 @@
             </intent-filter>
         </activity>
         <!--android:windowSoftInputMode="stateVisible|adjustPan"-->
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".OnBoardActivity">
+        <activity android:name=".LogInActivity"
+            android:theme="@style/BlueApplicationStyle.Launcher"/>
+        <activity android:name=".OnBoardActivity"
+            android:theme="@style/BlueApplicationStyle.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" /><!--Для отключения индексации гугла -->
