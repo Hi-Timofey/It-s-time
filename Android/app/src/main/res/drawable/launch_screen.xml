@@ -5,6 +5,7 @@
     <item android:drawable="@color/whiteColor" />
     <!-- Лого приложения - 144dp версия иконки приложения -->
     <item
-        android:drawable="@drawable/ic_ghost_only"
+        android:drawable="@drawable/ic_ghost_only_144dp"
+
         android:gravity="center" />
 </layer-list>

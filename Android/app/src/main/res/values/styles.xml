@@ -1,5 +1,9 @@
 <resources>
 
+    <style name="BlueApplicationStyle.Launcher">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
     <style name="BlueApplicationStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/b_primary</item>
         <item name="colorAccent">@color/b_accent</item>
