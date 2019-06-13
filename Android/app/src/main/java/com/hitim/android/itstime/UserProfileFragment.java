@@ -143,11 +143,11 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
             AlertDialog.Builder builderForText = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle_Light)
                     .setCancelable(true);
             View viewTextEdit = LayoutInflater.from(getContext()).inflate(R.layout.edit_dialog_layout, null);
-            TextInputEditText tiet = viewTextEdit.findViewById(R.id.edit_dialog_edit_text);
+            TextInputEditText textEditViewById = viewTextEdit.findViewById(R.id.edit_dialog_edit_text);
             viewTextEdit.findViewById(R.id.edit_dialog_edit_text);
             builderForText.setView(viewTextEdit);
             builderForText.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
-                String newPass = tiet.getText().toString();
+                String newPass = textEditViewById.getText().toString();
                 String tmp = newPass;
                 if(!tmp.trim().equals("") && tmp.length() >= 8){
                     mUser.updatePassword(newPass);

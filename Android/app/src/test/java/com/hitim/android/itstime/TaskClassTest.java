@@ -84,7 +84,6 @@ public class TaskClassTest {
                 String tmp = taskArrayList.get(i).getSphere();
                 correct = tmp.equals(spheres[j]);
                 if (correct) break;
-                else continue;
             }
             assertTrue("Task spheres exception", correct);
         }
