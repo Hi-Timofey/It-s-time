@@ -24,8 +24,8 @@ public class OnBoardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.BlueApplicationStyle_LightTheme);
         super.onCreate(savedInstanceState);
+        setTheme(R.style.BlueApplicationStyle_LightTheme);
         itsSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         createSharedPref();
     }
@@ -45,6 +45,7 @@ public class OnBoardActivity extends AppCompatActivity {
             SliderAdapter sliderAdapter = new SliderAdapter(this);
             vPager.setAdapter(sliderAdapter);
             startAnimation();
+
             addDots(0);
             vPager.addOnPageChangeListener(pageChangeListener);
         }

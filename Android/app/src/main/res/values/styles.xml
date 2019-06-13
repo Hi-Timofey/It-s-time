@@ -1,9 +1,5 @@
 <resources>
 
-	<style name="BlueApplicationStyle.Launcher">
-		<item name="android:windowBackground">@drawable/launch_screen</item>
-	</style>
-
     <style name="BlueApplicationStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/b_primary</item>
         <item name="colorAccent">@color/b_accent</item>
@@ -36,6 +32,11 @@
         <item name="android:textColor">@color/whiteColor</item>
     </style>
 
+    <style name="SphereCardView" parent="CardView.Light">
+        <item name="cardCornerRadius">8dp</item>
+        <item name="android:shadowRadius">2</item>
+        <item name="cardElevation">1dp</item>
+    </style>
     <style name="HintText_til" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/b_primary</item>
     </style>
@@ -53,6 +54,8 @@
         <item name="android:actionMenuTextColor">@color/blackColor</item>
     </style>
 
+    <style name="ToolBar.Dark" />
+
     <style name="ErrorText" parent="TextAppearance.Design.Error">
         <item name="android:textStyle">bold|italic</item>
         <item name="android:textColor">@color/error</item>
@@ -66,6 +69,8 @@
         <item name="android:background">@color/whiteColor</item>
     </style>
 
+    <style name="AlertDialogStyle.Dark" parent="Theme.MaterialComponents.Dialog">
+    </style>
     <style name="ItsCard">
         <item name="cardElevation">3dp</item>
         <item name="cardCornerRadius">10dp</item>

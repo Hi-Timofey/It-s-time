@@ -53,8 +53,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.BlueApplicationStyle_LightTheme);
         super.onCreate(savedInstanceState);
+        setTheme(R.style.BlueApplicationStyle_LightTheme);
         setContentView(R.layout.activity_log_in);
         initViews();
         initGoogle();
