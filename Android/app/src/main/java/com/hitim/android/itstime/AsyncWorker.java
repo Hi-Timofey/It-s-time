@@ -17,7 +17,7 @@ import java.util.concurrent.TimeoutException;
 
 class AsyncWorker {
 
-    private TaskDao taskDao;
+    private final TaskDao taskDao;
 
 
     AsyncWorker() {

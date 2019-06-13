@@ -95,7 +95,7 @@ public class OnBoardActivity extends AppCompatActivity {
         mDots[position].setTextColor(getResources().getColor(R.color.b_primary_dark));
     }
 
-    private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
+    private final ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int i, float v, int i1) {
         }

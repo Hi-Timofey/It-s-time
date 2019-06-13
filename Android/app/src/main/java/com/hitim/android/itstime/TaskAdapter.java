@@ -21,11 +21,11 @@ import java.util.List;
  * на экран, чем в обычном списке
  */
 
-public class TaskAdapter extends BaseAdapter implements android.widget.Filterable {
+class TaskAdapter extends BaseAdapter implements android.widget.Filterable {
 
     private List<Task> taskArrayList;
-    private List<Task> copyOfArrayList;
-    private Context context;
+    private final List<Task> copyOfArrayList;
+    private final Context context;
 
     public TaskAdapter(List<Task> list, Context cont) {
         this.taskArrayList = list;
@@ -54,7 +54,7 @@ public class TaskAdapter extends BaseAdapter implements android.widget.Filterabl
 
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inf.inflate(R.layout.task_layout, null);
+            convertView = inf.inflate(R.layout.task_layout, parent, false);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         } else {
@@ -131,11 +131,11 @@ public class TaskAdapter extends BaseAdapter implements android.widget.Filterabl
     }
 
     private static class ViewHolder {
-        public TextView name;
-        public TextView sphere;
-        TextView deadline;
-        SelectableRoundedImageView imageView;
-        TextView priority;
+        final TextView name;
+        final TextView sphere;
+        final TextView deadline;
+        final SelectableRoundedImageView imageView;
+        final TextView priority;
 
         ViewHolder(View v) {
 

@@ -4,7 +4,6 @@
     <string name="dialog_registration">Регистрация</string>
     <string name="did_you_want_to_quit">Вы хотите выйти?</string>
     <string name="emptyString">Поле не может быть пустым</string>
-    <string name="future_event">Когда-нибудь…</string>
     <string name="yourself">Личность</string>
     <string name="work">Работа</string>
     <string name="yes">Да</string>
@@ -17,8 +16,6 @@
     <string name="health">Здоровье</string>
     <string name="start_now">Начать!</string>
     <string name="sphere">Сферы жизни</string>
-    <string name="set_tags">Поставить тэги</string>
-    <string name="settings">Настройки</string>
     <string name="search_task">Найти задачу</string>
     <string name="routine">Рутина</string>
     <string name="when_to_start_worrying">Когда следует начать беспокоиться?</string>
@@ -30,7 +27,6 @@
     <string name="login_failed">Ошибка во время входа!</string>
     <string name="login_complete">Вход удался!</string>
     <string name="incorrect_address">Неправильный email адресс</string>
-    <string name="create_sphere">Создать сферу</string>
     <string name="time_and_date">Дата и Время</string>
     <string name="pick_time">Выберите время</string>
     <string name="register_failed">Регистрация не удалась!</string>
@@ -51,7 +47,6 @@
     <string name="wrong_task">Одно из важных полей не заполнено.</string>
     <string name="choose_sphere">Выберите Сферу</string>
     <string name="choose_the_right_one">Выберите нужную</string>
-    <string name="log_out_successful">Выход успешен!</string>
     <string name="connection_failed">Связь потеряна!</string>
     <string name="choose_priority">Назначьте приоритет</string>
     <string name="priority_level">Выберите уровень</string>
@@ -60,7 +55,6 @@
     <string name="priority">Приоритет:</string>
     <string name="name">Имя</string>
     <string name="no_plans">Нет никаких планов</string>
-    <string name="oops">Упс…</string>
     <string name="confirm_your_email">Подтвердите свой E-mail</string>
     <string name="synchronization">Синхронизация с Google Calendar</string>
     <string name="confirmed">Почта подтверждена!</string>

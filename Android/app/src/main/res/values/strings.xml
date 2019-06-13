@@ -5,8 +5,6 @@
     <string name="user_profile_fragment" translatable="false">HI-0001</string>
     <string name="sphere_fragment" translatable="false">HI-0002</string>
     <string name="create_task_fragment" translatable="false">HI-0003</string>
-    <string name="create_sphere_fragment" translatable="false">HI-0004</string>
-    <string name="settings_fragment" translatable="false">HI-0005</string>
     <string name="task_list_fragment" translatable="false">HI-0006</string>
     <string name="details_fragment" translatable="false">HI-0007</string>
     <string name="date_picker_dialog" translatable="false">Date Picker Dialog</string>
@@ -21,7 +19,6 @@
     <string name="reg_text">Or Register Now</string>
     <string name="password">Password</string>
     <string name="e_mail" translatable="false">E-Mail</string>
-    <string name="divider" translatable="false">Divider</string>
     <string name="emptyString">Field can\'t be empty</string>
     <string name="incorrect_address">Wrong email address</string>
     <string name="login_complete">Log in Successful!</string>
@@ -40,12 +37,9 @@
     <string name="sphere">Spheres of life</string>
     <string name="profile">Profile</string>
     <string name="search_text">Search tasks…</string>
-    <string name="settings">Settings</string>
     <string name="create_task">Create Task</string>
-    <string name="create_sphere">Create Sphere</string>
     <string name="icon_of_the_project" translatable="false">Icon of the project</string>
     <string name="registration_button_image" translatable="false">Registration button image</string>
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="task_name">Task name</string>
     <string name="description">Description</string>
     <string name="did_you_want_to_quit">Did you want to quit?</string>
@@ -55,8 +49,6 @@
     <string name="pick_deadline_date">Pick \"deadline\" time</string>
     <string name="choose_sphere_and_icon">Choose Sphere and Icon</string>
     <string name="choose_sphere">Choose Sphere</string>
-    <string name="set_tags">Set tags</string>
-    <string name="future_event">Some days…</string>
     <string name="work">Work</string>
     <string name="health">Health</string>
     <string name="yourself">Yourself</string>
@@ -70,7 +62,6 @@
     <string name="back_button">Back</string>
     <string name="choose_the_right_one">Choose the right one</string>
     <string name="wrong_task">One of the important fields is empty.</string>
-    <string name="log_out_successful">Log out Successful!</string>
     <string name="connection_failed">Connection failed!</string>
     <string name="choose_priority">Choose Priority</string>
     <string name="priority_level">Choose level</string>
@@ -79,7 +70,6 @@
     <string name="priority">Priority:</string>
     <string name="name">Name</string>
     <string name="no_plans">No plans!</string>
-    <string name="oops">Oops…</string>
     <string name="confirm_your_email">Confirm your E-mail</string>
     <string name="confirmed">Your E-mail confirmed!</string>
     <string name="synchronization">Synchronization via Google Calendar</string>
@@ -101,4 +91,9 @@
     <string name="yourself_db" translatable="false" >Yourself</string>
     <string name="empty_data">Empty</string>
     <string name="incorrect_pass">Incorrect Password</string>
+    <string name="image_for_empty_data" translatable="false">Image for empty data</string>
+    <string name="sphere_icon" translatable="false">Sphere icon</string>
+    <string name="button_icon" translatable="false">Button icon</string>
+    <string name="divider" translatable="false">Divider</string>
+    <string name="field_icon" translatable="false">Field icon</string>
 </resources>

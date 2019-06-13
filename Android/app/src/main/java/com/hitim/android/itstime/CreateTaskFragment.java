@@ -28,7 +28,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.appbar.AppBarLayout;
-import com.jaredrummler.android.colorpicker.ColorPickerDialog;
 import com.joooonho.SelectableRoundedImageView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -39,7 +38,7 @@ import nl.dionsegijn.steppertouch.StepperTouch;
 
 import static com.jaredrummler.android.colorpicker.ColorPickerDialog.newBuilder;
 
-public class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+class CreateTaskFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     private FloatingActionMenu floatingActionMenu;
     private FloatingActionButton createTaskButton;
@@ -59,8 +58,8 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
             "Yourself"
     };
     private String taskName = "", taskDecsription = "", sphere = "";
-    private DatePicked datePicked = new DatePicked();
-    private DatePicked neededTimePicked = new DatePicked();
+    private final DatePicked datePicked = new DatePicked();
+    private final DatePicked neededTimePicked = new DatePicked();
     private int taskColor = -1;
     private int priority = -1;
 
@@ -318,7 +317,6 @@ public class CreateTaskFragment extends Fragment implements CompoundButton.OnChe
 
     //Диалог для выбора цвета
     private void changeIconAndColor() {
-        ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
         newBuilder().setColor(getResources().getColor(R.color.whiteColor)).show(getActivity());
     }
 

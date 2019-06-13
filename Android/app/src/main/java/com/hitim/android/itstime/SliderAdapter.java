@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 class SliderAdapter extends PagerAdapter {
 
-    private Context context;
+    private final Context context;
 
     /* Slider
     * Класс для обработки переключений слайдера и вывода необходимых картинок и информации
@@ -20,19 +20,19 @@ class SliderAdapter extends PagerAdapter {
     * Текст напрямую из string русерсов
     * При переключении пользователем экрана идет простая замена View элементов
     * */
-    private int[] slide_images = {
+    private final int[] slide_images = {
             R.drawable.ic_alarms,
             R.drawable.ic_check_box,
             R.drawable.ic_trending_up
     };
 
-    private int[] slide_head = {
+    private final int[] slide_head = {
             R.string.head_1,
             R.string.head_2,
             R.string.head_3
     };
 
-    private int[] slide_text = {
+    private final int[] slide_text = {
             R.string.on_board_1,
             R.string.on_board_2,
             R.string.on_board_3

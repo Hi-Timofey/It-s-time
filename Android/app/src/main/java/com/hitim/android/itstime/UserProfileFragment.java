@@ -35,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.joooonho.SelectableRoundedImageView;
 import com.squareup.picasso.Picasso;
 
-public class UserProfileFragment extends Fragment implements View.OnClickListener {
+class UserProfileFragment extends Fragment implements View.OnClickListener {
 
     private FloatingActionMenu floatingActionMenu;
     private Toolbar toolbar;
@@ -156,6 +156,8 @@ public class UserProfileFragment extends Fragment implements View.OnClickListene
                     }
                 } catch (NullPointerException e){
                     Toast.makeText(getContext(),R.string.emptyString,Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
             });
             builderForText.create().show();

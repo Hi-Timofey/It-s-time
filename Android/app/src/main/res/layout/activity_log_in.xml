@@ -109,7 +109,6 @@
                     android:id="@+id/log_edit_log"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:importantForAutofill="no"
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
                     android:singleLine="true" />
@@ -141,7 +140,6 @@
                     android:id="@+id/log_edit_pass"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:importantForAutofill="no"
                     android:inputType="textPassword"
                     android:padding="10dp"
                     android:singleLine="true"

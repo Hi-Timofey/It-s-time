@@ -1,5 +1,6 @@
 package com.hitim.android.itstime;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -79,6 +80,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         signIn(Objects.requireNonNull(edLogin.getText()).toString(), Objects.requireNonNull(edPass.getText()).toString());
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -120,6 +122,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         dialog.show();
         if (result.isSuccess()) {
             GoogleSignInAccount account = result.getSignInAccount();
+            assert account != null;
             signInWithGoogle(account);
         } else {
             dialog.dismiss();
@@ -148,6 +151,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
 
     private void addUserInfoInDataBase() {
         FirebaseUser fire_user = FirebaseAuth.getInstance().getCurrentUser();
+        assert fire_user != null;
         User user = new User(fire_user.getEmail(), fire_user.getDisplayName());
         //Ветка на FirebaseDatabase
         String DATA_USERS = "DataUsers";
@@ -230,6 +234,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnTouchList
         return valid;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void dialogsBuilder() {
         dialog = new ProgressDialog(LogInActivity.this);
         dialog.setTitle(R.string.dialog_signing_in);

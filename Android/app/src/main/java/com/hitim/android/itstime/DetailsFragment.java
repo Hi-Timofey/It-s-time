@@ -40,7 +40,7 @@ import static android.provider.CalendarContract.Events;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailsFragment extends Fragment implements DialogInterface.OnClickListener, View.OnClickListener {
+class DetailsFragment extends Fragment implements DialogInterface.OnClickListener, View.OnClickListener {
 
     private Task task;
     private FragmentManager fm;

@@ -1,7 +1,6 @@
 package com.hitim.android.itstime;
 
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,15 +24,14 @@ import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.List;
 
-public class TaskListFragment extends ListFragment {
+class TaskListFragment extends ListFragment {
 
     private FloatingActionMenu floatingActionMenu;
     private Toolbar toolbar;
     private ListView taskListview;
-    public static List<Task> taskArrayList;
+    private static List<Task> taskArrayList;
     private FragmentManager fm;
     private String sphere = "";
-    private View viewEmpty;
     private TaskAdapter taskAdapter;
 
     public TaskListFragment() {
@@ -58,9 +56,9 @@ public class TaskListFragment extends ListFragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_task_list, container, false);
         taskListview = v.findViewById(android.R.id.list);
+        taskListview.setEmptyView(v.findViewById(R.id.empty_list_view));
         floatingActionMenu = getActivity().findViewById(R.id.floating_button_menu);
         toolbar = getActivity().findViewById(R.id.tool_bar);
-        viewEmpty = getActivity().findViewById(R.id.empty_list_view);
         return v;
     }
 
@@ -97,7 +95,7 @@ public class TaskListFragment extends ListFragment {
         fillListView();
     }
 
-    public void fillListView() {
+    private void fillListView() {
         AsyncWorker worker = new AsyncWorker();
         try {
             if (sphere.equals(getString(R.string.all_tasks_db))) {
@@ -105,16 +103,13 @@ public class TaskListFragment extends ListFragment {
                 if (!taskArrayList.isEmpty()) {
                     taskAdapter = new TaskAdapter(taskArrayList, getContext());
                     taskListview.setAdapter(taskAdapter);
-                } else taskListview.setEmptyView(viewEmpty);
-
+                }
             } else {
-
                 taskArrayList = worker.getAllTasksWithSphere(sphere);
                 if (!taskArrayList.isEmpty()) {
                     taskAdapter = new TaskAdapter(taskArrayList, getContext());
                     taskListview.setAdapter(taskAdapter);
-                } else taskListview.setEmptyView(viewEmpty);
-
+                }
             }
         } catch (NullPointerException e) {
             Toast.makeText(getContext(), "Ooops:  " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -137,7 +132,6 @@ public class TaskListFragment extends ListFragment {
         menu.clear();
         inflater.inflate(R.menu.task_list_menu, menu);
         MenuItem mSearch = menu.findItem(R.id.action_search);
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = (SearchView) mSearch.getActionView();
         EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
         searchEditText.setTextColor(getResources().getColor(R.color.whiteColor));

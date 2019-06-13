@@ -16,12 +16,12 @@ import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.SphereViewHolder> {
 
-    List<Sphere> spheres;
-    Context context;
-    ItemClickListener clickListener;
+    private final List<Sphere> spheres;
+    private final Context context;
+    private ItemClickListener clickListener;
 
 
-    public RVAdapter(List<Sphere> spheres, Context context) {
+    RVAdapter(List<Sphere> spheres, Context context) {
         this.spheres = spheres;
         this.context = context;
     }
@@ -70,16 +70,16 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.SphereViewHolder> 
         }
     }
 
-    public void setClickListener(ItemClickListener itemClickListener) {
+    void setClickListener(ItemClickListener itemClickListener) {
         this.clickListener = itemClickListener;
     }
 
 
     public class SphereViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        CardView cv;
-        ConstraintLayout cl;
-        TextView sphereName;
-        ImageView sphereIcon;
+        final CardView cv;
+        final ConstraintLayout cl;
+        final TextView sphereName;
+        final ImageView sphereIcon;
 
         SphereViewHolder(View itemView) {
             super(itemView);

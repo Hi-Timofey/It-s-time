@@ -2,7 +2,6 @@ package com.hitim.android.itstime;
 
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,12 +28,13 @@ public class SphereFragment extends Fragment implements ItemClickListener {
 
     private Toolbar toolbar;
     private FragmentManager fragmentManager;
-    private final Activity activity = getActivity();
     private FloatingActionMenu floatingActionMenu;
     //For Recycler View
     private RecyclerView rv;
     private List<Sphere> spheres;
-    private int nextSphere;
+
+    public SphereFragment() {
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
