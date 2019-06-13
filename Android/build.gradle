@@ -9,9 +9,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'//3.2.1 firebase works!
+        classpath 'com.android.tools.build:gradle:3.4.1'//3.2.1 firebase works!
         classpath 'com.google.gms:google-services:4.2.0'//May be 3.0.0
-        // Add dependency
         classpath 'io.fabric.tools:gradle:1.29.0'  // Crashlytics plugin
     }
 }
