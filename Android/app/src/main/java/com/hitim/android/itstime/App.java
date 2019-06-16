@@ -17,6 +17,10 @@ public class App extends Application {
 
     private TaskDataBase dataBase;
 
+    public static App getInstance() {
+        return instance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -26,10 +30,6 @@ public class App extends Application {
         dataBase = Room.databaseBuilder(this, TaskDataBase.class, getString(R.string.database_name))
                 .fallbackToDestructiveMigration()
                 .build();
-    }
-
-    public static App getInstance() {
-        return instance;
     }
 
     public synchronized TaskDataBase getDataBase() {
