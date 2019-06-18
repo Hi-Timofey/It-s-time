@@ -119,24 +119,24 @@ public class SphereFragment extends Fragment implements ItemClickListener {
     //Обработка нажатий кнопок на Toolbar'е
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Fragment fragment;
-        if (item.getItemId() == R.id.action_profile) {
-            fragment = new UserProfileFragment();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, fragment, getString(R.string.user_profile_fragment))
-                    .addToBackStack(null)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit();
-                /*case R.id.action_settings:
-                fragment = new SettingsFragment();
+        switch (item.getItemId()) {
+            case R.id.action_profile:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, fragment, getString(R.string.settings_fragment))
+                        .replace(R.id.fragment_container, new UserProfileFragment(), getString(R.string.user_profile_fragment))
                         .addToBackStack(null)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
-                break;*/
-        } else {
-            return super.onOptionsItemSelected(item);
+                break;
+            case R.id.action_settings:
+                /*SettingsFragment settingsFragment = new SettingsFragment();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.fragment_container,settingsFragment, getString(R.string.settings_fragment))
+                        .addToBackStack(null)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();*/
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
         }
         return true;
     }

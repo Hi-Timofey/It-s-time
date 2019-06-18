@@ -50,7 +50,7 @@
         android:background="@drawable/btn_background"
         android:onClick="onStartBtn"
         android:text="@string/start_now"
-        android:textColor="@color/whiteColor"
+        android:textColor="?titleColor"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

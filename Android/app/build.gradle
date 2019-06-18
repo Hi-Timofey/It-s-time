@@ -11,7 +11,12 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 2
-        versionName "2.2.0"
+        versionName "2.2.2"
+        applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+                outputFileName = new File("ItsTime-" + variant.versionName + ".apk")
+            }
+        }
     }
     buildTypes {
         release {

@@ -9,48 +9,57 @@
         <item name="colorAccent">@color/b_accent</item>
         <item name="colorPrimaryDark">@color/b_primary_dark</item>
         <item name="android:windowBackground">@color/whiteColor</item>
-        <item name="actionBarStyle">@style/ToolBar.Light</item>
+        <item name="actionBarStyle">@style/ToolBar</item>
         <item name="searchViewStyle">@style/MySearchViewStyle.Light</item>
+        <item name="titleColor">@color/whiteColor</item>
+        <item name="primaryColor">@color/b_primary</item>
+        <item name="primaryDarkColor">@color/b_primary_dark</item>
     </style>
 
     <style name="BlueApplicationStyle.LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/b_primary</item>
-        <item name="toolbarStyle">@style/ToolBar.Light</item>
+        <item name="actionBarStyle">@style/ToolBar.Light</item>
         <item name="colorPrimaryDark">@color/b_primary_dark</item>
         <item name="colorAccent">@color/b_accent</item>
         <item name="android:windowBackground">@color/whiteColor</item>
         <item name="colorControlHighlight">@color/b_accent_light</item>
-        <item name="colorControlNormal">@color/b_accent_dark</item>
+        <item name="colorControlNormal">@color/whiteColor</item>
         <item name="android:statusBarColor">@color/b_primary_dark</item>
-        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+        <item name="actionMenuIconColor">@color/whiteColor</item>
     </style>
 
-
-
-    <style name="LoginButton" parent="FirebaseUI.Button.AccountChooser.EmailButton">
-        <item name="android:translationZ">2dp</item>
-        <item name="android:elevation">6dp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:background">@drawable/btn_background</item>
-        <item name="android:textColor">@color/whiteColor</item>
+    <style name="BlueApplicationStyle.DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/b_primary</item>
+        <item name="actionBarStyle">@style/ToolBar.Dark</item>
+        <item name="colorPrimaryDark">@color/b_primary_dark</item>
+        <item name="colorAccent">@color/b_accent</item>
+        <item name="android:windowBackground">@color/black_background_color</item>
+        <item name="colorControlHighlight">@color/b_accent_light</item>
+        <item name="colorControlNormal">@color/whiteColor</item>
+        <item name="android:statusBarColor">@color/b_primary_dark</item>
+        <item name="actionMenuIconColor">@color/whiteColor</item>
     </style>
 
-    <style name="HintText_til" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textColor">@color/b_primary</item>
-    </style>
 
     <style name="ToolBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:menuCategory">secondary</item>
+        <item name="android:titleTextStyle">@style/TextAppearance.AppCompat.Title</item>
     </style>
 
     <style name="ToolBar.Light">
         <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="android:background">@color/b_primary</item>
         <item name="android:itemBackground">@color/whiteColor</item>
-        <item name="android:menuCategory">secondary</item>
         <item name="android:actionMenuTextColor">@color/blackColor</item>
+    </style>
+
+    <style name="ToolBar.Dark">
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="android:background">@color/b_accent</item>
+        <item name="android:itemBackground">@color/blackColor</item>
+        <item name="android:actionMenuTextColor">@color/whiteColor</item>
     </style>
 
     <style name="ErrorText" parent="TextAppearance.Design.Error">
@@ -74,4 +83,18 @@
     <style name="MySearchViewStyle.Light" parent="Widget.AppCompat.SearchView">
         <item name="closeIcon">@drawable/ic_close_white_24dp</item>
     </style>
+
+    <style name="LoginButton" parent="FirebaseUI.Button.AccountChooser.EmailButton">
+        <item name="android:translationZ">2dp</item>
+        <item name="android:elevation">6dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:background">@drawable/btn_background</item>
+        <item name="android:textColor">@color/whiteColor</item>
+    </style>
+
+    <style name="HintText_til" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/b_primary</item>
+    </style>
+
 </resources>

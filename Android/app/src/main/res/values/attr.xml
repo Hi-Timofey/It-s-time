@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="titleColor" format="reference|color" />
+    <attr name="primaryColor" format="reference|color" />
+    <attr name="primaryDarkColor" format="reference|color" />
+    <attr name="actionMenuIconColor" format="reference|color"/>
+</resources>

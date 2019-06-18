@@ -4,13 +4,13 @@
     android:insetLeft="4dp"
     android:insetRight="4dp"
     android:insetTop="5dp">
-    <ripple android:color="@color/b_primary_dark"
+    <ripple android:color="?primaryDarkColor"
         android:radius="1dp">
         <item>
             <shape android:shape="rectangle"
-                android:tint="@color/b_primary">
+                android:tint="?primaryColor">
                 <corners android:radius="2dp"/>
-                <solid android:color="@color/b_primary"/>
+                <solid android:color="?primaryColor"/>
                 <padding android:bottom="1dp"/>
             </shape>
         </item>

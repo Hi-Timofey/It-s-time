@@ -71,4 +71,8 @@
     <string name="password_changed">Пароль сменён!</string>
     <string name="empty_data">Ничего</string>
     <string name="incorrect_pass">Некорректный пароль</string>
+    <string name="dark_theme">Тёмная тема</string>
+    <string name="dark_theme_off_summary">Тёмная тема выключена</string>
+    <string name="dark_theme_on_summary">Тёмная тема включена</string>
+    <string name="settings">Настройки</string>
 </resources>

@@ -7,6 +7,7 @@
     <string name="create_task_fragment" translatable="false">HI-0003</string>
     <string name="task_list_fragment" translatable="false">HI-0006</string>
     <string name="details_fragment" translatable="false">HI-0007</string>
+    <string name="settings_fragment" translatable="false">HI-0008</string>
     <string name="date_picker_dialog" translatable="false">Date Picker Dialog</string>
     <string name="time_picker_dialog" translatable="false">Time Picker Dialog</string>
     <string name="start_now">Start Now!</string>
@@ -84,11 +85,11 @@
     <string name="ok">OK</string>
     <string name="change_password">Change password</string>
     <string name="password_changed">Password changed!</string>
-    <string name="all_tasks_db" translatable="false" >All task\'s</string>
-    <string name="work_db" translatable="false" >Work</string>
-    <string name="health_db" translatable="false" >Health</string>
-    <string name="routine_db" translatable="false" >Routine</string>
-    <string name="yourself_db" translatable="false" >Yourself</string>
+    <string name="all_tasks_db" translatable="false">All task\'s</string>
+    <string name="work_db" translatable="false">Work</string>
+    <string name="health_db" translatable="false">Health</string>
+    <string name="routine_db" translatable="false">Routine</string>
+    <string name="yourself_db" translatable="false">Yourself</string>
     <string name="empty_data">Empty</string>
     <string name="incorrect_pass">Incorrect Password</string>
     <string name="image_for_empty_data" translatable="false">Image for empty data</string>
@@ -96,4 +97,9 @@
     <string name="button_icon" translatable="false">Button icon</string>
     <string name="divider" translatable="false">Divider</string>
     <string name="field_icon" translatable="false">Field icon</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="dark_theme_pref_key" translatable="false">DarkThemePreference</string>
+    <string name="dark_theme_on_summary">Dark theme is on</string>
+    <string name="dark_theme_off_summary">Dark theme is off</string>
+    <string name="settings">Settings</string>
 </resources>
